@@ -30,7 +30,7 @@ class Episode(DefaultRunner, DefaultListenable):
         One step of the RL loop
         """
         actions = self._agent.step(obs, globalReward, done)
-        self.notifyAll({'actions':actions, 'observation': obs, 'reward':globalReward, 'done':done})
+        self.notifyAll({'key':'transition', 'actions':actions, 'observation': obs, 'reward':globalReward, 'done':done})
         obs, globalReward, done, info = self._env.step(actions)
 
         return obs, globalReward, done
@@ -51,12 +51,12 @@ class Episode(DefaultRunner, DefaultListenable):
             obs, globalReward, done = self.step(obs, globalReward, done)
             totalReward += globalReward
 
+            if self._render:
+                self._env.render(self._renderDelay)
+
             if done:
                 if self._doneStep:
                     self._agent.step(obs, globalReward, done)
                 break
-
-            if self._render:
-                self._env.render(self._renderDelay)
 
         return steps, totalReward
