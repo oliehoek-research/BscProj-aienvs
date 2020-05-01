@@ -1,5 +1,7 @@
 import gym
 import logging
+
+from aienvs.Sumo.state_factory import state_factory
 from gym import spaces
 import os
 from aienvs.Sumo.LDM import ldm
@@ -72,7 +74,12 @@ class SumoGymAdapter(Env):
         self._action_space = self._getActionSpace()
 
         # TODO: Wouter: make state configurable ("state factory")
-        self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+
+        state_factory_create_params = {'ldm': self.ldm,
+                                       'box_bottom_corner': self._parameters['box_bottom_corner'],
+                                       'box_top_corner': self._parameters['box_top_corner']}
+
+        self._state = state_factory.create(key="LdmMatrixState", **state_factory_create_params)
 
         self._observation_space = self._compute_observation_space()
 
