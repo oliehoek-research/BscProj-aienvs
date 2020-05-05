@@ -45,14 +45,14 @@ class SumoGymAdapter(Env):
                 'route_min_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
+                'seed': None,
 
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
                 'new_reward': False,  # some other type of reward ask Miguel
                 'lightPositions' : {},  # specify traffic light positions
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
-                'maxConnectRetries':50,  # maximum reattempts to connect by Traci
-                'seed': None
+                'maxConnectRetries':50  # maximum reattempts to connect by Traci
                 }
 
     def __init__(self, parameters:dict={}):
