@@ -5,6 +5,8 @@ from pathlib import Path
 import warnings
 import xml.etree.ElementTree as ElementTree
 import glob
+import randomTrips
+
 
 
 class SumoHelper(object):
@@ -56,11 +58,10 @@ class SumoHelper(object):
 
         return True
 
-    def write_route(self, route_dict, car_list):
+    def write_route(self, route_file, route_dict, car_list):
         """
         Writes the route information and generated vehicles to file
         """
-
         # Define possible routes as read from file earlier
         setup_string = "<routes>\n\n"
 
@@ -69,8 +70,6 @@ class SumoHelper(object):
                             route_dict[route] + '"/>\n'
         setup_string += '\n'
 
-        route_name = str(self._port) + '_routes.rou.xml'
-        route_file = os.path.join(self.scenario_path, route_name)
         # Write the cars to file as generated earlier
         with open(route_file, 'w') as f:
             f.write(setup_string)
@@ -125,37 +124,51 @@ class SumoHelper(object):
         Generates vehicles for each possible route in the scenario and writes
         them to file. Returns the location of the sumocfg file.
         """
-        logging.debug(('The seed being used for route generation: {}'.format(seed)))
-        random.seed(seed)
 
-        car_list = []
-        car_sum = 0
+        route_name = str(self._port) + '_routes.rou.xml'
+        route_file = os.path.join(self.scenario_path, route_name)
+        net_file = os.path.join(self.scenario_path, self._net_file)
 
-        route_dict = {}
-        expected_value = self.parameters['car_tm'] * self.parameters['car_pr']
+        if self.parameters['trips_generate']:
+            logging.debug('Using sumo/tools/randomTrips.py to generate trips')
+            randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] +
+                                                     ['-n', net_file,
+                                                      '-o', route_file]))
 
-        for t in range(self.parameters['car_tm']):
-            random_number = random.randint(0, 100) * 0.01
-            if random_number < self.parameters['car_pr']:
-                route = self.generate_randomized_route()
-                key = str(len(route_dict) + 1)
-                route_dict[key] = route
-                car = key
-                car_list.append(car)
-                car_sum += 1
-            else:
-                car_list.append(None)
+        else:
+            logging.debug('Manually creating trips based on provided segments')
+            logging.debug(('The seed being used for route generation: {}'.format(seed)))
+            random.seed(seed)
 
-        self.write_route(route_dict, car_list)
+            car_list = []
+            car_sum = 0
 
-        if float(car_sum) / expected_value >= 10:
-            warnings.warn("The expected number of cars is {}, but the "
-                          "actual number of cars is {}, which may indicate"
-                          " a bug.".format(expected_value, car_sum))
+            route_dict = {}
+            expected_value = self.parameters['car_tm'] * self.parameters['car_pr']
+
+            for t in range(self.parameters['car_tm']):
+                random_number = random.randint(0, 100) * 0.01
+                if random_number < self.parameters['car_pr']:
+                    route = self.generate_randomized_route()
+                    key = str(len(route_dict) + 1)
+                    route_dict[key] = route
+                    car = key
+                    car_list.append(car)
+                    car_sum += 1
+                else:
+                    car_list.append(None)
+
+            self.write_route(route_file, route_dict, car_list)
+
+            if float(car_sum) / expected_value >= 10:
+                warnings.warn("The expected number of cars is {}, but the "
+                              "actual number of cars is {}, which may indicate"
+                              " a bug.".format(expected_value, car_sum))
 
     def __del__(self):
-        if(self.parameters['generate_conf']):
-            if ('sumocfg_file' in locals()):
-                os.remove(self.sumocfg_file)
-            if ('_route_file' in locals()):
-                os.remove(self._route_file)
+        print('deleting')
+        # if(self.parameters['generate_conf']):
+        #     if ('sumocfg_file' in locals()):
+        #         os.remove(self.sumocfg_file)
+        #     if ('_route_file' in locals()):
+        #         os.remove(self._route_file)
