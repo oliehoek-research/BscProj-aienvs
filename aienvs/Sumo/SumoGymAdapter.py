@@ -34,6 +34,7 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterX': 1,  # for the observable frame
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
+                'generate_conf': True,  # for automatic route/config generation
                 'trips_generate': False, #using sumo/tools/randomTrips.py to generate trips
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o already handled!
 
@@ -45,7 +46,6 @@ class SumoGymAdapter(Env):
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
 
-                'generate_conf' : True,  # for automatic route/config generation
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
                 'new_reward': False,  # some other type of reward ask Miguel
