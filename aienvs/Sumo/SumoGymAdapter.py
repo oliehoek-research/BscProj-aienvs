@@ -84,7 +84,11 @@ class SumoGymAdapter(Env):
         self._observation_space = self._compute_observation_space()
 
     def _compute_observation_space(self):
-        self._startSUMO(gui=False)
+        try:
+            self._startSUMO(gui=False)
+        except Exception as err:
+            logging.warning(err)
+
         _s = self._observe()
         self.frame_height = _s.shape[0]
         self.frame_width = _s.shape[1]
