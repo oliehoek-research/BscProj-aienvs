@@ -38,13 +38,7 @@ class SumoHelper(object):
         Checks if the scenario is well-defined and usable by seeing if all
         the needed files exist.
         """
-        if 'scenarios_folder' not in self.parameters:
-            dirname = os.path.dirname(__file__)
-            sumoai_home = os.path.join(dirname, "../..")
-            self.scenario_path = os.path.join(sumoai_home, 'scenarios/Sumo', scenario)
-        else:
-            self.scenario_path = os.path.join(self.parameters['scenarios_folder'], scenario)
-
+        self.scenario_path = os.path.join(self.parameters['scenarios_path'], scenario)
         if(self.parameters['generate_conf']):
             self._net_file = os.path.basename(glob.glob(self.scenario_path + '/*.net.xml')[0])
             self._needed_files = [os.path.basename(self._net_file)]

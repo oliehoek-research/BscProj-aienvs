@@ -27,6 +27,7 @@ class SumoGymAdapter(Env):
         to connect to SUMO is already in use.
     """
     _DEFAULT_PARAMETERS = {'gui':True,  # gui or not
+                'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
                 'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
                 'tlphasesfile':'cross.net.xml',  # file
                 'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
@@ -67,7 +68,7 @@ class SumoGymAdapter(Env):
         self._parameters.update(parameters)
 
         dirname = os.path.dirname(__file__)
-        tlPhasesFile = os.path.join(dirname, "../../scenarios/Sumo/", self._parameters['scene'], self._parameters['tlphasesfile'])
+        tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
         self._tlphases = TrafficLightPhases(tlPhasesFile)
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
         self._takenActions = {}
