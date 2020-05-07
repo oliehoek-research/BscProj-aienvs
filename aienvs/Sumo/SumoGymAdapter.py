@@ -90,9 +90,7 @@ class SumoGymAdapter(Env):
             logging.warning(err)
 
         _s = self._observe()
-        self.frame_height = _s.shape[0]
-        self.frame_width = _s.shape[1]
-        return Box(low=0, high=1.0, shape=(self.frame_height, self.frame_width), dtype=np.float32)
+        return Box(low=0, high=1.0, shape=_s.shape, dtype=np.float32)
 
     def step(self, actions:dict):
         self._set_lights(actions)
