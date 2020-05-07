@@ -1,4 +1,6 @@
 import copy
+import logging
+from logging import warning
 import numpy as np
 from gettext import _current_domain
 from aienvs.Sumo.LDM import ldm
@@ -825,3 +827,65 @@ class LdmMatrixState(State):
         returns the size of the matrix as a list of 2 elements.
         """
         return [self.topRightCoords[0] - self.bottomLeftCoords[0], self.topRightCoords[1] - self.bottomLeftCoords[1] ]
+
+# State representation that only uses queue lengths
+class SimpleState(State):
+    def __init__(self, ldm):
+        State.__init__(self, ldm, None)
+
+        self.initialized = False
+
+        self.traffic_light = None
+        self.lanes = None
+
+    def update_state(self):
+
+        state = np.zeros((1, 4))
+
+        if not self.initialized:
+            self.traffic_light = self._ldm.getTrafficLights()[0]
+            self.lanes = sorted(self._ldm.getControlledLanes(self.traffic_light))
+
+            logging.info(f"traffic light: {self.traffic_light}")
+            logging.info(f"controlled lanes: {self._ldm.getControlledLanes(self.traffic_light)}")
+
+            assert self.lanes is not None
+            assert isinstance(self.lanes[0], str)
+
+            self.initialized = True
+
+        try:
+            lane_stats = {}
+
+            logging.debug(f"vehicle: {self._ldm.getVehicles()}")
+
+            for vehicle in self._ldm.getVehicles():
+                try:
+                    logging.debug(f"vehicle: {vehicle}!!!!")
+                    # Get the current lane of the vehicle
+                    vehicle_lane = self._ldm.getVehicleLane(vehicle)
+                    # print("vehiclelane", vehicle_lane)
+
+                    # Count the number of vehicles on the lane:
+                    try:
+                        lane_stats[vehicle_lane]['vehicle_count'] += 1.0
+                    except KeyError:
+                        lane_stats[vehicle_lane] = {'vehicle_count': 1.0}
+                except Exception as err:
+                    warning(err)
+                    continue
+
+            # print("logging.info:")
+            logging.info(f"lane_stats: {lane_stats}")
+
+            for i, lane in enumerate(self.lanes):
+                state[0, i] = lane_stats.get(lane, {'vehicle_count': 0.0})['vehicle_count'] / 10.0
+
+        except AttributeError as err:
+            warning(err)
+
+        # warning("wrong branch executed")
+
+        logging.info(f"returning state: {state}")
+
+        return state

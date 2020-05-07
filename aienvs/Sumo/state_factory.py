@@ -23,5 +23,14 @@ def LdmMatrixState_builder(ldm, box_bottom_corner, box_top_corner, **_):
                                                type="byCorners")
 
 
+def LinearFeatureState_builder(ldm, **_):
+    return state_representation.LinearFeatureState(ldm=ldm)
+
+def SimpleState_builder(ldm, **_):
+    return state_representation.SimpleState(ldm=ldm)
+
+
 state_factory = ObjectFactory()
 state_factory.register_builder("LdmMatrixState", LdmMatrixState_builder)
+state_factory.register_builder("LinearFeatureState", LinearFeatureState_builder)
+state_factory.register_builder("SimpleState", SimpleState_builder)
