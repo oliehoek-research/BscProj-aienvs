@@ -28,31 +28,32 @@ class SumoGymAdapter(Env):
         A retry is needed if the randomly chosen port
         to connect to SUMO is already in use.
     """
-    _DEFAULT_PARAMETERS = {'gui':True,  # gui or not
-                'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
-                'tlphasesfile':'cross.net.xml',  # file
-                'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
-                'box_top_corner':(10, 10),  # top right corner of the observable frame
-                'resolutionInPixelsPerMeterX': 1,  # for the observable frame
-                'resolutionInPixelsPerMeterY': 1,  # for the observable frame
-                'y_t': 6,  # yellow time
-                'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
-                'car_tm': 2,  #  for automatic route/config generation when the first car appears?
-                'route_starts' : [],  #  for automatic route/config generation, ask Rolf
-                'route_min_segments' : 0,  #  for automatic route/config generation, ask Rolf
-                'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
-                'route_ends' : [],  #  for automatic route/config generation, ask Rolf
-                'generate_conf' : True,  # for automatic route/config generation
-                'libsumo' : False,  # whether libsumo is used instead of traci
-                'waiting_penalty' : 1,  # penalty for waiting
-                'new_reward': False,  # some other type of reward ask Miguel
-                'lightPositions' : {},  # specify traffic light positions
-                'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
-                'maxConnectRetries':50,  # maximum reattempts to connect by Traci
-                'seed': None
-                }
+    _DEFAULT_PARAMETERS = {'gui': True,  # gui or not
+                           'scene': 'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
+                           'tlphasesfile': 'cross.net.xml',  # file
+                           'box_bottom_corner': (0, 0),  # bottom left corner of the observable frame
+                           'box_top_corner': (10, 10),  # top right corner of the observable frame
+                           'resolutionInPixelsPerMeterX': 1,  # for the observable frame
+                           'resolutionInPixelsPerMeterY': 1,  # for the observable frame
+                           'y_t': 6,  # yellow time
+                           'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
+                           'car_tm': 2,  # for automatic route/config generation when the first car appears?
+                           'route_starts': [],  # for automatic route/config generation, ask Rolf
+                           'route_min_segments': 0,  # for automatic route/config generation, ask Rolf
+                           'route_max_segments': 0,  # for automatic route/config generation, ask Rolf
+                           'route_ends': [],  # for automatic route/config generation, ask Rolf
+                           'generate_conf': True,  # for automatic route/config generation
+                           'libsumo': False,  # whether libsumo is used instead of traci
+                           'waiting_penalty': 1,  # penalty for waiting
+                           'new_reward': False,  # some other type of reward ask Miguel
+                           'lightPositions': {},  # specify traffic light positions
+                           'scaling_factor': 1.0,  # for rescaling the reward? ask Miguel
+                           'maxConnectRetries': 50,  # maximum reattempts to connect by Traci
+                           'seed': None,
+                           'observation_space': "LdmMatrixState"
+                           }
 
-    def __init__(self, parameters:dict={}):
+    def __init__(self, parameters: dict = {}):
         """
         @param path where results go, like "Experiment ID"
         @param parameters the configuration parameters.
@@ -64,7 +65,8 @@ class SumoGymAdapter(Env):
         self._parameters.update(parameters)
 
         dirname = os.path.dirname(__file__)
-        tlPhasesFile = os.path.join(dirname, "../../scenarios/Sumo/", self._parameters['scene'], self._parameters['tlphasesfile'])
+        tlPhasesFile = os.path.join(dirname, "../../scenarios/Sumo/", self._parameters['scene'],
+                                    self._parameters['tlphasesfile'])
         self._tlphases = TrafficLightPhases(tlPhasesFile)
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
         self._takenActions = {}
@@ -73,15 +75,13 @@ class SumoGymAdapter(Env):
         self.seed(parameters['seed'])  # in case no seed is given
         self._action_space = self._getActionSpace()
 
-        # TODO: Wouter: make state configurable ("state factory")
+        self._state_abstractions = {}
 
-        state_factory_create_params = {'ldm': self.ldm,
-                                       'box_bottom_corner': self._parameters['box_bottom_corner'],
-                                       'box_top_corner': self._parameters['box_top_corner']}
+        # The state abstraction that is currently used
+        # By assigning to self.observation_space property, the stateabstraction is added and used
+        self.observation_space = self._parameters['observation_space']
 
-        self._state = state_factory.create(key="LdmMatrixState", **state_factory_create_params)
-
-        self._observation_space = self._compute_observation_space()
+        self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState", **self._state_factory_create_params)
 
     def _compute_observation_space(self):
         try:
@@ -138,12 +138,44 @@ class SumoGymAdapter(Env):
     def close(self):
         self.__del__()
 
+    # Observe with a specific state abstraction
+    def observe(self, state_abstraction_name):
+        return self._state_abstractions[state_abstraction_name].update_state()
+
     @property
     def observation_space(self):
         # # this is the previous method, which does not take resolution into consideration
         # size = self._state.size()
         # return Box(low=0, high=np.inf, shape=(size[0], size[1]), dtype=np.int32)
         return self._observation_space
+
+    @observation_space.setter
+    def observation_space(self, state_abstraction_name):
+        self._current_state_abstraction_name = state_abstraction_name
+
+        if self._current_state_abstraction_name not in self._state_abstractions.keys():
+            self.add_state_abstraction(state_abstraction_name)
+
+        self._observation_space = self._compute_observation_space()
+
+    def add_state_abstraction(self, state_abstraction_name):
+        if state_abstraction_name in self._state_abstractions.keys():
+            logging.warning(f"{state_abstraction_name} was already added")
+
+        self._state_abstractions[state_abstraction_name] = state_factory.create(key=state_abstraction_name,
+                                                                                **self._state_factory_create_params)
+
+    @property
+    def _state_factory_create_params(self):
+        return {'ldm': self.ldm,
+                'box_bottom_corner': self._parameters['box_bottom_corner'],
+                'box_top_corner': self._parameters['box_top_corner']}
+
+    # Return the currently chosen state abstraction
+    # This is the state used by _observe.
+    @property
+    def _state(self):
+        return self._state_abstractions[self._current_state_abstraction_name]
 
     @property
     def action_space(self):
@@ -220,7 +252,7 @@ class SumoGymAdapter(Env):
         """
         Computes the global reward
         """
-        return self._state.update_reward() / self._parameters['scaling_factor']
+        return self._state_used_for_rewards.update_reward() / self._parameters['scaling_factor']
 
     def _getActionSpace(self):
         """
@@ -228,10 +260,10 @@ class SumoGymAdapter(Env):
         id is the intersection id and value is
          all possible actions for each id as specified in tlphases
         """
-        return spaces.Dict({inters:spaces.Discrete(self._tlphases.getNrPhases(inters)) \
+        return spaces.Dict({inters: spaces.Discrete(self._tlphases.getNrPhases(inters)) \
                             for inters in self._tlphases.getIntersectionIds()})
 
-    def _set_lights(self, actions:spaces.Dict):
+    def _set_lights(self, actions: spaces.Dict):
         """
         Take the specified actions in the environment
         @param actions a list of
