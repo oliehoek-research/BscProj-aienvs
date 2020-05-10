@@ -128,9 +128,11 @@ class SumoHelper(object):
 
         if self.parameters['trips_generate']:
             logging.debug('Using sumo/tools/randomTrips.py to generate trips')
-            randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] +
-                                                     ['-n', net_file,
-                                                      '-o', route_file]))
+            params = ['-n', net_file, '-o', route_file]
+            if seed is not None:
+                params += ['-s', str(seed)]
+
+            randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] + params))
 
         else:
             logging.debug('Manually creating trips based on provided segments')
