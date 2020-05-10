@@ -127,30 +127,22 @@ class ldm():
 
 
     def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards):
-
-        c0 = bottomLeftCoords[0] + 0.5 * (topRightCoords[0] - bottomLeftCoords[0])
-        c1 = bottomLeftCoords[1] + 0.5 * (topRightCoords[1] - bottomLeftCoords[1])
-        # print(c0, c1)
-
-        radius = 100
-
-
         vehicles = self.subscriptionResults
         filteredVehicles = vehicles.copy()
         if local_rewards:
             for vehID in vehicles:
                 position = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_POSITION)
 
-                if(position[0] < c0 - radius):
+                if(position[0] < bottomLeftCoords[0]):
                     filteredVehicles.pop(vehID)
                     continue
-                if(position[0] > c0 + radius):
+                if(position[0] > topRightCoords[0]):
                     filteredVehicles.pop(vehID)
                     continue
-                if(position[1] < c1 - radius):
+                if(position[1] < bottomLeftCoords[1]):
                     filteredVehicles.pop(vehID)
                     continue
-                if(position[1] > c1 + radius):
+                if(position[1] > topRightCoords[1]):
                     filteredVehicles.pop(vehID)
                     continue
 
