@@ -54,7 +54,7 @@ class SumoGymAdapter(Env):
                 'maxConnectRetries':50  # maximum reattempts to connect by Traci
                 }
 
-    def __init__(self, parameters:dict={}):
+    def __init__(self, parameters:dict={}, init_state=True):
         """
         @param path where results go, like "Experiment ID"
         @param parameters the configuration parameters.
@@ -81,9 +81,13 @@ class SumoGymAdapter(Env):
         self._action_space = self._getActionSpace()
 
         # TODO: Wouter: make state configurable ("state factory")
-        self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+        if init_state:
+            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+        else:
+            self._state = None
 
-        self._observation_space = self._compute_observation_space()
+        # Computed when needed instead of in __init__:
+        self._observation_space = None
 
     def _compute_observation_space(self):
         self._startSUMO(gui=False)
@@ -143,6 +147,10 @@ class SumoGymAdapter(Env):
         # # this is the previous method, which does not take resolution into consideration
         # size = self._state.size()
         # return Box(low=0, high=np.inf, shape=(size[0], size[1]), dtype=np.int32)
+
+        if self._observation_space is None:
+            self._observation_space = self._compute_observation_space()
+
         return self._observation_space
 
     @property
