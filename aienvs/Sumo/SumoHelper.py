@@ -139,6 +139,33 @@ class SumoHelper(object):
 
             randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] + params))
 
+        elif self.parameters['route_generation_method'] == 'activitygen':
+            logging.debug('Using activitygen and duarouter to generate trips based on stat-file')
+
+            stat_file = get_stat_file(scenario_path=self.scenario_path)
+
+            # Used as input to duarouter
+            tmp_trips_route_name = str(self._port) + '_routes.trips.rou.xml'
+            tmp_trips_route_file = os.path.join(self.scenario_path, route_name)
+
+            # Get the paths of the sumotools binaries activitygen and duarouter
+            ACTIVITYGEN = sumolib.checkBinary('activitygen')
+            DUAROUTER = sumolib.checkBinary('duarouter')
+
+            activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
+                                '--output-file', tmp_trips_route_file]
+            if seed is not None:
+                activitygen_args += ['-s', str(seed)]
+
+            subprocess.call(activitygen_args)
+
+            duarouter_args = [DUAROUTER, '--net-file', net_file, '--route-files', tmp_trips_route_file,
+                              '--output-file', route_file, '--ignore-errors']
+            if seed is not None:
+                activitygen_args += ['-s', str(seed)]
+
+            subprocess.call(duarouter_args)
+
         elif self.parameters['route_generation_method'] == 'legacy':
             self._generate_route_file_manual(seed=seed, route_file=route_file)
         else:
