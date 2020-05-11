@@ -65,10 +65,14 @@ class SumoGymAdapter(Env):
         self._parameters = copy.deepcopy(self._DEFAULT_PARAMETERS)
         self._parameters.update(parameters)
 
-        dirname = os.path.dirname(__file__)
+        self._scenario_path = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'])
+
+        if self._parameters['tlphasesfile'] is None:
+            self._parameters['tlphasesfile'] = self.get_net_file()
+
         tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
         self._tlphases = TrafficLightPhases(tlPhasesFile)
-        self._scenario_path = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'])
+
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
         self._takenActions = {}
         self._yellowTimer = {}

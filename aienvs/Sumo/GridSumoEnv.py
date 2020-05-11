@@ -214,7 +214,10 @@ class GridSumoEnv(SumoGymAdapter):
         dirname = os.path.dirname(__file__)
         scenario_path = os.path.join(dirname, "../../scenarios/Sumo/{}".format(sceanrio))
         _parameters['scene'] = sceanrio
-        _parameters['tlphasesfile'] = "{}.tll.xml".format(sceanrio)
+
+        # use netfile as tlphasesfile
+        _parameters['tlphasesfile'] = None
+
         _parameters['box_bottom_corner'] = (0, 0)
         _parameters['box_top_corner'] = ((shape[0]+1)*lane_length, (shape[1]+1)*lane_length)
 
