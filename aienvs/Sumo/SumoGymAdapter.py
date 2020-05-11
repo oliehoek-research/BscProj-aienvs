@@ -1,3 +1,4 @@
+import glob
 import logging
 import os
 import random
@@ -67,6 +68,7 @@ class SumoGymAdapter(Env):
         dirname = os.path.dirname(__file__)
         tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
         self._tlphases = TrafficLightPhases(tlPhasesFile)
+        self._scenario_path = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'])
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
         self._takenActions = {}
         self._yellowTimer = {}
@@ -278,3 +280,10 @@ class SumoGymAdapter(Env):
                 timer = 0
 
         return new_action, timer
+
+    def get_net_file(self):
+        net_files = glob.glob(self._scenario_path + '/*.net.xml')
+
+        assert len(net_files) == 1, f"Expected exactly one netfile, but netfiles: {net_files}"
+
+        return net_files[0]
