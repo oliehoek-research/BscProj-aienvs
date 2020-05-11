@@ -27,7 +27,7 @@ class SumoGymAdapter(Env):
     _DEFAULT_PARAMETERS = {'gui':True,  # gui or not
                 'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
                 'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
-                'tlphasesfile':'cross.net.xml',  # file
+                'tlphasesfile': None,  # Use None to read phases from net file
                 'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
                 'box_top_corner':(10, 10),  # top right corner of the observable frame
                 'resolutionInPixelsPerMeterX': 1,  # for the observable frame
