@@ -12,7 +12,8 @@ class GridSumoEnv(SumoGymAdapter):
         'car_tm': 1000,
         'gui': False,
         'resolutionInPixelsPerMeterX': 0.1,
-        'resolutionInPixelsPerMeterY': 0.1
+        'resolutionInPixelsPerMeterY': 0.1,
+        'route_generation_method': 'legacy',  # One of ['legacy', 'randomTrips.py', 'activitygen']
     }
 
     @staticmethod

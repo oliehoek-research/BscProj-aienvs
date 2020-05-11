@@ -34,16 +34,20 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
-                'trips_generate': False, #using sumo/tools/randomTrips.py to generate trips
+
+                'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
+
+                # Options for 'route_generation_method' 'randomTrips.py'
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o already handled!
 
-                # Custom route and trip generation if trips_generate is set to False
+                # Custom route and trip generation if route_generation_method is set to 'legacy'
                 'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
                 'car_tm': 2,  #  for automatic route/config generation when the first car appears?
                 'route_starts' : [],  #  for automatic route/config generation, ask Rolf
                 'route_min_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
+
                 'seed': None,
 
                 'libsumo' : False,  # whether libsumo is used instead of traci

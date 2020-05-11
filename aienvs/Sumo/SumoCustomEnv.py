@@ -17,6 +17,8 @@ class SumoCustomEnv(SumoGymAdapter):
         'resolutionInPixelsPerMeterY': 0.25,
         'box_width': 100,
         'box_height': 100,
+        'route_generation_method': 'activitygen',  # One of ['legacy', 'randomTrips.py', 'activitygen']
+
     }
 
     def __init__(self, parameters: dict = None, junction_id: str = "Waring_Woodhull"):
