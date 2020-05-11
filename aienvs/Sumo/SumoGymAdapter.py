@@ -1,19 +1,16 @@
-import gym
 import logging
-from gym import spaces
 import os
-from aienvs.Sumo.LDM import ldm
-from aienvs.Sumo.SumoHelper import SumoHelper
-from aienvs.Sumo.state_representation import *
-import time
-from sumolib import checkBinary
 import random
-from aienvs.Sumo.SumoHelper import SumoHelper
-from aienvs.Environment import Env
-import copy
-from aienvs.Sumo.TrafficLightPhases import TrafficLightPhases
+import time
+
+from gym import spaces
 from gym.spaces import Box
-import numpy as np
+from sumolib import checkBinary
+
+from aienvs.Environment import Env
+from aienvs.Sumo.SumoHelper import SumoHelper
+from aienvs.Sumo.TrafficLightPhases import TrafficLightPhases
+from aienvs.Sumo.state_representation import *
 
 
 class SumoGymAdapter(Env):
