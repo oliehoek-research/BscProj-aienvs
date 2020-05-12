@@ -154,6 +154,10 @@ class SumoHelper(object):
 
             activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
                                 '--output-file', tmp_trips_route_file]
+
+            # Add passed through arguments
+            activitygen_args += self.parameters['activitygen_options']
+
             if seed is not None:
                 activitygen_args += ['-s', str(seed)]
 

@@ -37,6 +37,9 @@ class SumoGymAdapter(Env):
 
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
+                # Options for 'route_generation_method' 'activitygen'
+                'activitygen_options': [], # e.g. ["--end", endtime]
+
                 # Options for 'route_generation_method' 'randomTrips.py'
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o already handled!
 
