@@ -27,7 +27,7 @@ class SumoGymAdapter(Env):
     _DEFAULT_PARAMETERS = {'gui':True,  # gui or not
                 'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
                 'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
-                'tlphasesfile': None,  # Use None to read phases from net file
+                'tlphasesfile': None,  # Use None to read phases from net file, otherwise only relative name
                 'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
                 'box_top_corner':(10, 10),  # top right corner of the observable frame
                 'resolutionInPixelsPerMeterX': 1,  # for the observable frame
@@ -75,9 +75,10 @@ class SumoGymAdapter(Env):
         self._scenario_path = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'])
 
         if self._parameters['tlphasesfile'] is None:
-            self._parameters['tlphasesfile'] = self.get_net_file()
+            tlPhasesFile = self._parameters['tlphasesfile'] = self.get_net_file()
+        else:
+            tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
 
-        tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
         self._tlphases = TrafficLightPhases(tlPhasesFile)
 
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
@@ -300,6 +301,7 @@ class SumoGymAdapter(Env):
 
         return new_action, timer
 
+    # Returns full path
     def get_net_file(self):
         net_files = glob.glob(self._scenario_path + '/*.net.xml')
 
