@@ -12,7 +12,6 @@ class SumoCustomEnv(SumoGymAdapter):
     __DEFAULT_PARAMETERS = {
         'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
         'scene': 'rp-scenario-v2',
-        'trips_generate': True,  # using sumo/tools/randomTrips.py to generate trips
         'resolutionInPixelsPerMeterX': 0.25,
         'resolutionInPixelsPerMeterY': 0.25,
         'box_width': 100,
