@@ -160,6 +160,8 @@ class SumoHelper(object):
 
             if seed is not None:
                 activitygen_args += ['--seed', str(seed)]
+            else:
+                activitygen_args += ['--random']
 
             subprocess.call(activitygen_args)
 
@@ -167,6 +169,8 @@ class SumoHelper(object):
                               '--output-file', route_file, '--ignore-errors']
             if seed is not None:
                 duarouter_args += ['--seed', str(seed)]
+            else:
+                duarouter_args += ['--random']
 
             subprocess.call(duarouter_args)
 
