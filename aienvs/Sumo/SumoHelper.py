@@ -146,7 +146,7 @@ class SumoHelper(object):
 
             # Used as input to duarouter
             tmp_trips_route_name = str(self._port) + '_routes.trips.rou.xml'
-            tmp_trips_route_file = os.path.join(self.scenario_path, route_name)
+            tmp_trips_route_file = os.path.join(self.scenario_path, tmp_trips_route_name)
 
             # Get the paths of the sumotools binaries activitygen and duarouter
             ACTIVITYGEN = sumolib.checkBinary('activitygen')
