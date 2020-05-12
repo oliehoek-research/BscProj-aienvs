@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<city>
+	<general 
+		inhabitants="1000" 
+		households="500" 
+		childrenAgeLimit="19" 
+		retirementAgeLimit="62" 
+		carRate="0.45" 
+		unemploymentRate="0.044" 
+		footDistanceLimit="0" 
+		incomingTraffic="200" 
+		outgoingTraffic="50"
+	/>
+	
+	<parameters 
+		carPreference="0.44" 
+		meanTimePerKmInCity="360" 
+		freeTimeActivityRate="0.15" 
+		uniformRandomTraffic="0.20" 
+		departureVariation="300" 
+	/>
+	
+	<population>
+		<bracket beginAge="0" endAge="34" peopleNbr="51" />
+		<bracket beginAge="34" endAge="64" peopleNbr="37" />
+		<bracket beginAge="64" endAge="90" peopleNbr="12" />
+	</population>
+
+	<workHours>
+		<opening hour="30600" proportion="0.30" />
+		<opening hour="32400" proportion="0.70" />
+		<closing hour="43200" proportion="0.20" />
+		<closing hour="63000" proportion="0.20" />
+		<closing hour="64800" proportion="0.60" />
+	</workHours>
+
+	<streets>
+		<street edge="Astor_Avenue_1_L" population="10" workPosition="100" />
+		<street edge="Astor_Avenue_1_R" population="10" workPosition="100" />
+		<street edge="Astor_Avenue_2_L" population="10" workPosition="100" />
+		<street edge="Astor_Avenue_2_R" population="10" workPosition="100" />
+		<street edge="Astor_Avenue_3_L" population="10" workPosition="100" />
+		<street edge="Astor_Avenue_3_R" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_1_L" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_1_R" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_2_L" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_2_R" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_3_L" population="10" workPosition="100" />
+		<street edge="Eastchester_Road_3_R" population="10" workPosition="100" />
+		<street edge="Fenton_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Fenton_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Fenton_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Fenton_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Fenton_Avenue_3_L" population="100" workPosition="10" />
+		<street edge="Fenton_Avenue_3_R" population="100" workPosition="10" />
+		<street edge="Kingsland_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Kingsland_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Kingsland_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Kingsland_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_3_L" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_3_R" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_4_L" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_4_R" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_5_L" population="100" workPosition="10" />
+		<street edge="Mace_Avenue_5_R" population="100" workPosition="10" />
+		<street edge="Mickle_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Mickle_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Pelham_Parkway_North_1_L" population="100" workPosition="10" />
+		<street edge="Pelham_Parkway_North_2_L" population="100" workPosition="10" />
+		<street edge="Pelham_Parkway_North_3_L_2" population="100" workPosition="10" />
+		<street edge="Pelham_Parkway_North_4_L" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_3_L" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_3_R" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_4_L" population="100" workPosition="10" />
+		<street edge="Waring_Avenue_4_R" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_3_L" population="100" workPosition="10" />
+		<street edge="Westervelt_Avenue_3_R" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_1_L" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_1_R" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_2_L" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_2_R" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_3_L" population="100" workPosition="10" />
+		<street edge="Woodhull_Avenue_3_R" population="100" workPosition="10" />
+	</streets>
+
+	<cityGates>
+            <entrance edge="Pelham_Parkway_North_4_L" pos="1" incoming="0.50" outgoing="0.25" />
+            <entrance edge="Mace_Avenue_1_R" pos="1" incoming="0.25" outgoing="0.25" />
+	    <entrance edge="Fenton_Avenue_3_R" pos="1" incoming="0.25" outgoing="0.5" />
+        </cityGates>
+
+        <schools>
+            <school edge="Mickle_Avenue_1_L" pos="10" beginAge="0" endAge="12" capacity="200" opening="32400" closing="64800" />
+            <school edge="Eastchester_Road_2_L" pos="5" beginAge="12" endAge="18" capacity="300" opening="32400" closing="61200" />
+	</schools>
+</city>
