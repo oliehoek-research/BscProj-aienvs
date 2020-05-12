@@ -28,7 +28,6 @@ class NetFileUtil:
     def _find_connection_with_via(self, via: str) -> dict:
         for connection in self._root.iter('connection'):
             if 'via' in connection.attrib.keys() and connection.attrib['via'] == via:
-                print(connection.attrib)
                 return connection.attrib
 
         raise Exception(f"Did not find connection via {via}")
