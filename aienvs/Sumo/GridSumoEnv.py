@@ -154,7 +154,8 @@ class GridSumoEnv(SumoGymAdapter):
 
         # generate network file
         net_file_path = os.path.join(folder_path, "{}.net.xml".format(scenario_name))
-        command = 'netconvert --node-files={} --edge-files={} --connection-files={} --tllogic-files={} --output-file={}'.format(node_file_path, edge_file_path, connection_file_path, tllogic_file_path, net_file_path)
+        command = 'netconvert --node-files="{}" --edge-files="{}" --connection-files="{}" --tllogic-files="{}" --output-file="{}"'.format(node_file_path, edge_file_path, connection_file_path, tllogic_file_path, net_file_path)
+        print(command)
         os.system(command)
 
     @staticmethod
