@@ -135,7 +135,7 @@ class SumoHelper(object):
             logging.debug('Using sumo/tools/randomTrips.py to generate trips')
             params = ['-n', net_file, '-o', route_file, '--validate']
             if seed is not None:
-                params += ['-s', str(seed)]
+                params += ['--seed', str(seed)]
 
             randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] + params))
 
@@ -159,14 +159,14 @@ class SumoHelper(object):
             activitygen_args += self.parameters['activitygen_options']
 
             if seed is not None:
-                activitygen_args += ['-s', str(seed)]
+                activitygen_args += ['--seed', str(seed)]
 
             subprocess.call(activitygen_args)
 
             duarouter_args = [DUAROUTER, '--net-file', net_file, '--route-files', tmp_trips_route_file,
                               '--output-file', route_file, '--ignore-errors']
             if seed is not None:
-                activitygen_args += ['-s', str(seed)]
+                duarouter_args += ['--seed', str(seed)]
 
             subprocess.call(duarouter_args)
 
