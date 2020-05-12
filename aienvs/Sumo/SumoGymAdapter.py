@@ -41,7 +41,7 @@ class SumoGymAdapter(Env):
                 'activitygen_options': [], # e.g. ["--end", endtime]
 
                 # Options for 'route_generation_method' 'randomTrips.py'
-                'trips_generate_options': ["--validate"], # sumo/tools/randomTrips.py additional options. -n, -o already handled!
+                'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
 
                 # Custom route and trip generation if route_generation_method is set to 'legacy'
                 'car_pr': 0.5,  # for automatic route/config generation probability that a car appears

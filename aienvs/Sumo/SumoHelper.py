@@ -133,7 +133,7 @@ class SumoHelper(object):
 
         if self.parameters['route_generation_method'] == 'randomTrips.py':
             logging.debug('Using sumo/tools/randomTrips.py to generate trips')
-            params = ['-n', net_file, '-o', route_file]
+            params = ['-n', net_file, '-o', route_file, '--validate']
             if seed is not None:
                 params += ['-s', str(seed)]
 
