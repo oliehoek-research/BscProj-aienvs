@@ -20,11 +20,14 @@ class SumoCustomEnv(SumoGymAdapter):
 
     }
 
-    def __init__(self, parameters: dict = None, junction_id: str = "Waring_Woodhull"):
+    def __init__(self, parameters: dict = None, junction_id: str = "Waring_Woodhull", start_time: int = None,
+                 end_time: int = None):
         """
         Class for creating a Sumo environment based on a custom (imported from OSM) scenario.
         :param parameters: Dict with parameters.
         :param junction_id: The junction that should be controllable by an agent.
+        :param start_time: The time at which the simulation starts in seconds
+        :param end_time: The time after which no new cars depart in seconds
         """
         _parameters = copy.deepcopy(self._DEFAULT_PARAMETERS)  # load default parameters of SUMOGymAdaptor
         _parameters.update(self.__DEFAULT_PARAMETERS)  # load default parameters of GridSumoEnv
@@ -49,6 +52,26 @@ class SumoCustomEnv(SumoGymAdapter):
         self._state = LdmMatrixState(self.ldm,
                                      [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']],
                                      "byCorners")
+
+        self._set_duration(end_time, start_time)
+
+    def _set_duration(self, end_time, start_time):
+        if start_time is not None or end_time is not None:
+            assert self._parameters['route_generation_method'] == 'activitygen', \
+                "Setting the duration requires using 'activitygen' for route generation"
+
+        if start_time is not None:
+            start_time = int(start_time)
+
+            self._parameters['activitygen_options'] += ['--begin', str(start_time)]
+            self._parameters['simulation_start_time'] = start_time
+
+        if end_time is not None:
+            end_time = int(end_time)
+
+            # simulate less then one full day:
+            self._parameters['activitygen_options'] += ['--duration-d', '0']
+            self._parameters['activitygen_options'] += ['--end', str(end_time)]
 
     def set_observation_box_around_point(self, point_x: float, point_y: float, width: float, height: float) -> None:
         """
