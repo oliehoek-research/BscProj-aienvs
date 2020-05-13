@@ -3,7 +3,7 @@ from _pyio import IOBase
 import xml.etree.ElementTree as ElementTree
 
 
-class TrafficLightPhases():
+class TrafficLightPhases:
     '''
     Contains all phases of all traffic lights that do not involve yellow.
     Usually read from a file.
@@ -13,9 +13,11 @@ class TrafficLightPhases():
     We search for <tlLogic> elements in the XML (can be at any depth) 
     and collect all settings.
     Each tlLogic element must have a unique id (traffic light reference).
+
+    NOTE: Can be read from *.net.xml instead of a *.tll.xml file
     '''
     
-    def __init__(self, filename:str):
+    def __init__(self, filename: str):
         '''
         @param filename the file containing XML text. NOTE this really
         should not be a "filename" but a input stream; unfortunately 

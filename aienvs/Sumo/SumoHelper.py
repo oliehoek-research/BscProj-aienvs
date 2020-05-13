@@ -1,10 +1,13 @@
-import random
+import glob
 import logging
 import os
-from pathlib import Path
+import random
+import subprocess
 import warnings
-import xml.etree.ElementTree as ElementTree
-import glob
+
+import randomTrips
+
+import sumolib
 
 
 class SumoHelper(object):
@@ -36,10 +39,7 @@ class SumoHelper(object):
         Checks if the scenario is well-defined and usable by seeing if all
         the needed files exist.
         """
-        dirname = os.path.dirname(__file__)
-        sumoai_home = os.path.join(dirname, "../..")
-        self.scenario_path = os.path.join(sumoai_home, 'scenarios/Sumo', scenario)
-
+        self.scenario_path = os.path.join(self.parameters['scenarios_path'], scenario)
         if(self.parameters['generate_conf']):
             self._net_file = os.path.basename(glob.glob(self.scenario_path + '/*.net.xml')[0])
             self._needed_files = [os.path.basename(self._net_file)]
@@ -56,11 +56,10 @@ class SumoHelper(object):
 
         return True
 
-    def write_route(self, route_dict, car_list):
+    def write_route(self, route_file, route_dict, car_list):
         """
         Writes the route information and generated vehicles to file
         """
-
         # Define possible routes as read from file earlier
         setup_string = "<routes>\n\n"
 
@@ -69,8 +68,6 @@ class SumoHelper(object):
                             route_dict[route] + '"/>\n'
         setup_string += '\n'
 
-        route_name = str(self._port) + '_routes.rou.xml'
-        route_file = os.path.join(self.scenario_path, route_name)
         # Write the cars to file as generated earlier
         with open(route_file, 'w') as f:
             f.write(setup_string)
@@ -125,6 +122,57 @@ class SumoHelper(object):
         Generates vehicles for each possible route in the scenario and writes
         them to file. Returns the location of the sumocfg file.
         """
+
+        valid_route_generation_methods = ['legacy', 'randomTrips.py', 'activitygen']
+
+        route_name = str(self._port) + '_routes.rou.xml'
+        route_file = os.path.join(self.scenario_path, route_name)
+        net_file = os.path.join(self.scenario_path, self._net_file)
+
+        assert self.parameters['route_generation_method'] in valid_route_generation_methods
+
+        if self.parameters['route_generation_method'] == 'randomTrips.py':
+            logging.debug('Using sumo/tools/randomTrips.py to generate trips')
+
+            params = ['-n', net_file, '-o', route_file, '--validate']
+
+            if seed is not None:
+                params += ['--seed', str(seed)]
+
+            randomTrips.main(randomTrips.get_options(self.parameters['trips_generate_options'] + params))
+
+        elif self.parameters['route_generation_method'] == 'activitygen':
+            logging.debug('Using activitygen and duarouter to generate trips based on stat-file')
+
+            stat_file = get_stat_file(scenario_path=self.scenario_path)
+
+            # Get the path of the sumotools activitygen binary
+            ACTIVITYGEN = sumolib.checkBinary('activitygen')
+
+            activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
+                                '--output-file', route_file]
+
+            # Add passed through arguments
+            activitygen_args += self.parameters['activitygen_options']
+
+            if seed is not None:
+                activitygen_args += ['--seed', str(seed)]
+            else:
+                activitygen_args += ['--random']
+
+            subprocess.call(activitygen_args)
+
+        elif self.parameters['route_generation_method'] == 'legacy':
+            self._generate_route_file_manual(seed=seed, route_file=route_file)
+        else:
+            raise Exception(f"self.parameters['route_generation_method'] "
+                            f"was {self.parameters['route_generation_method']} instead of one of "
+                            f"{valid_route_generation_methods}")
+
+    # The original method for generating random routes, does not make use of sumo tools
+    # for route generation
+    def _generate_route_file_manual(self, seed, route_file):
+        logging.debug('Manually creating trips based on provided segments')
         logging.debug(('The seed being used for route generation: {}'.format(seed)))
         random.seed(seed)
 
@@ -146,7 +194,7 @@ class SumoHelper(object):
             else:
                 car_list.append(None)
 
-        self.write_route(route_dict, car_list)
+        self.write_route(route_file, route_dict, car_list)
 
         if float(car_sum) / expected_value >= 10:
             warnings.warn("The expected number of cars is {}, but the "
@@ -159,3 +207,11 @@ class SumoHelper(object):
                 os.remove(self.sumocfg_file)
             if ('_route_file' in locals()):
                 os.remove(self._route_file)
+
+
+def get_stat_file(scenario_path):
+    stat_files = glob.glob(scenario_path + '/*.stat.xml')
+
+    assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+
+    return stat_files[0]

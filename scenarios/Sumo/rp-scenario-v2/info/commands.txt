@@ -1,0 +1,3 @@
+activitygen --net-file osm.net.xml --stat-file osm.stat.xml --output-file osm.trips.rou.xml --random
+
+duarouter --net-file osm.net.xml --route-files osm.trips.rou.xml --output-file osm.rou.xml --ignore-errors

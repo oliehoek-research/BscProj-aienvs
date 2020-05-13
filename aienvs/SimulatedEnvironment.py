@@ -1,4 +1,4 @@
-from aienvs.Env import Env
+from aienvs.Environment import Env
 
 class Simulator(Env):
     """
