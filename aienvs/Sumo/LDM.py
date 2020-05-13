@@ -57,6 +57,8 @@ class ldm():
         self.new_reward = new_reward
         self.subscribedVehs=[]
 
+        self._vehSpeeds = {}
+
     def start(self, sumoCmd:list, PORT:9001):
         """
         @param sumoCmd the sumo command for the start, list of init arguments
@@ -385,6 +387,71 @@ class ldm():
 
             result += reward
         return result
+
+    def _computeRewardElise( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+        # print("Teleport: ", self.SUMO_client.simulation.getStartingTeleportNumber)
+
+        for tlID in self.getTrafficLights():
+            lightFlipPenalty = 0
+            if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
+                # print("punishing flip")
+                lightFlipPenalty = -1
+            result += (1.5 * lightFlipPenalty)
+
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+            allowedSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+            clippedDelay = -1 * max(0, 1 - currentSpeed / allowedSpeed)
+            waitPenalty = 0
+            hardBrakesPenalty = 0
+
+            if(self.getVehicleWaitingTime(vehID) == 1):
+                waitPenalty = -0.5
+            if(self.getVehicleWaitingTime(vehID) > 1):
+                waitPenalty = -1
+
+
+            if(len(self._vehSpeeds[vehID]) > 0):
+                lastSpeed = self._vehSpeeds[vehID][len(self._vehSpeeds[vehID]) - 1]
+                if(currentSpeed - lastSpeed <= -4.5):
+                    hardBrakesPenalty = -1
+
+            result += (0.2 * hardBrakesPenalty) + (0.3 * clippedDelay) + (0.3 * waitPenalty)
+            self._vehSpeeds[vehID].append(currentSpeed)
+        return result
+
+    def _computeEvalRewards(self, vehicles):
+
+        result = 0
+        # if not vehicles:
+        #     logging.debug("No vehicles, returning 0 reward")
+        #     return 0
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeedFactor = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED) / vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+            self._vehSpeeds[vehID].append(currentSpeedFactor)
+        avgSpeeds = []
+        for key in self._vehSpeeds.keys():
+            lst = self._vehSpeeds[key]
+            avgSpeeds.append(sum(lst) / len(lst))
+        # print("\n Car average speeds: ", avgSpeeds)
+        if(len(avgSpeeds) > 0):
+            systemAverage = sum(avgSpeeds) / len(avgSpeeds)
+        else:
+            return 0
+        # print("\n System average speed: ", systemAverage)
+
+
+        return systemAverage
 
     def _getVehiclePositions( self, subscriptionResults ):
         resultsFormatted=list(subscriptionResults.values())
