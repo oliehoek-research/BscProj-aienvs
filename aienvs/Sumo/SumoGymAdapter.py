@@ -60,7 +60,7 @@ class SumoGymAdapter(Env):
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
                 'maxConnectRetries':50,  # maximum reattempts to connect by Traci
                 'seed': None,
-                'reward_function': "default",
+                'reward_function': "default", #options include default, eval and elise
                 'maxConnectRetries': 50  # maximum reattempts to connect by Traci
                 }
 
