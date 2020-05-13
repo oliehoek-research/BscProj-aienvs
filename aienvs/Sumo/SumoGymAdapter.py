@@ -112,10 +112,14 @@ class SumoGymAdapter(Env):
         self.ldm.step()
         obs = self._observe()
         done = self.ldm.isSimulationFinished()
-        global_reward = self._computeGlobalReward(self._parameters['reward_function'])
+        global_reward_list = self._computeGlobalReward(self._parameters['reward_function'])
+        if len(self._parameters['reward_range']) == 1:
+            return obs, global_reward_list[self._parameters['reward_range'][0]], done, []
+        else:
+            return obs, global_reward_list, done, []
 
         # as in openai gym, last one is the info list
-        return obs, global_reward, done, []
+        # return obs, global_reward, done, []
 
 
 
