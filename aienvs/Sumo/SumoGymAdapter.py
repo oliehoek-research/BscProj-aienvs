@@ -47,7 +47,8 @@ class SumoGymAdapter(Env):
                 'lightPositions' : {},  # specify traffic light positions
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
                 'maxConnectRetries':50,  # maximum reattempts to connect by Traci
-                'seed': None
+                'seed': None,
+                'reward_function': "default"
                 }
 
     def __init__(self, parameters:dict={}):
@@ -88,10 +89,12 @@ class SumoGymAdapter(Env):
         self.ldm.step()
         obs = self._observe()
         done = self.ldm.isSimulationFinished()
-        global_reward = self._computeGlobalReward()
+        global_reward = self._computeGlobalReward(self._parameters['reward_function'])
 
         # as in openai gym, last one is the info list
         return obs, global_reward, done, []
+
+
 
     def reset(self):
         try:
@@ -207,11 +210,13 @@ class SumoGymAdapter(Env):
         """
         return self._state.update_state()
 
-    def _computeGlobalReward(self):
+    def _computeGlobalReward(self, function):
         """
         Computes the global reward
         """
-        return self._state.update_reward() / self._parameters['scaling_factor']
+        return self._state.update_reward_function(function) / self._parameters['scaling_factor']
+
+
 
     def _getActionSpace(self):
         """

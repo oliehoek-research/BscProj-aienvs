@@ -130,3 +130,5 @@ venv.bak/
 /.pydevproject
 
 scenarios/Sumo
+
+examples/GridSumo.ipynb

@@ -128,7 +128,7 @@ class ldm():
 
 
 
-    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards):
+    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards, function):
         vehicles = self.subscriptionResults
         filteredVehicles = vehicles.copy()
         if local_rewards:
@@ -147,8 +147,9 @@ class ldm():
                 if(position[1] > topRightCoords[1]):
                     filteredVehicles.pop(vehID)
                     continue
+            return self._computeReward(filteredVehicles, function)
 
-        return self._computeReward( filteredVehicles )
+
 
     def getRewardByCenter( self, centerCoords, widthInMeters, heightInMeters ):
         vehicles = self.subscriptionResults
@@ -348,14 +349,24 @@ class ldm():
             except IndexError as error:
                 print(error)
 
+    #selects which reward function to use (might be parameterized later)
+    def _computeReward(self, vehicles, function):
+        if function == "eval":
+            return self._computeEvalRewards(vehicles)
+        elif function == "elise":
+            return self._computeRewardElise(vehicles)
+        else:
+            return self._computeRewardDefault(vehicles)
+
     # vehicles are a subset of all subscription results
-    def _computeReward( self, vehicles ):
+    def _computeRewardDefault( self, vehicles ):
         result = 0
         if not vehicles:
             logging.debug("No vehicles, returning 0 reward")
             return 0
 
         for vehID in vehicles:
+
             if self.new_reward:
                 waitingTime = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_WAITING_TIME)
                 reward = -min(waitingTime, 1.0)
