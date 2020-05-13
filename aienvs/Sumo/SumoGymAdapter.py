@@ -1,19 +1,17 @@
-import gym
+import glob
 import logging
-from gym import spaces
 import os
-from aienvs.Sumo.LDM import ldm
-from aienvs.Sumo.SumoHelper import SumoHelper
-from aienvs.Sumo.state_representation import *
-import time
-from sumolib import checkBinary
 import random
-from aienvs.Sumo.SumoHelper import SumoHelper
-from aienvs.Environment import Env
-import copy
-from aienvs.Sumo.TrafficLightPhases import TrafficLightPhases
+import time
+
+from gym import spaces
 from gym.spaces import Box
-import numpy as np
+from sumolib import checkBinary
+
+from aienvs.Environment import Env
+from aienvs.Sumo.SumoHelper import SumoHelper
+from aienvs.Sumo.TrafficLightPhases import TrafficLightPhases
+from aienvs.Sumo.state_representation import *
 
 
 class SumoGymAdapter(Env):
@@ -27,30 +25,43 @@ class SumoGymAdapter(Env):
         to connect to SUMO is already in use.
     """
     _DEFAULT_PARAMETERS = {'gui':True,  # gui or not
+                'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
                 'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
-                'tlphasesfile':'cross.net.xml',  # file
+                'tlphasesfile': None,  # Use None to read phases from net file, otherwise only relative name
                 'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
                 'box_top_corner':(10, 10),  # top right corner of the observable frame
                 'resolutionInPixelsPerMeterX': 1,  # for the observable frame
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
+                'generate_conf': True,  # for automatic route/config generation
+
+                'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
+
+                # Options for 'route_generation_method' 'activitygen'
+                'activitygen_options': [], # e.g. ["--end", endtime]
+
+                # Options for 'route_generation_method' 'randomTrips.py'
+                'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
+
+                # Custom route and trip generation if route_generation_method is set to 'legacy'
                 'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
                 'car_tm': 2,  #  for automatic route/config generation when the first car appears?
                 'route_starts' : [],  #  for automatic route/config generation, ask Rolf
                 'route_min_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
-                'generate_conf' : True,  # for automatic route/config generation
+
+                'seed': None,
+
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
                 'new_reward': False,  # some other type of reward ask Miguel
                 'lightPositions' : {},  # specify traffic light positions
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
-                'maxConnectRetries':50,  # maximum reattempts to connect by Traci
-                'seed': None
+                'maxConnectRetries':50  # maximum reattempts to connect by Traci
                 }
 
-    def __init__(self, parameters:dict={}):
+    def __init__(self, parameters:dict={}, init_state=True):
         """
         @param path where results go, like "Experiment ID"
         @param parameters the configuration parameters.
@@ -61,9 +72,15 @@ class SumoGymAdapter(Env):
         self._parameters = copy.deepcopy(self._DEFAULT_PARAMETERS)
         self._parameters.update(parameters)
 
-        dirname = os.path.dirname(__file__)
-        tlPhasesFile = os.path.join(dirname, "../../scenarios/Sumo/", self._parameters['scene'], self._parameters['tlphasesfile'])
+        self._scenario_path = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'])
+
+        if self._parameters['tlphasesfile'] is None:
+            tlPhasesFile = self._parameters['tlphasesfile'] = self.get_net_file()
+        else:
+            tlPhasesFile = os.path.join(self._parameters['scenarios_path'], self._parameters['scene'], self._parameters['tlphasesfile'])
+
         self._tlphases = TrafficLightPhases(tlPhasesFile)
+
         self.ldm = ldm(using_libsumo=self._parameters['libsumo'])
         self._takenActions = {}
         self._yellowTimer = {}
@@ -72,9 +89,13 @@ class SumoGymAdapter(Env):
         self._action_space = self._getActionSpace()
 
         # TODO: Wouter: make state configurable ("state factory")
-        self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+        if init_state:
+            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+        else:
+            self._state = None
 
-        self._observation_space = self._compute_observation_space()
+        # Computed when needed instead of in __init__:
+        self._observation_space = None
 
     def _compute_observation_space(self):
         self._startSUMO(gui=False)
@@ -134,6 +155,10 @@ class SumoGymAdapter(Env):
         # # this is the previous method, which does not take resolution into consideration
         # size = self._state.size()
         # return Box(low=0, high=np.inf, shape=(size[0], size[1]), dtype=np.int32)
+
+        if self._observation_space is None:
+            self._observation_space = self._compute_observation_space()
+
         return self._observation_space
 
     @property
@@ -275,3 +300,11 @@ class SumoGymAdapter(Env):
                 timer = 0
 
         return new_action, timer
+
+    # Returns full path
+    def get_net_file(self):
+        net_files = glob.glob(self._scenario_path + '/*.net.xml')
+
+        assert len(net_files) == 1, f"Expected exactly one netfile, but netfiles: {net_files}"
+
+        return net_files[0]

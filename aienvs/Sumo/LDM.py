@@ -433,7 +433,7 @@ class ldm():
         """
         index = 0
         for index in range(len(lights)):
-            if lights[index] == 'G':
+            if lights[index] == 'G' or lights[index] == 'g':
                 val = 0.8
             elif lights[index] == 'y':
                 val = 0.5
