@@ -34,14 +34,14 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
-
+                'reward_range': [100],
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
                 # Options for 'route_generation_method' 'activitygen'
                 'activitygen_options': [], # e.g. ["--end", endtime]
 
                 # Options for 'route_generation_method' 'randomTrips.py'
-                'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled.!
+                'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
 
                 # Custom route and trip generation if route_generation_method is set to 'legacy'
                 'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
@@ -90,7 +90,7 @@ class SumoGymAdapter(Env):
 
         # TODO: Wouter: make state configurable ("state factory")
         if init_state:
-            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"], "byCorners")
         else:
             self._state = None
 
@@ -236,7 +236,12 @@ class SumoGymAdapter(Env):
         """
         Computes the global reward
         """
-        return self._state.update_reward() / self._parameters['scaling_factor']
+        rewards: dict = self._state.update_reward()
+
+        for k in rewards.keys():
+            rewards[k] = rewards[k] / self._parameters['scaling_factor']
+
+        return rewards
 
     def _getActionSpace(self):
         """

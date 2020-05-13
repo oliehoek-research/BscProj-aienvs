@@ -126,35 +126,36 @@ class ldm():
 
 
 
-    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards):
+    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards, reward_range):
 
         c0 = bottomLeftCoords[0] + 0.5 * (topRightCoords[0] - bottomLeftCoords[0])
         c1 = bottomLeftCoords[1] + 0.5 * (topRightCoords[1] - bottomLeftCoords[1])
         # print(c0, c1)
 
-        radius = 100
+        rewards = {}
 
+        for radius in reward_range:
+            vehicles = self.subscriptionResults
+            filteredVehicles = vehicles.copy()
+            if local_rewards and radius is not None:
+                for vehID in vehicles:
+                    position = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_POSITION)
 
-        vehicles = self.subscriptionResults
-        filteredVehicles = vehicles.copy()
-        if local_rewards:
-            for vehID in vehicles:
-                position = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_POSITION)
+                    if(position[0] < c0 - radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[0] > c0 + radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[1] < c1 - radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[1] > c1 + radius):
+                        filteredVehicles.pop(vehID)
+                        continue
 
-                if(position[0] < c0 - radius):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[0] > c0 + radius):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[1] < c1 - radius):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[1] > c1 + radius):
-                    filteredVehicles.pop(vehID)
-                    continue
-
-        return self._computeReward( filteredVehicles )
+            rewards[radius] = self._computeReward(filteredVehicles)
+        return rewards
 
     def getRewardByCenter( self, centerCoords, widthInMeters, heightInMeters ):
         vehicles = self.subscriptionResults
