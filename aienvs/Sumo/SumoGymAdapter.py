@@ -94,21 +94,21 @@ class SumoGymAdapter(Env):
         self.seed(parameters['seed'])  # in case no seed is given
         self._action_space = self._getActionSpace()
 
-        self._state_abstractions = {}
-        
-        # TODO: Wouter: make state configurable ("state factory")
         if init_state:
-            # TODO: factor out
-
-            # The state abstraction that is currently used
-            # By assigning to self.observation_space property, the stateabstraction is added and used
-            self.observation_space = self._parameters['observation_space']
-
-            self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState", **self._state_factory_create_params)
+            self._init_state_abstraction()
         else:
-            # TODO: add method that subclass can call to init state
-            self._state = None
+            # Mark as uninitialized:
+            self._state_abstractions = None
 
+    def _init_state_abstraction(self):
+        self._state_abstractions = {}
+
+        # Set up the state abstraction specified by 'observation_space'
+        self.observation_space = self._parameters['observation_space']
+
+        # Set up LdmMatrixState for calculating rewards
+        self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState",
+                                                                            **self._state_factory_create_params)
 
     def _compute_observation_space(self):
         try:

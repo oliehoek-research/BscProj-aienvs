@@ -46,9 +46,8 @@ class SumoCustomEnv(SumoGymAdapter):
         self.set_observation_box_around_point(float(junction['x']), float(junction['y']),
                                               self._parameters['box_width'], self._parameters['box_height'])
 
-        self._state = LdmMatrixState(self.ldm,
-                                     [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']],
-                                     "byCorners")
+        # Register the state abstractions used for observations and calculating reward
+        self._init_state_abstraction()
 
     def set_observation_box_around_point(self, point_x: float, point_y: float, width: float, height: float) -> None:
         """
