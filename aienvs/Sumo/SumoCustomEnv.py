@@ -33,7 +33,7 @@ class SumoCustomEnv(SumoGymAdapter):
         # Set tlsphasesfile to None, to use the net file
         _parameters['tlphasesfile'] = None
 
-        super().__init__(parameters=_parameters)
+        super().__init__(parameters=_parameters, init_state=False)
 
         net_file = self.get_net_file()
 

@@ -74,6 +74,10 @@ class SumoGymAdapter(Env):
         gui: whether we show a GUI.
         scenario: the path to the scenario to use
         """
+
+        # Some state abstractions need to now which traffic light is being controlled
+        self.controlled_agent = None
+
         logging.debug(parameters)
         self._parameters = copy.deepcopy(self._DEFAULT_PARAMETERS)
         self._parameters.update(parameters)
@@ -101,6 +105,21 @@ class SumoGymAdapter(Env):
             self._state_abstractions = None
 
     def _init_state_abstraction(self):
+        try:
+            self._startSUMO(gui=False)
+        except Exception as err:
+            logging.warning(err)
+
+        if self.controlled_agent is None:
+            traffic_lights = self.ldm.getTrafficLights()
+
+            assert len(traffic_lights) == 1, f"No controlled agent was specified, expected exactly one traffic light " \
+                                             f"in the environment to infer the agent id, but found: {traffic_lights} "
+
+            self.controlled_agent = traffic_lights[0]
+
+            logging.info(f"Set controlled agent to: {self.controlled_agent}")
+
         self._state_abstractions = {}
 
         # Set up the state abstraction specified by 'observation_space'
@@ -200,7 +219,8 @@ class SumoGymAdapter(Env):
     def _state_factory_create_params(self):
         return {'ldm': self.ldm,
                 'box_bottom_corner': self._parameters['box_bottom_corner'],
-                'box_top_corner': self._parameters['box_top_corner']}
+                'box_top_corner': self._parameters['box_top_corner'],
+                'controlled_agent_tl_id': self.controlled_agent}
 
     # Return the currently chosen state abstraction
     # This is the state used by _observe.
