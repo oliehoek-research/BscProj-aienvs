@@ -12,7 +12,8 @@ class GridSumoEnv(SumoGymAdapter):
         'car_tm': 1000,
         'gui': False,
         'resolutionInPixelsPerMeterX': 0.1,
-        'resolutionInPixelsPerMeterY': 0.1
+        'resolutionInPixelsPerMeterY': 0.1,
+        'route_generation_method': 'legacy',  # One of ['legacy', 'randomTrips.py', 'activitygen']
     }
 
     @staticmethod
@@ -153,7 +154,8 @@ class GridSumoEnv(SumoGymAdapter):
 
         # generate network file
         net_file_path = os.path.join(folder_path, "{}.net.xml".format(scenario_name))
-        command = 'netconvert --node-files={} --edge-files={} --connection-files={} --tllogic-files={} --output-file={}'.format(node_file_path, edge_file_path, connection_file_path, tllogic_file_path, net_file_path)
+        command = 'netconvert --node-files="{}" --edge-files="{}" --connection-files="{}" --tllogic-files="{}" --output-file="{}"'.format(node_file_path, edge_file_path, connection_file_path, tllogic_file_path, net_file_path)
+        print(command)
         os.system(command)
 
     @staticmethod
@@ -214,7 +216,10 @@ class GridSumoEnv(SumoGymAdapter):
         dirname = os.path.dirname(__file__)
         scenario_path = os.path.join(dirname, "../../scenarios/Sumo/{}".format(sceanrio))
         _parameters['scene'] = sceanrio
-        _parameters['tlphasesfile'] = "{}.tll.xml".format(sceanrio)
+
+        # use netfile as tlphasesfile
+        _parameters['tlphasesfile'] = None
+
         _parameters['box_bottom_corner'] = (0, 0)
         _parameters['box_top_corner'] = ((shape[0]+1)*lane_length, (shape[1]+1)*lane_length)
 
