@@ -828,31 +828,31 @@ class LdmMatrixState(State):
         """
         return [self.topRightCoords[0] - self.bottomLeftCoords[0], self.topRightCoords[1] - self.bottomLeftCoords[1] ]
 
+
 # State representation that only uses queue lengths
 class SimpleState(State):
-    def __init__(self, ldm):
+    def __init__(self, ldm, controlled_agent_tl_id, max_vehicles_per_lane=10.0):
         State.__init__(self, ldm, None)
 
-        self.initialized = False
+        # Used for normalizing
+        self.MAX_VEHICLES_PER_LANE = max_vehicles_per_lane
 
-        self.traffic_light = None
-        self.lanes = None
+        self.traffic_light = controlled_agent_tl_id
+        self.lanes = sorted(self._ldm.getControlledLanes(self.traffic_light))
+
+        logging.info(f"traffic light: {self.traffic_light}")
+        logging.info(f"controlled lanes: {self.lanes}")
+
+        assert self.lanes is not None
+        assert isinstance(self.lanes[0], str)
+
+        self.initialized = True
 
     def update_state(self):
 
-        state = np.zeros((1, 4))
+        logging.info("SimpleState: update_state")
 
-        if not self.initialized:
-            self.traffic_light = self._ldm.getTrafficLights()[0]
-            self.lanes = sorted(self._ldm.getControlledLanes(self.traffic_light))
-
-            logging.info(f"traffic light: {self.traffic_light}")
-            logging.info(f"controlled lanes: {self._ldm.getControlledLanes(self.traffic_light)}")
-
-            assert self.lanes is not None
-            assert isinstance(self.lanes[0], str)
-
-            self.initialized = True
+        state = np.zeros((1, len(self.lanes)))
 
         try:
             lane_stats = {}
@@ -879,12 +879,10 @@ class SimpleState(State):
             logging.info(f"lane_stats: {lane_stats}")
 
             for i, lane in enumerate(self.lanes):
-                state[0, i] = lane_stats.get(lane, {'vehicle_count': 0.0})['vehicle_count'] / 10.0
+                state[0, i] = lane_stats.get(lane, {'vehicle_count': 0.0})['vehicle_count'] / float(self.MAX_VEHICLES_PER_LANE)
 
         except AttributeError as err:
             warning(err)
-
-        # warning("wrong branch executed")
 
         logging.info(f"returning state: {state}")
 

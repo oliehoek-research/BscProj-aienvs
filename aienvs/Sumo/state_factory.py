@@ -26,8 +26,8 @@ def LdmMatrixState_builder(ldm, box_bottom_corner, box_top_corner, **_):
 def LinearFeatureState_builder(ldm, **_):
     return state_representation.LinearFeatureState(ldm=ldm)
 
-def SimpleState_builder(ldm, **_):
-    return state_representation.SimpleState(ldm=ldm)
+def SimpleState_builder(ldm, controlled_agent_tl_id, **_):
+    return state_representation.SimpleState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id)
 
 
 state_factory = ObjectFactory()
