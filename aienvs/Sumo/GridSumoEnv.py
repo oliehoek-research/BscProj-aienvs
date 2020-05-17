@@ -1,3 +1,5 @@
+import logging
+
 from .SumoGymAdapter import SumoGymAdapter
 import os
 import copy
@@ -17,15 +19,17 @@ class GridSumoEnv(SumoGymAdapter):
     }
 
     @staticmethod
-    def create_scenario(grid_shape, lane_length, folder_path):
+    def create_scenario(grid_shape, lane_length, scenarios_path, scenario_name):
 
-        # # only write the sceanrio files when the folder for the sceanrio does not exist before
-        scenario_name = "grid_{}x{}".format(grid_shape[0], grid_shape[1])
-        # if  os.path.exists(folder_path):
-        #     return
+        folder_path = os.path.join(scenarios_path, scenario_name)
+
+        # only write the sceanrio files when the folder for the sceanrio does not exist before
+        if os.path.exists(folder_path):
+            logging.warning(f"Reusing existing scenario: {folder_path}")
+            return
 
         if not os.path.exists(folder_path):
-            os.mkdir(folder_path)
+            os.makedirs(folder_path)
 
         # generate node xml file
         content = '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -189,6 +193,7 @@ class GridSumoEnv(SumoGymAdapter):
         return route_starts
 
     def __init__(self, parameters={}):
+
         # the purpose of this class is to automatically construct a grid sumo environment based on a subset of parameters
 
         # what are the parameters that we can compute automatically?
@@ -213,18 +218,16 @@ class GridSumoEnv(SumoGymAdapter):
         lane_length = _parameters['lane_length']
 
         # construct scenario if not exist
-        sceanrio = "grid_{}x{}".format(shape[0], shape[1])
-        dirname = os.path.dirname(__file__)
-        scenario_path = os.path.join(dirname, "../../scenarios/Sumo/{}".format(sceanrio))
-        _parameters['scene'] = sceanrio
+        scenario_name = "grid_{}x{}_{}".format(shape[0], shape[1], lane_length)
+
+        self.create_scenario(shape, lane_length, _parameters['scenarios_path'], scenario_name)
+        _parameters['scene'] = scenario_name
 
         # use netfile as tlphasesfile
         _parameters['tlphasesfile'] = None
 
         _parameters['box_bottom_corner'] = (0, 0)
         _parameters['box_top_corner'] = ((shape[0]+1)*lane_length, (shape[1]+1)*lane_length)
-
-        self.create_scenario(shape, lane_length, scenario_path)
 
         # now automatically generate the route starts
         _parameters['route_starts'] = self.generate_route_starts(shape)
