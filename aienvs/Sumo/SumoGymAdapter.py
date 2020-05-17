@@ -31,10 +31,10 @@ class SumoGymAdapter(Env):
                 'scenarios_path': os.path.join(os.path.dirname(__file__), "../../scenarios/Sumo/"),
                 'scene':'four_grid',  # subdirectory in the aienvs/scenarios/Sumo directory where
                 'tlphasesfile': None,  # Use None to read phases from net file, otherwise only relative name
-                'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
-                'box_top_corner':(10, 10),  # top right corner of the observable frame
-                'resolutionInPixelsPerMeterX': 1,  # for the observable frame
-                'resolutionInPixelsPerMeterY': 1,  # for the observable frame
+                # 'box_bottom_corner':(0, 0),  # bottom left corner of the observable frame
+                # 'box_top_corner':(10, 10),  # top right corner of the observable frame
+                # 'resolutionInPixelsPerMeterX': 1,  # for the observable frame
+                # 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
 
@@ -47,8 +47,8 @@ class SumoGymAdapter(Env):
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
 
                 # Custom route and trip generation if route_generation_method is set to 'legacy'
-                'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
-                'car_tm': 2,  #  for automatic route/config generation when the first car appears?
+                # 'car_pr': 0.5,  # for automatic route/config generation probability that a car appears
+                # 'car_tm': 2,  #  for automatic route/config generation when the first car appears?
                 'route_starts' : [],  #  for automatic route/config generation, ask Rolf
                 'route_min_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
@@ -63,7 +63,7 @@ class SumoGymAdapter(Env):
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
                 'maxConnectRetries':50,  # maximum reattempts to connect by Traci
      
-                'observation_space': "LdmMatrixState"
+                # 'observation_space': "LdmMatrixState"
                 
                 }
 

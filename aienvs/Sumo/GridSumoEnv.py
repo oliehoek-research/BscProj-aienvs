@@ -8,13 +8,13 @@ import aienvs
 class GridSumoEnv(SumoGymAdapter):
 
     __DEFAULT_PARAMETERS = {
-        'shape': (2, 2),
-        'lane_length': 100,
-        'car_pr': 0.1,
-        'car_tm': 1000,
+        # 'shape': (2, 2),
+        # 'lane_length': 100,
+        # 'car_pr': 0.1,
+        # 'car_tm': 1000,
         'gui': False,
-        'resolutionInPixelsPerMeterX': 0.1,
-        'resolutionInPixelsPerMeterY': 0.1,
+        # 'resolutionInPixelsPerMeterX': 0.1,
+        # 'resolutionInPixelsPerMeterY': 0.1,
         'route_generation_method': 'legacy',  # One of ['legacy', 'randomTrips.py', 'activitygen']
     }
 
