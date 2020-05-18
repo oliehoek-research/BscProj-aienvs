@@ -35,6 +35,8 @@ class SumoGymAdapter(Env):
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
                 'reward_range': [100],
+
+                'simulation_start_time': '0', # The start time of the sumo simulation in seconds
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
                 # Options for 'route_generation_method' 'activitygen'
