@@ -662,14 +662,11 @@ class PositionLightMatrix(MatrixState):
             lane_end = traci.lane.getShape(lane)[1]
 
             if light_color[index] == 'G':
-                # val = 0.8
-                val = 0
+                val = 0.8
             elif light_color[index] == 'y':
-                # val = 0.5
-                val = 0
+                val = 0.5
             elif light_color[index] == 'r':
-                # val = 0.2
-                val = 0
+                val = 0.2
             x, y = self.reshape_location(lane_end)
             state_matrix[x][y] = val
 
