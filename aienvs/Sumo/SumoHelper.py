@@ -211,8 +211,16 @@ class SumoHelper(object):
 
 
 def get_stat_file(scenario_path):
+    specified_stat_file = self.parameters['stat_file']
+    if specified_stat_file is None:
+        logging.debug("Stat file specified. Using ", specified_stat_file)
+        return os.path.join(scenario_path, specified_stat_file)
+
+    logging.debug("Stat file not specified. Searching in scenario directory..")
+
     stat_files = glob.glob(scenario_path + '/*.stat.xml')
 
     assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
 
+    logging.debug("Stat file found! Using ", stat_files[0])
     return stat_files[0]

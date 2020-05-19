@@ -39,6 +39,7 @@ class SumoGymAdapter(Env):
 
                 # Options for 'route_generation_method' 'activitygen'
                 'activitygen_options': [], # e.g. ["--end", endtime]
+                'stat_file': None, # stat file used. Leave none for automatic search.
 
                 # Options for 'route_generation_method' 'randomTrips.py'
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
