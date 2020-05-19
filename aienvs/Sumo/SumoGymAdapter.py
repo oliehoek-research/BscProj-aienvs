@@ -106,6 +106,9 @@ class SumoGymAdapter(Env):
         """
         self._parameters.update(updated_params)
 
+    def set_stat_file(self, stat_file: str):
+        self.update_parameters({"stat_file": stat_file})
+
     def _compute_observation_space(self):
         self._startSUMO(gui=False)
         _s = self._observe()
