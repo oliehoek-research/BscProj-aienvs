@@ -142,16 +142,18 @@ class SumoHelper(object):
         elif self.parameters['route_generation_method'] == 'activitygen':
             logging.debug('Using activitygen and duarouter to generate trips based on stat-file')
 
-            stat_file = get_stat_file(scenario_path=self.scenario_path)
-
             # Get the path of the sumotools activitygen binary
             ACTIVITYGEN = sumolib.checkBinary('activitygen')
 
-            activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
+            activitygen_args = [ACTIVITYGEN, '--net-file', net_file,
                                 '--output-file', route_file]
 
             # Add passed through arguments
             activitygen_args += self.parameters['activitygen_options']
+
+            if '--stat_file' not in self.parameters['activitygen-options']:
+                found_stat_file = get_stat_file(scenario_path=self.scenario_path)
+                ctivitygen_args += ['--stat-file', found_stat_file]
 
             if seed is not None:
                 activitygen_args += ['--seed', str(seed)]
