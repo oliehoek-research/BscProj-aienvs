@@ -154,7 +154,7 @@ class SumoHelper(object):
 
             activitygen_args += self.parameters['activitygen_options']
 
-            if '--stat_file' not in self.parameters['activitygen_options']:
+            if '--stat-file' not in self.parameters['activitygen_options']:
                 found_stat_file = get_stat_file(scenario_path=self.scenario_path)
                 activitygen_args += ['--stat-file', found_stat_file]
 
