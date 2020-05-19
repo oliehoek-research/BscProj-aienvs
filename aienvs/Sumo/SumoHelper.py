@@ -155,7 +155,7 @@ class SumoHelper(object):
             activitygen_args += self.parameters['activitygen_options']
 
             if '--stat-file' not in self.parameters['activitygen_options']:
-                found_stat_file = get_stat_file(scenario_path=self.scenario_path)
+                found_stat_file = self.get_stat_file(scenario_path=self.scenario_path)
                 activitygen_args += ['--stat-file', found_stat_file]
 
             if seed is not None:
@@ -212,17 +212,17 @@ class SumoHelper(object):
                 os.remove(self._route_file)
 
 
-def get_stat_file(scenario_path):
-    specified_stat_file = self.parameters['stat_file']
-    if specified_stat_file is None:
-        logging.debug("Stat file specified. Using ", specified_stat_file)
-        return os.path.join(scenario_path, specified_stat_file)
+    def get_stat_file(self, scenario_path):
+        specified_stat_file = self.parameters['stat_file']
+        if specified_stat_file is not None:
+            logging.debug("Stat file specified. Using ", specified_stat_file)
+            return os.path.join(scenario_path, specified_stat_file)
 
-    logging.debug("Stat file not specified. Searching in scenario directory..")
+        logging.debug("Stat file not specified. Searching in scenario directory..")
 
-    stat_files = glob.glob(scenario_path + '/*.stat.xml')
+        stat_files = glob.glob(scenario_path + '/*.stat.xml')
 
-    assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+        assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
 
-    logging.debug("Stat file found! Using ", stat_files[0])
-    return stat_files[0]
+        logging.debug("Stat file found! Using ", stat_files[0])
+        return stat_files[0]
