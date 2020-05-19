@@ -97,6 +97,14 @@ class SumoGymAdapter(Env):
         # Computed when needed instead of in __init__:
         self._observation_space = None
 
+    def update_parameters(self, updated_params: dict):
+        """
+        Updates the parameters. Please note that some of the
+        parameter changes may only be propagated after resetting
+        the environment.
+        """
+        self._parameters.update(updated_params)
+
     def _compute_observation_space(self):
         self._startSUMO(gui=False)
         _s = self._observe()
