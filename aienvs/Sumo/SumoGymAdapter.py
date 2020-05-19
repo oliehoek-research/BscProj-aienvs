@@ -53,7 +53,7 @@ class SumoGymAdapter(Env):
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
 
-                'seed': None,
+                'seed': None, # Used to generate the traffic by all generation methods.
 
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
@@ -101,6 +101,14 @@ class SumoGymAdapter(Env):
 
         # Computed when needed instead of in __init__:
         self._observation_space = None
+
+    def update_parameters(self, updated_params: dict):
+        """
+        Updates the parameters. Please note that some of the
+        parameter changes may only be propagated after resetting
+        the environment.
+        """
+        self._parameters.update(updated_params)
 
     def _compute_observation_space(self):
         self._startSUMO(gui=False)
