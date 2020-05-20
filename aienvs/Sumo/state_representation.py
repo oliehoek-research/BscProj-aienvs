@@ -67,16 +67,21 @@ class LinearFeatureState(State):
     only support one-light scenario
     """
 
-    def __init__(self, ldm):
-        State.__init__(self, ldm, ["0"])
+    def __init__(self, ldm, controlled_agent_tl_id, extra="thesis"):
+        State.__init__(self, ldm, [controlled_agent_tl_id])
+
+        self.traffic_light = controlled_agent_tl_id
+
         self._prev_speed = {}
         self._actions = ['GrGr', 'ryry', 'rGrG', 'yryr']
-        self._current_state = np.zeros((len(self._actions) * len(self._ldm.getControlledLanes("0")) * 7, 1, 1))
+        self._current_state = np.zeros((len(self._actions) * len(self._ldm.getControlledLanes(self.traffic_light)) * 7, 1, 1))
+
+        self.extra = extra
 
     def update_state(self):
         lane_states, self._prev_speed, stops = self._get_lane_states(self._prev_speed)
-        state = np.array(self._get_linear_state(lane_states, self._ldm.getControlledLanes("0")))
-        self._current_state = np.reshape(state, (len(self._actions) * len(self._ldm.getControlledLanes("0")) * 7, 1, 1))
+        state = np.array(self._get_linear_state(lane_states, self._ldm.getControlledLanes(self.traffic_light), extra=self.extra))
+        self._current_state = np.reshape(state, (len(self._actions) * len(self._ldm.getControlledLanes(self.traffic_light)) * 7, 1, 1))
         return self._current_state
 
     # Override
@@ -175,7 +180,7 @@ class LinearFeatureState(State):
 
         return lane_stats, prev_speed, stops
 
-    def _get_linear_state(self, lane_states, controlled_lanes, extra="thesis"):
+    def _get_linear_state(self, lane_states, controlled_lanes, extra):
         state = []
         for lane in controlled_lanes:
             try:
