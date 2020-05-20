@@ -34,9 +34,8 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
-
                 'simulation_start_time': '0', # The start time of the sumo simulation in seconds
-
+                'reward_range': [100],
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
                 # Options for 'route_generation_method' 'activitygen'
@@ -60,7 +59,10 @@ class SumoGymAdapter(Env):
                 'new_reward': False,  # some other type of reward ask Miguel
                 'lightPositions' : {},  # specify traffic light positions
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
-                'maxConnectRetries':50  # maximum reattempts to connect by Traci
+                'maxConnectRetries':50,  # maximum reattempts to connect by Traci
+                'seed': None,
+                'reward_function': "default", #options include default, eval and elise
+                'maxConnectRetries': 50  # maximum reattempts to connect by Traci
                 }
 
     def __init__(self, parameters:dict={}, init_state=True):
@@ -92,7 +94,7 @@ class SumoGymAdapter(Env):
 
         # TODO: Wouter: make state configurable ("state factory")
         if init_state:
-            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], "byCorners")
+            self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"], "byCorners")
         else:
             self._state = None
 
@@ -111,10 +113,16 @@ class SumoGymAdapter(Env):
         self.ldm.step()
         obs = self._observe()
         done = self.ldm.isSimulationFinished()
-        global_reward = self._computeGlobalReward()
+        global_reward_list = self._computeGlobalReward(self._parameters['reward_function'])
+        if len(self._parameters['reward_range']) == 1:
+            return obs, global_reward_list[self._parameters['reward_range'][0]], done, []
+        else:
+            return obs, global_reward_list, done, []
 
         # as in openai gym, last one is the info list
-        return obs, global_reward, done, []
+        # return obs, global_reward, done, []
+
+
 
     def reset(self):
         try:
@@ -234,11 +242,17 @@ class SumoGymAdapter(Env):
         """
         return self._state.update_state()
 
-    def _computeGlobalReward(self):
+    def _computeGlobalReward(self, function):
         """
         Computes the global reward
         """
-        return self._state.update_reward() / self._parameters['scaling_factor']
+
+        rewards: dict = self._state.update_reward(function)
+
+        for k in rewards.keys():
+            rewards[k] = rewards[k] / self._parameters['scaling_factor']
+
+        return rewards
 
     def _getActionSpace(self):
         """

@@ -50,7 +50,7 @@ class SumoCustomEnv(SumoGymAdapter):
                                               self._parameters['box_width'], self._parameters['box_height'])
 
         self._state = LdmMatrixState(self.ldm,
-                                     [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']],
+                                     [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"],
                                      "byCorners")
 
         self._set_duration(end_time, start_time)

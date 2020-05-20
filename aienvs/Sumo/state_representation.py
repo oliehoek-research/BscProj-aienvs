@@ -11,10 +11,11 @@ class State:
     @param lights the list of traffic light IDs (strings)
     """
 
-    def __init__(self, ldm, lights:list):
+    def __init__(self, ldm, lights:list, reward_range:list):
         """
         @param lights list of traffic light ids
         """
+        self._reward_range = reward_range
         self._ldm = ldm
             # get height - the number of lanes in total
         self._lanes = []
@@ -804,8 +805,8 @@ class LdmMatrixState(State):
     TODO document how this state works and achieves
     """
 
-    def __init__(self, ldm, data, type="byCorners"):
-        State.__init__(self, ldm, None)
+    def __init__(self, ldm, data, reward_range, type="byCorners"):
+        State.__init__(self, ldm, None, reward_range)
 
         if type == "byCorners":
             self.bottomLeftCoords = data[0]
@@ -814,8 +815,9 @@ class LdmMatrixState(State):
             self.bottomLeftCoords = (data[0][0] - data[1] / 2., data[0][1] - data[2] / 2.)
             self.topRightCoords = (data[0][0] + data[1] / 2., data[0][1] + data[2] / 2.)
 
-    def update_reward(self, local_rewards=True):
-        return (self._ldm.getRewardByCorners(self.bottomLeftCoords, self.topRightCoords, local_rewards))
+    def update_reward(self, function, local_rewards=True):
+
+        return (self._ldm.getRewardByCorners(self.bottomLeftCoords, self.topRightCoords, local_rewards, self._reward_range, function))
 
     def update_state(self):
         return self._ldm.getMapSliceByCorners(self.bottomLeftCoords, self.topRightCoords)
