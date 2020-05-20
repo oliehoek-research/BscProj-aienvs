@@ -57,6 +57,8 @@ class ldm():
         self.new_reward = new_reward
         self.subscribedVehs=[]
 
+        self._vehSpeeds = {}
+
     def start(self, sumoCmd:list, PORT:9001):
         """
         @param sumoCmd the sumo command for the start, list of init arguments
@@ -126,27 +128,37 @@ class ldm():
 
 
 
-    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards):
-        vehicles = self.subscriptionResults
-        filteredVehicles = vehicles.copy()
-        if local_rewards:
-            for vehID in vehicles:
-                position = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_POSITION)
 
-                if(position[0] < bottomLeftCoords[0]):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[0] > topRightCoords[0]):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[1] < bottomLeftCoords[1]):
-                    filteredVehicles.pop(vehID)
-                    continue
-                if(position[1] > topRightCoords[1]):
-                    filteredVehicles.pop(vehID)
-                    continue
+    def getRewardByCorners(self, bottomLeftCoords, topRightCoords, local_rewards, reward_range, function):
 
-        return self._computeReward( filteredVehicles )
+        c0 = bottomLeftCoords[0] + 0.5 * (topRightCoords[0] - bottomLeftCoords[0])
+        c1 = bottomLeftCoords[1] + 0.5 * (topRightCoords[1] - bottomLeftCoords[1])
+        # print(c0, c1)
+
+        rewards = {}
+
+        for radius in reward_range:
+            vehicles = self.subscriptionResults
+            filteredVehicles = vehicles.copy()
+            if local_rewards and radius is not None:
+                for vehID in vehicles:
+                    position = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_POSITION)
+
+                    if(position[0] < c0 - radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[0] > c0 + radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[1] < c1 - radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+                    if(position[1] > c1 + radius):
+                        filteredVehicles.pop(vehID)
+                        continue
+
+            rewards[radius] = self._computeReward(filteredVehicles, function)
+        return rewards
 
     def getRewardByCenter( self, centerCoords, widthInMeters, heightInMeters ):
         vehicles = self.subscriptionResults
@@ -346,14 +358,24 @@ class ldm():
             except IndexError as error:
                 print(error)
 
+    #selects which reward function to use (might be parameterized later)
+    def _computeReward(self, vehicles, function):
+        if function == "eval":
+            return self._computeEvalRewards(vehicles)
+        elif function == "elise":
+            return self._computeRewardElise(vehicles)
+        else:
+            return self._computeRewardDefault(vehicles)
+
     # vehicles are a subset of all subscription results
-    def _computeReward( self, vehicles ):
+    def _computeRewardDefault( self, vehicles ):
         result = 0
         if not vehicles:
             logging.debug("No vehicles, returning 0 reward")
             return 0
 
         for vehID in vehicles:
+
             if self.new_reward:
                 waitingTime = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_WAITING_TIME)
                 reward = -min(waitingTime, 1.0)
@@ -385,6 +407,71 @@ class ldm():
 
             result += reward
         return result
+
+    def _computeRewardElise( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+        # print("Teleport: ", self.SUMO_client.simulation.getStartingTeleportNumber)
+
+        for tlID in self.getTrafficLights():
+            lightFlipPenalty = 0
+            if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
+                # print("punishing flip")
+                lightFlipPenalty = -1
+            result += (1.5 * lightFlipPenalty)
+
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+            allowedSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+            clippedDelay = -1 * max(0, 1 - currentSpeed / allowedSpeed)
+            waitPenalty = 0
+            hardBrakesPenalty = 0
+
+            if(self.getVehicleWaitingTime(vehID) == 1):
+                waitPenalty = -0.5
+            if(self.getVehicleWaitingTime(vehID) > 1):
+                waitPenalty = -1
+
+
+            if(len(self._vehSpeeds[vehID]) > 0):
+                lastSpeed = self._vehSpeeds[vehID][len(self._vehSpeeds[vehID]) - 1]
+                if(currentSpeed - lastSpeed <= -4.5):
+                    hardBrakesPenalty = -1
+
+            result += (0.2 * hardBrakesPenalty) + (0.3 * clippedDelay) + (0.3 * waitPenalty)
+            self._vehSpeeds[vehID].append(currentSpeed)
+        return result
+
+    def _computeEvalRewards(self, vehicles):
+
+        result = 0
+        # if not vehicles:
+        #     logging.debug("No vehicles, returning 0 reward")
+        #     return 0
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeedFactor = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED) / vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+            self._vehSpeeds[vehID].append(currentSpeedFactor)
+        avgSpeeds = []
+        for key in self._vehSpeeds.keys():
+            lst = self._vehSpeeds[key]
+            avgSpeeds.append(sum(lst) / len(lst))
+        # print("\n Car average speeds: ", avgSpeeds)
+        if(len(avgSpeeds) > 0):
+            systemAverage = sum(avgSpeeds) / len(avgSpeeds)
+        else:
+            return 0
+        # print("\n System average speed: ", systemAverage)
+
+
+        return systemAverage
 
     def _getVehiclePositions( self, subscriptionResults ):
         resultsFormatted=list(subscriptionResults.values())
