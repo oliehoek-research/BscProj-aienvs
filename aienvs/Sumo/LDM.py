@@ -136,6 +136,7 @@ class ldm():
         # print(c0, c1)
 
         rewards = {}
+        cars = {}
 
         for radius in reward_range:
             vehicles = self.subscriptionResults
@@ -158,7 +159,10 @@ class ldm():
                         continue
 
             rewards[radius] = self._computeReward(filteredVehicles, function)
-        return rewards
+            cars[radius] = set(filteredVehicles)
+
+        return rewards, cars
+
 
     def getRewardByCenter( self, centerCoords, widthInMeters, heightInMeters ):
         vehicles = self.subscriptionResults

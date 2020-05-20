@@ -262,8 +262,8 @@ class SumoGymAdapter(Env):
 
         rewards: dict = self._state.update_reward(function)
 
-        for k in rewards.keys():
-            rewards[k] = rewards[k] / self._parameters['scaling_factor']
+        for k in rewards[0].keys():
+            rewards[0][k] = rewards[0][k] / self._parameters['scaling_factor']
 
         return rewards
 
