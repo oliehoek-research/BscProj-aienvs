@@ -364,6 +364,8 @@ class ldm():
             return self._computeEvalRewards(vehicles)
         elif function == "elise":
             return self._computeRewardElise(vehicles)
+        elif function == "shaping":
+            return self._computeRewardShaping(vehicles)
         else:
             return self._computeRewardDefault(vehicles)
 
@@ -446,6 +448,29 @@ class ldm():
 
             result += (0.2 * hardBrakesPenalty) + (0.3 * clippedDelay) + (0.3 * waitPenalty)
             self._vehSpeeds[vehID].append(currentSpeed)
+        return result
+
+    def _computeRewardShaping( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+
+            speedChange = 0
+
+            if(len(self._vehSpeeds[vehID]) > 0):
+                lastSpeed = self._vehSpeeds[vehID][len(self._vehSpeeds[vehID]) - 1]
+                speedChange = currentSpeed - lastSpeed
+
+
+            result += speedChange
+            self._vehSpeeds[vehID].append(currentSpeed)
+        # print("SpeedChange total: {}".format(result))
         return result
 
     def _computeEvalRewards(self, vehicles):
