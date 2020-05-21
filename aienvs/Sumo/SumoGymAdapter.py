@@ -52,7 +52,7 @@ class SumoGymAdapter(Env):
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
 
-                'seed': None, # Used to generate the traffic by all generation methods.
+                'seed': None, # Used to seed sumo, and to generate the traffic by all generation methods.
 
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
