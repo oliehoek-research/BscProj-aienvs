@@ -144,16 +144,19 @@ class SumoHelper(object):
         elif self.parameters['route_generation_method'] == 'activitygen':
             logging.debug('Using activitygen and duarouter to generate trips based on stat-file')
 
-            stat_file = get_stat_file(scenario_path=self.scenario_path)
-
             # Get the path of the sumotools activitygen binary
             ACTIVITYGEN = sumolib.checkBinary('activitygen')
 
-            activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
+            activitygen_args = [ACTIVITYGEN, '--net-file', net_file,
                                 '--output-file', route_file]
 
             # Add passed through arguments
+
             activitygen_args += self.parameters['activitygen_options']
+
+            if '--stat-file' not in self.parameters['activitygen_options']:
+                found_stat_file = self.get_stat_file(scenario_path=self.scenario_path)
+                activitygen_args += ['--stat-file', found_stat_file]
 
             if seed is not None:
                 activitygen_args += ['--seed', str(seed)]
@@ -209,9 +212,17 @@ class SumoHelper(object):
                 os.remove(self._route_file)
 
 
-def get_stat_file(scenario_path):
-    stat_files = glob.glob(scenario_path + '/*.stat.xml')
+    def get_stat_file(self, scenario_path):
+        specified_stat_file = self.parameters['stat_file']
+        if specified_stat_file is not None:
+            logging.debug("Stat file specified. Using ", specified_stat_file)
+            return os.path.join(scenario_path, specified_stat_file)
 
-    assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+        logging.debug("Stat file not specified. Searching in scenario directory..")
 
-    return stat_files[0]
+        stat_files = glob.glob(scenario_path + '/*.stat.xml')
+
+        assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+
+        logging.debug("Stat file found! Using ", stat_files[0])
+        return stat_files[0]
