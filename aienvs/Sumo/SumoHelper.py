@@ -31,7 +31,7 @@ class SumoHelper(object):
 
         if(self.parameters['generate_conf']):
             self.sumocfg_name = str(self._port) + "_scenario.sumocfg"
-            self._generate_sumocfg_file()
+            self._generate_sumocfg_file(start_time=self.parameters["simulation_start_time"])
             self._generate_route_file(seed)
 
     def scenario_check(self, scenario):
@@ -79,25 +79,25 @@ class SumoHelper(object):
                     f.write(car_string)
             f.write('\n</routes>')
 
-    def _generate_sumocfg_file(self):
+    def _generate_sumocfg_file(self, start_time):
         self.sumocfg_file = os.path.join(self.scenario_path, self.sumocfg_name)
         self.routefile_name = str(self._port) + '_routes.rou.xml'
         self._route_file = os.path.join(self.scenario_path, self.routefile_name)
         with open(self.sumocfg_file, 'w') as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
-                    +'<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">\n'
-                    +'    <input>\n'
-                    +'        <net-file value="' + self._net_file + '"/>\n'
-                    +'        <route-files value="' + self.routefile_name + '"/>\n'
-                    +'    </input>\n'
-                    +'    <time>\n'
-                    +'        <begin value="0"/>\n'
-                    +'    </time>\n'
-                    +'    <report>\n'
-                    +'        <verbose value="true"/>\n'
-                    +'        <no-step-log value="true"/>\n'
-                    +'    </report>\n'
-                    +'</configuration>')
+                    + '<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">\n'
+                    + '    <input>\n'
+                    + '        <net-file value="' + self._net_file + '"/>\n'
+                    + '        <route-files value="' + self.routefile_name + '"/>\n'
+                    + '    </input>\n'
+                    + '    <time>\n'
+                    + f'        <begin value="{start_time}"/>\n'
+                    + '    </time>\n'
+                    + '    <report>\n'
+                    + '        <verbose value="true"/>\n'
+                    + '        <no-step-log value="true"/>\n'
+                    + '    </report>\n'
+                    + '</configuration>')
 
     def generate_randomized_route(self):
         if len(self.parameters['route_starts']) > 0:

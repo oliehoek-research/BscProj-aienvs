@@ -34,6 +34,7 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
+                'simulation_start_time': '0', # The start time of the sumo simulation in seconds
                 'reward_range': [100],
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
