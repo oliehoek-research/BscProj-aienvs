@@ -137,6 +137,7 @@ class ldm():
 
         rewards = {}
         cars = {}
+        directions = {}
 
         for radius in reward_range:
             vehicles = self.subscriptionResults
@@ -160,8 +161,27 @@ class ldm():
 
             rewards[radius] = self._computeReward(filteredVehicles, function)
             cars[radius] = set(filteredVehicles)
+            directions[radius] = {'left': set(), 'right': set(), 'above': set(), 'below': set()}
+            for car in cars[radius]:
+                position = vehicles.get(car).get(self.SUMO_client.constants.VAR_POSITION)
+                dist = 6
+                # LEFT
+                if c0 - position[0] > dist:
+                    directions[radius]['left'].add(car)
 
-        return rewards, cars
+                # RIGHT
+                if position[0] - c0 > dist:
+                    directions[radius]['right'].add(car)
+
+                # ABOVE
+                if position[1] - c1 > dist:
+                    directions[radius]['above'].add(car)
+
+                # BELOW
+                if c1 - position[1] > dist:
+                    directions[radius]['below'].add(car)
+
+        return rewards, cars, directions
 
 
     def getRewardByCenter( self, centerCoords, widthInMeters, heightInMeters ):
@@ -186,9 +206,25 @@ class ldm():
         return self._computeReward( filteredVehicles )
 
     def getMapSliceByCorners( self, bottomLeftCoords, topRightCoords ):
+        # print("=== GETTING SLIDE: ", bottomLeftCoords, topRightCoords)
         bottomLeftMatrixCoords = self._coordMetersToArray( bottomLeftCoords )
         topRightMatrixCoords = self._coordMetersToArray( topRightCoords )
-        return self._arrayMap[bottomLeftMatrixCoords[0]:(topRightMatrixCoords[0]), bottomLeftMatrixCoords[1]:(topRightMatrixCoords[1])].transpose()[::-1]
+
+        # print(type(self._arrayMap), self._arrayMap)
+        # print("SHAPE: ", self._arrayMap.shape)
+        # print(bottomLeftMatrixCoords, topRightMatrixCoords)
+        # print("KAAS: ", self._arrayMap[0:10, 0:10])
+        matrix = self._arrayMap[bottomLeftMatrixCoords[0]:(topRightMatrixCoords[0]), bottomLeftMatrixCoords[1]:(topRightMatrixCoords[1])]
+        # print("Matrix: ", matrix)
+        transposed = matrix.transpose()
+        # print(bottomLeftCoords, topRightCoords, "????")
+        # print(.transpose()[::-1])
+        # exit(0)
+        # print(matrix)
+        # print(transposed)
+        # exit(0)
+        # print("=== GOT SLIDE: ", transposed[::-1].shape)
+        return transposed[::-1]
 
     def getMapSliceByCenter( self, centerCoords, widthInMeters, heightInMeters ):
         bottomLeftCoords = (centerCoords[0] - widthInMeters/2., centerCoords[1] - heightInMeters/2.)
@@ -347,6 +383,7 @@ class ldm():
         self._arrayMap = np.zeros( self._arrayMap.shape )
 
     def _coordMetersToArray( self, *coordsInMeters ):
+        # print("HOI: ", *coordsInMeters)
         arrayX = round( (coordsInMeters[0][0] - self.netBoundaryMeters[0][0]) * self._pixelsPerMeterWidth - 0.5 )
         arrayY = round( (coordsInMeters[0][1] - self.netBoundaryMeters[0][1]) * self._pixelsPerMeterHeight - 0.5 )
         return [max(0, arrayX), max(0, arrayY)]

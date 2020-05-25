@@ -805,22 +805,75 @@ class LdmMatrixState(State):
     TODO document how this state works and achieves
     """
 
-    def __init__(self, ldm, data, reward_range, type="byCorners"):
+    def __init__(self, ldm, data, reward_range, type="byCorners", neighbouring=[[(2416 - 20, 485 - 20), (2416 + 20, 485 + 20)]]):
         State.__init__(self, ldm, None, reward_range)
 
         if type == "byCorners":
+            # print("hoi: ", data)
+            # exit(0)
             self.bottomLeftCoords = data[0]
             self.topRightCoords = data[1]
         elif type == "byCenter":
             self.bottomLeftCoords = (data[0][0] - data[1] / 2., data[0][1] - data[2] / 2.)
             self.topRightCoords = (data[0][0] + data[1] / 2., data[0][1] + data[2] / 2.)
 
+        self.neighbouring = neighbouring
+
     def update_reward(self, function, local_rewards=True):
 
         return (self._ldm.getRewardByCorners(self.bottomLeftCoords, self.topRightCoords, local_rewards, self._reward_range, function))
 
     def update_state(self):
-        return self._ldm.getMapSliceByCorners(self.bottomLeftCoords, self.topRightCoords)
+        map_slice = self._ldm.getMapSliceByCorners(self.bottomLeftCoords, self.topRightCoords)
+
+        # print("MAIN SLICE ", map_slice.shape, self.bottomLeftCoords, self.topRightCoords)
+
+        # Adds distant smaller views in the corners of the main view
+        assert len(self.neighbouring) < 5, "Currently only 4 subviews supported."
+
+        for i in range(len(self.neighbouring)):
+            data = self.neighbouring[i]
+
+            if data is None:
+                continue
+
+            bottomLeftCoords = data[0]
+            topRightCoords = data[1]
+
+            map_slice_neighbour = self._ldm.getMapSliceByCorners(bottomLeftCoords, topRightCoords)
+            # print("SIDE SLIDE: ", map_slice_neighbour.shape)
+            (height, width) = map_slice_neighbour.shape
+            sy = 0 if i < 2 else map_slice.shape[0] - height
+            sx = 0 if i % 2 == 0 else map_slice.shape[1] - width
+
+            # Check if all cells we overwrite are zero
+            assert not map_slice[sy:sy+height,sx:sx+width].any(), "Overwriting non-zero cells with subview"
+
+            map_slice[sy:sy+height,sx:sx+width] = map_slice_neighbour
+
+        return map_slice
+
+
+
+
+
+            # assert
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     def size(self) -> tuple:
         """
