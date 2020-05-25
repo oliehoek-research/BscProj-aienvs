@@ -349,7 +349,7 @@ class ldm():
     def _coordMetersToArray( self, *coordsInMeters ):
         arrayX = round( (coordsInMeters[0][0] - self.netBoundaryMeters[0][0]) * self._pixelsPerMeterWidth - 0.5 )
         arrayY = round( (coordsInMeters[0][1] - self.netBoundaryMeters[0][1]) * self._pixelsPerMeterHeight - 0.5 )
-        return [arrayX, arrayY]
+        return [max(0, arrayX), max(0, arrayY)]
 
     def _addVehicleSubscription(self, vehID):
         self.SUMO_client.vehicle.subscribe(vehID, (self.SUMO_client.constants.VAR_POSITION, self.SUMO_client.constants.VAR_SPEED, self.SUMO_client.constants.VAR_ALLOWED_SPEED, self.SUMO_client.constants.VAR_WAITING_TIME ))
