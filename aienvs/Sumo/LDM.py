@@ -325,6 +325,10 @@ class ldm():
         @return unknown
         """
         return self.SUMO_client.simulation.getStartingTeleportNumber()
+
+    def getVehSpeeds(self):
+        return self._vehSpeeds
+
     ########################## private functions ##############################
 
     def _subscribeToTrafficLights(self):

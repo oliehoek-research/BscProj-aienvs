@@ -121,7 +121,8 @@ class SumoGymAdapter(Env):
         # as in openai gym, last one is the info list
         # return obs, global_reward, done, []
 
-
+    def getSpeeds(self):
+        return self._state.getLDMSpeeds()
 
     def reset(self):
         try:
