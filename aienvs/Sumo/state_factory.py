@@ -31,8 +31,12 @@ def LinearFeatureState_builder(ldm, controlled_agent_tl_id, extra="default", **_
 def LinearFeatureState_queue_size_phase_builder(ldm, controlled_agent_tl_id, **_):
     return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra="queue_size_phase")
 
+def TimingState_builder(ldm, controlled_agent_tl_id, **_):
+    return state_representation.TimingState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id)
+
 state_factory = ObjectFactory()
 state_factory.register_builder("LdmMatrixState", LdmMatrixState_builder)
 state_factory.register_builder("SimpleState", SimpleState_builder)
 state_factory.register_builder("LinearFeatureState", LinearFeatureState_builder)
 state_factory.register_builder("LinearFeatureState_queue_size_phase", LinearFeatureState_queue_size_phase_builder)
+state_factory.register_builder("TimingState", TimingState_builder)

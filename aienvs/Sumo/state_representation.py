@@ -919,6 +919,56 @@ class SimpleState(State):
         return state
 
 
+# State representation that only provides timing information about the traffic light state itself
+class TimingState(State):
+    def __init__(self, ldm, controlled_agent_tl_id, max_vehicles_per_lane=10.0):
+        State.__init__(self, ldm, None)
+
+        self.traffic_light = controlled_agent_tl_id
+
+        self.phase = [0, 0, 0, 0]
+        self.prev_switch = 0
+
+        self._actions = ['GrGr', 'ryry', 'rGrG', 'yryr']
+
+    def update_state(self):
+
+        state = np.zeros((1, len(self._actions) + 1))
+
+        try:
+
+            setting = self._ldm.getLightState(self.traffic_light)
+            action_index = self._actions.index(setting)
+
+            phase = [0 for _ in range(0, len(self._actions))]
+            phase[action_index] = 1
+
+            if self.phase != phase:
+                # if self.phase in [[1, 0, 0, 0], [0, 0, 1, 0]]:
+                #     print(f"last duration: {self._ldm.getSimulationTime() - self.prev_switch}")
+
+                self.phase = phase
+                self.prev_switch = self._ldm.getSimulationTime()
+
+        except KeyError as err:
+            warning(err)
+
+        for i in range(len(self.phase)):
+            state[0, i] = self.phase[i]
+
+        duration = self._ldm.getSimulationTime() - self.prev_switch
+        if duration < 0:
+            duration = 0
+
+        state[0, len(self.phase)] = duration
+
+        # print(state)
+
+        logging.info(f"returning state: {state}")
+
+        return state
+
+
 # # State representation that only uses queue lengths
 # class SimpleStateWithTLPhase(State):
 #     def __init__(self, ldm, controlled_agent_tl_id, max_vehicles_per_lane=10.0):

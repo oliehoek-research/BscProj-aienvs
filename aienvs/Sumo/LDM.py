@@ -452,6 +452,9 @@ class ldm():
         """
         self.SUMO_client.trafficlight.setRedYellowGreenState(agent, state)
 
+    def getSimulationTime(self):
+        return self.SUMO_client.simulation.getTime()
+
     def test(self, bottomLeftCoord = (506., 430.), topRightCoord = (516., 500.), centerCoord = (510., 475.), width = 10., height=70. ):
         #mapSlice=str(self.getMapSliceByCorners( bottomLeftCoord, topRightCoord ))
         mapSlice=str(self.getMapSliceByCenter( centerCoord, width, height ))
