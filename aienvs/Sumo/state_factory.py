@@ -22,15 +22,17 @@ def LdmMatrixState_builder(ldm, box_bottom_corner, box_top_corner, **_):
                                                data=[box_bottom_corner, box_top_corner],
                                                type="byCorners")
 
-
-def LinearFeatureState_builder(ldm, **_):
-    return state_representation.LinearFeatureState(ldm=ldm)
-
 def SimpleState_builder(ldm, controlled_agent_tl_id, **_):
     return state_representation.SimpleState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id)
 
+def LinearFeatureState_builder(ldm, controlled_agent_tl_id, extra="default", **_):
+    return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra=extra)
+
+def LinearFeatureState_queue_size_phase_builder(ldm, controlled_agent_tl_id, **_):
+    return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra="queue_size_phase")
 
 state_factory = ObjectFactory()
 state_factory.register_builder("LdmMatrixState", LdmMatrixState_builder)
-state_factory.register_builder("LinearFeatureState", LinearFeatureState_builder)
 state_factory.register_builder("SimpleState", SimpleState_builder)
+state_factory.register_builder("LinearFeatureState", LinearFeatureState_builder)
+state_factory.register_builder("LinearFeatureState_queue_size_phase", LinearFeatureState_queue_size_phase_builder)

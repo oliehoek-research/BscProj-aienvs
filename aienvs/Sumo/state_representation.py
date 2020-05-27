@@ -67,21 +67,39 @@ class LinearFeatureState(State):
     only support one-light scenario
     """
 
-    def __init__(self, ldm, controlled_agent_tl_id, extra="thesis"):
+    def __init__(self, ldm, controlled_agent_tl_id, extra="default"):
         State.__init__(self, ldm, [controlled_agent_tl_id])
 
         self.traffic_light = controlled_agent_tl_id
-
         self._prev_speed = {}
         self._actions = ['GrGr', 'ryry', 'rGrG', 'yryr']
-        self._current_state = np.zeros((len(self._actions) * len(self._ldm.getControlledLanes(self.traffic_light)) * 7, 1, 1))
+        # self._current_state = np.zeros((len(self._actions) * len(self._ldm.getControlledLanes(self.traffic_light)) * 7, 1, 1))
 
         self.extra = extra
 
+        if extra == "default":
+            n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
+            self._current_state = np.zeros((5 * n_lanes + len(self._actions), 1))
+
+        if extra == "queue_size_phase":
+            n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
+            self._current_state = np.zeros((1 * n_lanes + len(self._actions), 1))
+
+            print(f"queue_size_phase: n_lanes: {n_lanes}")
+            print(f"queue_size_phase: len(self._actions): {len(self._actions)}")
+
+
     def update_state(self):
-        lane_states, self._prev_speed, stops = self._get_lane_states(self._prev_speed)
-        state = np.array(self._get_linear_state(lane_states, self._ldm.getControlledLanes(self.traffic_light), extra=self.extra))
-        self._current_state = np.reshape(state, (len(self._actions) * len(self._ldm.getControlledLanes(self.traffic_light)) * 7, 1, 1))
+        try:
+            lane_states, self._prev_speed, stops = self._get_lane_states(self._prev_speed)
+            state = np.array(self._get_linear_state(lane_states, self._ldm.getControlledLanes(self.traffic_light), extra=self.extra))
+            shape = self._current_state.shape
+            self._current_state = np.reshape(state, shape)
+        except AttributeError as e:
+            logging.warning(f"AttributeError: {e}")
+        except KeyError as e:
+            logging.warning(f"KeyError: {e}")
+
         return self._current_state
 
     # Override
@@ -97,86 +115,89 @@ class LinearFeatureState(State):
         found_stop = False
         stops = []
         # For each vehicle in the list of vehicles
-        for vehicle in self._ldm.getVehicles() :
-            # Get the current lane of the vehicle
-            vehicle_lane = self._ldm.getVehicleLane(vehicle)
-            # print "vehiclelane", vehicle_lane
-
-            # Count the number of vehicles on the lane:
+        for vehicle in self._ldm.getVehicles():
             try:
-                lane_stats[vehicle_lane]['vehicle_count'] += 1.0
-            except KeyError:
-                lane_stats[vehicle_lane] = {'vehicle_count': 1.0}
+                # Get the current lane of the vehicle
+                vehicle_lane = self._ldm.getVehicleLane(vehicle)
+                # print "vehiclelane", vehicle_lane
 
-            # Store waiting time of current vehicle in the correct lane
-            wait = self._ldm.getVehicleWaitingTime(vehicle)
-            try:
-                lane_stats[vehicle_lane]['wait'].append(wait)
-            except KeyError:
-                lane_stats[vehicle_lane]['wait'] = [wait]
-
-            # Get the previous speed of the vehicle to determine acceleration
-            try:
-                previous_speed = prev_speed[vehicle]
-            except KeyError:
-                previous_speed = 0.0
-
-            # Get current speed of the vehicle
-            speed = self._ldm.getSpeed(vehicle)
-            try:
-                lane_stats[vehicle_lane]['speed'].append(speed)
-            except KeyError:
-                lane_stats[vehicle_lane]['speed'] = [speed]
-
-            max_speed = self._ldm.getVehicleMaxSpeed(vehicle)
-
-            try:
-                lane_stats[vehicle_lane]['vehicle_delay'].append(max_speed - speed)
-            except KeyError:
-                lane_stats[vehicle_lane]['vehicle_delay'] = [max_speed - speed]
-            # Count number of halted vehicles:
-            if speed == 0.0:
+                # Count the number of vehicles on the lane:
                 try:
-                    lane_stats[vehicle_lane]['halted'] += 1.0
+                    lane_stats[vehicle_lane]['vehicle_count'] += 1.0
                 except KeyError:
-                    lane_stats[vehicle_lane]['halted'] = 1.0
+                    lane_stats[vehicle_lane] = {'vehicle_count': 1.0}
 
-            # Get vehicle's acceleration (negative value means deceleration)
-            accel = speed - previous_speed
-            try:
-                lane_stats[vehicle_lane]['acceleration'].append(accel)
-            except KeyError:
-                lane_stats[vehicle_lane]['acceleration'] = [accel]
-
-            # Count accelerations:
-            if accel > 0:
+                # Store waiting time of current vehicle in the correct lane
+                wait = self._ldm.getVehicleWaitingTime(vehicle)
                 try:
-                    lane_stats[vehicle_lane]['acceleration_count'] += 1.0
+                    lane_stats[vehicle_lane]['wait'].append(wait)
                 except KeyError:
-                    lane_stats[vehicle_lane]['acceleration_count'] = 1.0
+                    lane_stats[vehicle_lane]['wait'] = [wait]
 
-            # Count decelerations:
-            elif accel < 0:
+                # Get the previous speed of the vehicle to determine acceleration
                 try:
-                    lane_stats[vehicle_lane]['deceleration_count'] += 1.0
+                    previous_speed = prev_speed[vehicle]
                 except KeyError:
-                    lane_stats[vehicle_lane]['deceleration_count'] = 1.0
+                    previous_speed = 0.0
 
-            # Store current speed for use in next time step
-            prev_speed[vehicle] = speed
-
-            # If the vehicle decelerates too quickly, it is making an emergency stop
-            if accel < -4.5:
-                print("EMERGENCY STOP")
-                stops.append(1.0)
-                # Count emergency stops on the current lane
+                # Get current speed of the vehicle
+                speed = self._ldm.getSpeed(vehicle)
                 try:
-                    lane_stats[vehicle_lane]['em_sts'] += 1.0
+                    lane_stats[vehicle_lane]['speed'].append(speed)
                 except KeyError:
-                    lane_stats[vehicle_lane]['em_sts'] = 1.0
-                found_stop = True
-            else:
-                stops.append(0.0)
+                    lane_stats[vehicle_lane]['speed'] = [speed]
+
+                max_speed = self._ldm.getVehicleMaxSpeed(vehicle)
+
+                try:
+                    lane_stats[vehicle_lane]['vehicle_delay'].append(max_speed - speed)
+                except KeyError:
+                    lane_stats[vehicle_lane]['vehicle_delay'] = [max_speed - speed]
+                # Count number of halted vehicles:
+                if speed == 0.0:
+                    try:
+                        lane_stats[vehicle_lane]['halted'] += 1.0
+                    except KeyError:
+                        lane_stats[vehicle_lane]['halted'] = 1.0
+
+                # Get vehicle's acceleration (negative value means deceleration)
+                accel = speed - previous_speed
+                try:
+                    lane_stats[vehicle_lane]['acceleration'].append(accel)
+                except KeyError:
+                    lane_stats[vehicle_lane]['acceleration'] = [accel]
+
+                # Count accelerations:
+                if accel > 0:
+                    try:
+                        lane_stats[vehicle_lane]['acceleration_count'] += 1.0
+                    except KeyError:
+                        lane_stats[vehicle_lane]['acceleration_count'] = 1.0
+
+                # Count decelerations:
+                elif accel < 0:
+                    try:
+                        lane_stats[vehicle_lane]['deceleration_count'] += 1.0
+                    except KeyError:
+                        lane_stats[vehicle_lane]['deceleration_count'] = 1.0
+
+                # Store current speed for use in next time step
+                prev_speed[vehicle] = speed
+
+                # If the vehicle decelerates too quickly, it is making an emergency stop
+                if accel < -4.5:
+                    print("EMERGENCY STOP")
+                    stops.append(1.0)
+                    # Count emergency stops on the current lane
+                    try:
+                        lane_stats[vehicle_lane]['em_sts'] += 1.0
+                    except KeyError:
+                        lane_stats[vehicle_lane]['em_sts'] = 1.0
+                    found_stop = True
+                else:
+                    stops.append(0.0)
+            except Exception as e:
+                logging.warning(e)
 
         return lane_stats, prev_speed, stops
 
@@ -233,18 +254,22 @@ class LinearFeatureState(State):
                           number_decelerations, em_sts]
             elif extra == "small":
                 state += [number_vehicles, halted_vehicles, wait]
+            elif extra == "minimal":
+                state += [number_vehicles, halted_vehicles, ]
             elif extra == "thesis":
                 state += [wait, vehicle_delay, number_vehicles, halted_vehicles, speed, avg_acceleration, em_sts]
+            elif extra == "queue_size_phase":
+                state += [number_vehicles]
             else:
                 state += [wait, number_vehicles, halted_vehicles, speed, avg_acceleration]
 
+
         if not extra == "thesis":
-            for tl in self._ldm.getTrafficLights():
-                setting = self._ldm.getLightState(tl)
-                action_index = self._actions.index(setting)
-                actions = [0 for x in range(0, len(self._actions))]
-                actions[action_index] = 1
-                state += actions
+            setting = self._ldm.getLightState(self.traffic_light)
+            action_index = self._actions.index(setting)
+            actions = [0 for x in range(0, len(self._actions))]
+            actions[action_index] = 1
+            state += actions
         else:
             combined_state = []
             for tl in self._ldm.getTrafficLights():
@@ -892,3 +917,70 @@ class SimpleState(State):
         logging.info(f"returning state: {state}")
 
         return state
+
+
+# # State representation that only uses queue lengths
+# class SimpleStateWithTLPhase(State):
+#     def __init__(self, ldm, controlled_agent_tl_id, max_vehicles_per_lane=10.0):
+#         State.__init__(self, ldm, None)
+#
+#         # Used for normalizing
+#         self.MAX_VEHICLES_PER_LANE = max_vehicles_per_lane
+#
+#         self.traffic_light = controlled_agent_tl_id
+#         self.lanes = sorted(self._ldm.getControlledLanes(self.traffic_light))
+#
+#         logging.info(f"traffic light: {self.traffic_light}")
+#         logging.info(f"controlled lanes: {self.lanes}")
+#
+#         assert self.lanes is not None
+#         assert isinstance(self.lanes[0], str)
+#
+#         self.initialized = True
+#
+#     def update_state(self):
+#
+#         logging.info("SimpleState: update_state")
+#
+#         n_lanes = len(self.lanes)
+#
+#         assert n_lanes
+#
+#         # state is [l0, l1,]
+#         state = np.zeros((1, n_lanes + 2))
+#
+#         try:
+#             lane_stats = {}
+#
+#             logging.debug(f"vehicle: {self._ldm.getVehicles()}")
+#
+#             for vehicle in self._ldm.getVehicles():
+#                 try:
+#                     logging.debug(f"vehicle: {vehicle}!!!!")
+#                     # Get the current lane of the vehicle
+#                     vehicle_lane = self._ldm.getVehicleLane(vehicle)
+#                     # print("vehiclelane", vehicle_lane)
+#
+#                     # Count the number of vehicles on the lane:
+#                     try:
+#                         lane_stats[vehicle_lane]['vehicle_count'] += 1.0
+#                     except KeyError:
+#                         lane_stats[vehicle_lane] = {'vehicle_count': 1.0}
+#                 except Exception as err:
+#                     warning(err)
+#                     continue
+#
+#             # print("logging.info:")
+#             logging.info(f"lane_stats: {lane_stats}")
+#
+#             for i, lane in enumerate(self.lanes):
+#                 state[0, i] = lane_stats.get(lane, {'vehicle_count': 0.0})['vehicle_count'] / float(self.MAX_VEHICLES_PER_LANE)
+#
+#
+#
+#         except AttributeError as err:
+#             warning(err)
+#
+#         logging.info(f"returning state: {state}")
+#
+#         return state
