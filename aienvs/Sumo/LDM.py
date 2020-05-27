@@ -372,12 +372,12 @@ class ldm():
             return self._computeRewardEliseScaling(vehicles)
         elif function == "normalspeedchange":
             return self._computeRewardNormalSpeedChange(vehicles)
+        elif function == "realspeedchange":
+            return self._computeRewardRealSpeedChange(vehicles)
         elif function == "waitingtime":
             return self._computeRewardWaitingTime(vehicles)
         elif function == "hardbrakes":
             return self._computeRewardHardBrakes(vehicles)
-        elif function == "realspeedchange":
-            return self._computeRewardRealSpeedChange(vehicles)
         elif function == "delay":
             return self._computeRewardDelay(vehicles)
         else:
