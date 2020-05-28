@@ -186,7 +186,7 @@ class LinearFeatureState(State):
 
                 # If the vehicle decelerates too quickly, it is making an emergency stop
                 if accel < -4.5:
-                    print("EMERGENCY STOP")
+                    # print("EMERGENCY STOP")
                     stops.append(1.0)
                     # Count emergency stops on the current lane
                     try:
