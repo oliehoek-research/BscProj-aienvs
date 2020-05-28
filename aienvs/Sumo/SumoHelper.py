@@ -26,8 +26,10 @@ class SumoHelper(object):
         self.parameters = parameters
         self._port = port
         assert(self.scenario_check(self.parameters['scene']))
-        assert(type(self.parameters['car_pr']) == float)
-        assert(type(self.parameters['car_tm']) == int)
+
+        if self.parameters['route_generation_method'] == "legacy":
+            assert(type(self.parameters['car_pr']) == float), f"Expected parameters['car_pr'] to be of type float but was: :{self.parameters['car_pr']}"
+            assert(type(self.parameters['car_tm']) == int), f"Expected parameters['car_tm'] to be of type int but was: :{self.parameters['car_tm']}"
 
         if(self.parameters['generate_conf']):
             self.sumocfg_name = str(self._port) + "_scenario.sumocfg"

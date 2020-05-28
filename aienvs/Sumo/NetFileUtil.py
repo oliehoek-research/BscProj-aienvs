@@ -7,6 +7,11 @@ class NetFileUtil:
         self._tree = ElementTree.parse(filename)
         self._root = self._tree.getroot()
 
+        assert self._tree is not None
+
+        print(self._tree)
+        print(self._root)
+
     # Looksup the tl phase id associated with a junction
     def find_tlid_associated_with_junction(self, junction: dict) -> str:
         int_lanes: str = junction['intLanes']
@@ -19,8 +24,11 @@ class NetFileUtil:
 
     def find_junction(self, junction_id: str) -> dict:
         for junction in self._root.iter('junction'):
+            print(junction.attrib)
             if junction.attrib['id'] == junction_id:
                 return junction.attrib
+
+        raise Exception(f"Did not find junction with id: {junction_id}")
 
     def _find_tlid_of_int_lane(self, intLane: str) -> str:
         return self._find_connection_with_via(intLane)['tl']
