@@ -202,10 +202,8 @@ class SumoHelper(object):
                           " a bug.".format(expected_value, car_sum))
 
     def __del__(self):
-        if(self.parameters['generate_conf']):
-            if ('sumocfg_file' in locals()):
+        if self.parameters['generate_conf']:
                 os.remove(self.sumocfg_file)
-            if ('_route_file' in locals()):
                 os.remove(self._route_file)
 
 
