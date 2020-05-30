@@ -88,6 +88,12 @@ class LinearFeatureState(State):
             print(f"queue_size_phase: n_lanes: {n_lanes}")
             print(f"queue_size_phase: len(self._actions): {len(self._actions)}")
 
+        if extra == "thesis_for_dqn":
+            n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
+            self._current_state = np.zeros((7 * n_lanes + len(self._actions), 1))
+
+            print(f"queue_size_phase: n_lanes: {n_lanes}")
+            print(f"queue_size_phase: len(self._actions): {len(self._actions)}")
 
     def update_state(self):
         try:
@@ -257,6 +263,8 @@ class LinearFeatureState(State):
             elif extra == "minimal":
                 state += [number_vehicles, halted_vehicles, ]
             elif extra == "thesis":
+                state += [wait, vehicle_delay, number_vehicles, halted_vehicles, speed, avg_acceleration, em_sts]
+            elif extra == "thesis_for_dqn":
                 state += [wait, vehicle_delay, number_vehicles, halted_vehicles, speed, avg_acceleration, em_sts]
             elif extra == "queue_size_phase":
                 state += [number_vehicles]

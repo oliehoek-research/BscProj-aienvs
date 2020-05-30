@@ -28,6 +28,9 @@ def SimpleState_builder(ldm, controlled_agent_tl_id, **_):
 def LinearFeatureState_builder(ldm, controlled_agent_tl_id, extra="default", **_):
     return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra=extra)
 
+def LinearFeatureState_thesis_for_dqn(ldm, controlled_agent_tl_id, extra="thesis_for_dqn", **_):
+    return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra=extra)
+
 def LinearFeatureState_queue_size_phase_builder(ldm, controlled_agent_tl_id, **_):
     return state_representation.LinearFeatureState(ldm=ldm, controlled_agent_tl_id=controlled_agent_tl_id, extra="queue_size_phase")
 
@@ -40,3 +43,7 @@ state_factory.register_builder("SimpleState", SimpleState_builder)
 state_factory.register_builder("LinearFeatureState", LinearFeatureState_builder)
 state_factory.register_builder("LinearFeatureState_queue_size_phase", LinearFeatureState_queue_size_phase_builder)
 state_factory.register_builder("TimingState", TimingState_builder)
+
+# State space with same features as Elise's thesis but without multiplying actions,
+# as by feeding it into a neural network, non linearity in the state isn't necessary.
+state_factory.register_builder("LinearFeatureState_thesis_for_dqn", LinearFeatureState_thesis_for_dqn)
