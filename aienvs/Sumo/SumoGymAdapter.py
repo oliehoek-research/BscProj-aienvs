@@ -34,11 +34,13 @@ class SumoGymAdapter(Env):
                 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
+                'simulation_start_time': '0', # The start time of the sumo simulation in seconds
                 'reward_range': [100],
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
                 # Options for 'route_generation_method' 'activitygen'
                 'activitygen_options': [], # e.g. ["--end", endtime]
+                'stat_file': None, # stat file used. Leave none for automatic search.
 
                 # Options for 'route_generation_method' 'randomTrips.py'
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
@@ -51,7 +53,7 @@ class SumoGymAdapter(Env):
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
 
-                'seed': None,
+                'seed': None, # Used to seed sumo, and to generate the traffic by all generation methods.
 
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
@@ -99,6 +101,17 @@ class SumoGymAdapter(Env):
 
         # Computed when needed instead of in __init__:
         self._observation_space = None
+
+    def update_parameters(self, updated_params: dict):
+        """
+        Updates the parameters. Please note that some of the
+        parameter changes may only be propagated after resetting
+        the environment.
+        """
+        self._parameters.update(updated_params)
+
+    def set_stat_file(self, stat_file: str):
+        self.update_parameters({"stat_file": stat_file})
 
     def _compute_observation_space(self):
         self._startSUMO(gui=False)

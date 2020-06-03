@@ -31,7 +31,7 @@ class SumoHelper(object):
 
         if(self.parameters['generate_conf']):
             self.sumocfg_name = str(self._port) + "_scenario.sumocfg"
-            self._generate_sumocfg_file()
+            self._generate_sumocfg_file(start_time=self.parameters["simulation_start_time"])
             self._generate_route_file(seed)
 
     def scenario_check(self, scenario):
@@ -79,25 +79,25 @@ class SumoHelper(object):
                     f.write(car_string)
             f.write('\n</routes>')
 
-    def _generate_sumocfg_file(self):
+    def _generate_sumocfg_file(self, start_time):
         self.sumocfg_file = os.path.join(self.scenario_path, self.sumocfg_name)
         self.routefile_name = str(self._port) + '_routes.rou.xml'
         self._route_file = os.path.join(self.scenario_path, self.routefile_name)
         with open(self.sumocfg_file, 'w') as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
-                    +'<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">\n'
-                    +'    <input>\n'
-                    +'        <net-file value="' + self._net_file + '"/>\n'
-                    +'        <route-files value="' + self.routefile_name + '"/>\n'
-                    +'    </input>\n'
-                    +'    <time>\n'
-                    +'        <begin value="0"/>\n'
-                    +'    </time>\n'
-                    +'    <report>\n'
-                    +'        <verbose value="true"/>\n'
-                    +'        <no-step-log value="true"/>\n'
-                    +'    </report>\n'
-                    +'</configuration>')
+                    + '<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">\n'
+                    + '    <input>\n'
+                    + '        <net-file value="' + self._net_file + '"/>\n'
+                    + '        <route-files value="' + self.routefile_name + '"/>\n'
+                    + '    </input>\n'
+                    + '    <time>\n'
+                    + f'        <begin value="{start_time}"/>\n'
+                    + '    </time>\n'
+                    + '    <report>\n'
+                    + '        <verbose value="true"/>\n'
+                    + '        <no-step-log value="true"/>\n'
+                    + '    </report>\n'
+                    + '</configuration>')
 
     def generate_randomized_route(self):
         if len(self.parameters['route_starts']) > 0:
@@ -144,16 +144,19 @@ class SumoHelper(object):
         elif self.parameters['route_generation_method'] == 'activitygen':
             logging.debug('Using activitygen and duarouter to generate trips based on stat-file')
 
-            stat_file = get_stat_file(scenario_path=self.scenario_path)
-
             # Get the path of the sumotools activitygen binary
             ACTIVITYGEN = sumolib.checkBinary('activitygen')
 
-            activitygen_args = [ACTIVITYGEN, '--net-file', net_file, '--stat-file', stat_file,
+            activitygen_args = [ACTIVITYGEN, '--net-file', net_file,
                                 '--output-file', route_file]
 
             # Add passed through arguments
+
             activitygen_args += self.parameters['activitygen_options']
+
+            if '--stat-file' not in self.parameters['activitygen_options']:
+                found_stat_file = self.get_stat_file(scenario_path=self.scenario_path)
+                activitygen_args += ['--stat-file', found_stat_file]
 
             if seed is not None:
                 activitygen_args += ['--seed', str(seed)]
@@ -209,9 +212,17 @@ class SumoHelper(object):
                 os.remove(self._route_file)
 
 
-def get_stat_file(scenario_path):
-    stat_files = glob.glob(scenario_path + '/*.stat.xml')
+    def get_stat_file(self, scenario_path):
+        specified_stat_file = self.parameters['stat_file']
+        if specified_stat_file is not None:
+            logging.debug("Stat file specified. Using ", specified_stat_file)
+            return os.path.join(scenario_path, specified_stat_file)
 
-    assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+        logging.debug("Stat file not specified. Searching in scenario directory..")
 
-    return stat_files[0]
+        stat_files = glob.glob(scenario_path + '/*.stat.xml')
+
+        assert len(stat_files) == 1, f"Expected exactly one stat-file, but stat_files: {stat_files}"
+
+        logging.debug("Stat file found! Using ", stat_files[0])
+        return stat_files[0]
