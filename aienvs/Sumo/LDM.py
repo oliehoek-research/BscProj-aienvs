@@ -436,7 +436,7 @@ class ldm():
             if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
                 # print("punishing flip")
                 lightFlipPenalty = -1
-            result += (1.5 * lightFlipPenalty)
+            result += (0.1 * lightFlipPenalty)
 
 
         for vehID in vehicles:
@@ -476,7 +476,7 @@ class ldm():
             if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
                 # print("punishing flip")
                 lightFlipPenalty = -1
-            result += (0.15 * len(vehicles) * lightFlipPenalty)
+            result += (0.1 * len(vehicles) * lightFlipPenalty)
 
 
         for vehID in vehicles:
