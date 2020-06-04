@@ -378,6 +378,8 @@ class ldm():
             return self._computeRewardWaitingTime(vehicles)
         elif function == "harshwaitingtime":
             return self._computeRewardHarshWaitingTime(vehicles)
+        elif function == "harsherwaitingtime":
+            return self._computeRewardHarsherWaitingTime(vehicles)
         elif function == "parametercombination2":
             return self._computeRewardParameterCombination2(vehicles)
         elif function == "hardbrakes":
@@ -654,6 +656,43 @@ class ldm():
 
         return result
 
+    def _computeRewardHarsherWaitingTime( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+        for tlID in self.getTrafficLights():
+            lightFlipPenalty = 0
+            if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
+                # print("punishing flip")
+                lightFlipPenalty = -1
+            result += lightFlipPenalty
+
+        waitingVehicles = 0
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+            allowedSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+            waiting = False
+            if(len(self._vehSpeeds[vehID]) > 0):
+                lastSpeed = self._vehSpeeds[vehID][len(self._vehSpeeds[vehID]) - 1]
+                if lastSpeed == 0:
+                    waiting = True
+
+            if(self.getVehicleWaitingTime(vehID) > 0):
+                waiting = True
+            if waiting:
+                waitingVehicles += 1
+
+            self._vehSpeeds[vehID].append(currentSpeed)
+
+        if waitingVehicles != 0:
+            result -= 100
+
+        return result
 
 
     def _computeRewardNormalSpeedChange( self, vehicles ):
