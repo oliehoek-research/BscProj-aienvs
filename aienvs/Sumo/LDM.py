@@ -376,6 +376,10 @@ class ldm():
             return self._computeRewardRealSpeedChange(vehicles)
         elif function == "waitingtime":
             return self._computeRewardWaitingTime(vehicles)
+        elif function == "harshwaitingtime":
+            return self._computeRewardHarshWaitingTime(vehicles)
+        elif function == "parametercombination2":
+            return self._computeRewardParameterCombination2(vehicles)
         elif function == "hardbrakes":
             return self._computeRewardHardBrakes(vehicles)
         elif function == "delay":
@@ -464,6 +468,8 @@ class ldm():
         return result
 
 
+
+
     def _computeRewardEliseScaling( self, vehicles ):
         result = 0
         if not vehicles:
@@ -527,6 +533,46 @@ class ldm():
         return result
 
 
+    def _computeRewardParameterCombination2( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+
+        for tlID in self.getTrafficLights():
+            lightFlipPenalty = 0
+            if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
+                # print("punishing flip")
+                lightFlipPenalty = -1
+            result += (0.1 * lightFlipPenalty)
+
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+            speedChangePenalty = 0
+            waitPenalty = 0
+
+            if(self.getVehicleWaitingTime(vehID) == 1):
+                waitPenalty = -0.5
+            if(self.getVehicleWaitingTime(vehID) > 1):
+                waitPenalty = -1
+
+
+            if(len(self._vehSpeeds[vehID]) > 0):
+                lastSpeed = self._vehSpeeds[vehID][len(self._vehSpeeds[vehID]) - 1]
+                speedChange = currentSpeed - lastSpeed
+                if speedChange < 0:
+                    speedChangePenalty = -1
+                elif speedChange == 0:
+                    speedChangePenalty = -0.5
+
+            result += (0.5 * waitPenalty) + (0.5 * speedChangePenalty)
+            self._vehSpeeds[vehID].append(currentSpeed)
+        return result
+
 
     def _computeRewardHardBrakes(self, vehicles):
         result = 0
@@ -575,6 +621,40 @@ class ldm():
             result += waitPenalty
             self._vehSpeeds[vehID].append(currentSpeed)
         return result
+
+
+    def _computeRewardHarshWaitingTime( self, vehicles ):
+        result = 0
+        if not vehicles:
+            logging.debug("No vehicles, returning 0 reward")
+            return 0
+
+        for tlID in self.getTrafficLights():
+            lightFlipPenalty = 0
+            if(self.getLightState(tlID) == "ryry" or self.getLightState(tlID) == "yryr"):
+                # print("punishing flip")
+                lightFlipPenalty = -1
+            result += lightFlipPenalty
+
+        waitingVehicles = 0
+
+        for vehID in vehicles:
+            if vehID not in self._vehSpeeds:
+                self._vehSpeeds[vehID] = []
+            currentSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_SPEED)
+            allowedSpeed = vehicles.get(vehID).get(self.SUMO_client.constants.VAR_ALLOWED_SPEED)
+
+
+            if(self.getVehicleWaitingTime(vehID) > 0):
+                waitingVehicles += 1
+
+            self._vehSpeeds[vehID].append(currentSpeed)
+        if waitingVehicles != 0:
+            result -= 100
+
+        return result
+
+
 
     def _computeRewardNormalSpeedChange( self, vehicles ):
         result = 0
