@@ -13,7 +13,7 @@ class State:
     @param lights the list of traffic light IDs (strings)
     """
 
-    def __init__(self, ldm, lights:list, reward_range:list):
+    def __init__(self, ldm, lights:list, reward_range: list = None):
         """
         @param lights list of traffic light ids
         """
@@ -845,7 +845,7 @@ class LdmMatrixState(State):
     TODO document how this state works and achieves
     """
 
-    def __init__(self, ldm, data, reward_range, type="byCorners"):
+    def __init__(self, ldm, data, reward_range=None, type="byCorners"):
         State.__init__(self, ldm, None, reward_range)
 
         if type == "byCorners":
@@ -855,7 +855,7 @@ class LdmMatrixState(State):
             self.bottomLeftCoords = (data[0][0] - data[1] / 2., data[0][1] - data[2] / 2.)
             self.topRightCoords = (data[0][0] + data[1] / 2., data[0][1] + data[2] / 2.)
 
-    def update_reward(self, function, local_rewards=True):
+    def update_reward(self, function, local_rewards=False):
 
         return (self._ldm.getRewardByCorners(self.bottomLeftCoords, self.topRightCoords, local_rewards, self._reward_range, function))
 

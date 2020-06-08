@@ -67,7 +67,7 @@ class SumoGymAdapter(Env):
 
                 'reward_function': "default", #options include default, eval and elise
                 'reward_range': [None], # Don't filter by radius
-
+                'local_rewards': False, # Don't use local rewards
                 # 'observation_space': "LdmMatrixState"
                 }
 
@@ -132,8 +132,7 @@ class SumoGymAdapter(Env):
         # Set up LdmMatrixState for calculating rewards
         self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState",
                                                                             **self._state_factory_create_params)
-        # self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"], "byCorners")
-
+        
     def update_parameters(self, updated_params: dict):
         """
         Updates the parameters. Please note that some of the
@@ -326,7 +325,7 @@ class SumoGymAdapter(Env):
         Computes the global reward
         """
 
-        rewards: dict = self._state_used_for_rewards.update_reward(function)
+        rewards: dict = self._state_used_for_rewards.update_reward(function, local_rewards=self._parameters("local_rewards"))
 
         for k in rewards.keys():
             rewards[k] = rewards[k] / self._parameters['scaling_factor']
