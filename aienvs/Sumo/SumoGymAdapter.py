@@ -37,11 +37,13 @@ class SumoGymAdapter(Env):
                 # 'resolutionInPixelsPerMeterY': 1,  # for the observable frame
                 'y_t': 6,  # yellow time
                 'generate_conf': True,  # for automatic route/config generation
+                'simulation_start_time': '0', # The start time of the sumo simulation in seconds
 
                 'route_generation_method': 'undefined', # One of ['legacy', 'randomTrips.py', 'activitygen']
 
                 # Options for 'route_generation_method' 'activitygen'
                 'activitygen_options': [], # e.g. ["--end", endtime]
+                'stat_file': None, # stat file used. Leave none for automatic search.
 
                 # Options for 'route_generation_method' 'randomTrips.py'
                 'trips_generate_options': [], # sumo/tools/randomTrips.py additional options. -n, -o, --validate already handled!
@@ -54,7 +56,7 @@ class SumoGymAdapter(Env):
                 'route_max_segments' : 0,  #  for automatic route/config generation, ask Rolf
                 'route_ends' : [],  #  for automatic route/config generation, ask Rolf
 
-                'seed': None,
+                'seed': None, # Used to seed sumo, and to generate the traffic by all generation methods.
 
                 'libsumo' : False,  # whether libsumo is used instead of traci
                 'waiting_penalty' : 1,  # penalty for waiting
@@ -62,9 +64,11 @@ class SumoGymAdapter(Env):
                 'lightPositions' : {},  # specify traffic light positions
                 'scaling_factor' : 1.0,  # for rescaling the reward? ask Miguel
                 'maxConnectRetries':50,  # maximum reattempts to connect by Traci
-     
+
+                'reward_function': "default", #options include default, eval and elise
+                'reward_range': [None], # Don't filter by radius
+
                 # 'observation_space': "LdmMatrixState"
-                
                 }
 
     def __init__(self, parameters:dict={}, init_state=True):
@@ -75,7 +79,7 @@ class SumoGymAdapter(Env):
         scenario: the path to the scenario to use
         """
 
-        # Some state abstractions need to now which traffic light is being controlled
+        # Some state abstractions need to know which traffic light is being controlled
         self.controlled_agent = None
 
         logging.debug(parameters)
@@ -128,6 +132,18 @@ class SumoGymAdapter(Env):
         # Set up LdmMatrixState for calculating rewards
         self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState",
                                                                             **self._state_factory_create_params)
+        # self._state = LdmMatrixState(self.ldm, [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"], "byCorners")
+
+    def update_parameters(self, updated_params: dict):
+        """
+        Updates the parameters. Please note that some of the
+        parameter changes may only be propagated after resetting
+        the environment.
+        """
+        self._parameters.update(updated_params)
+
+    def set_stat_file(self, stat_file: str):
+        self.update_parameters({"stat_file": stat_file})
 
     def _compute_observation_space(self):
         try:
@@ -143,10 +159,16 @@ class SumoGymAdapter(Env):
         self.ldm.step()
         obs = self._observe()
         done = self.ldm.isSimulationFinished()
-        global_reward = self._computeGlobalReward()
+        global_reward_list = self._computeGlobalReward(self._parameters['reward_function'])
+        if len(self._parameters['reward_range']) == 1:
+            return obs, global_reward_list[self._parameters['reward_range'][0]], done, []
+        else:
+            return obs, global_reward_list, done, []
 
         # as in openai gym, last one is the info list
-        return obs, global_reward, done, []
+        # return obs, global_reward, done, []
+
+
 
     def reset(self):
         try:
@@ -299,11 +321,17 @@ class SumoGymAdapter(Env):
         """
         return self._state.update_state()
 
-    def _computeGlobalReward(self):
+    def _computeGlobalReward(self, function):
         """
         Computes the global reward
         """
-        return self._state_used_for_rewards.update_reward() / self._parameters['scaling_factor']
+
+        rewards: dict = self._state_used_for_rewards.update_reward(function)
+
+        for k in rewards.keys():
+            rewards[k] = rewards[k] / self._parameters['scaling_factor']
+
+        return rewards
 
     def _getActionSpace(self):
         """
