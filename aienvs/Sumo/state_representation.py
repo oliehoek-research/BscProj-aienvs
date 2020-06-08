@@ -859,6 +859,9 @@ class LdmMatrixState(State):
 
         return (self._ldm.getRewardByCorners(self.bottomLeftCoords, self.topRightCoords, local_rewards, self._reward_range, function))
 
+    def getLDMSpeeds(self):
+        return self._ldm.getVehSpeeds()
+
     def update_state(self):
         return self._ldm.getMapSliceByCorners(self.bottomLeftCoords, self.topRightCoords)
 
