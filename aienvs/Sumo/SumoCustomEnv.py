@@ -49,14 +49,8 @@ class SumoCustomEnv(SumoGymAdapter):
         self.set_observation_box_around_point(float(junction['x']), float(junction['y']),
                                               self._parameters['box_width'], self._parameters['box_height'])
 
-<<<<<<< HEAD
         # Register the state abstractions used for observations and calculating reward
         self._init_state_abstraction()
-=======
-        self._state = LdmMatrixState(self.ldm,
-                                     [self._parameters['box_bottom_corner'], self._parameters['box_top_corner']], self._parameters["reward_range"],
-                                     "byCorners")
->>>>>>> master
 
         self._set_duration(end_time, start_time)
 

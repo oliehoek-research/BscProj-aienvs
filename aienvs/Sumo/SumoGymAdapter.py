@@ -132,7 +132,7 @@ class SumoGymAdapter(Env):
         # Set up LdmMatrixState for calculating rewards
         self._state_used_for_rewards: LdmMatrixState = state_factory.create(key="LdmMatrixState",
                                                                             **self._state_factory_create_params)
-        
+
     def update_parameters(self, updated_params: dict):
         """
         Updates the parameters. Please note that some of the
