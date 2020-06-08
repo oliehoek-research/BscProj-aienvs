@@ -256,7 +256,7 @@ class SumoGymAdapter(Env):
         while True:
             try:
                 # this cannot be seeded
-                self._port = random.SystemRandom().choice(list(range(10000, 20000)))
+                self._port = random.SystemRandom().choice(list(range(10000, 65000)))
                 self._sumo_helper = SumoHelper(self._parameters, self._port, self._seed)
                 conf_file = self._sumo_helper.sumocfg_file
                 logging.debug("Configuration: " + str(conf_file))
