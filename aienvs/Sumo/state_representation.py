@@ -845,7 +845,7 @@ class LdmMatrixState(State):
     TODO document how this state works and achieves
     """
 
-    def __init__(self, ldm, data, reward_range=None, type="byCorners"):
+    def __init__(self, ldm, data, reward_range=[None], type="byCorners"):
         State.__init__(self, ldm, None, reward_range)
 
         if type == "byCorners":

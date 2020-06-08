@@ -325,7 +325,7 @@ class SumoGymAdapter(Env):
         Computes the global reward
         """
 
-        rewards: dict = self._state_used_for_rewards.update_reward(function, local_rewards=self._parameters("local_rewards"))
+        rewards: dict = self._state_used_for_rewards.update_reward(function, local_rewards=self._parameters["local_rewards"])
 
         for k in rewards.keys():
             rewards[k] = rewards[k] / self._parameters['scaling_factor']
