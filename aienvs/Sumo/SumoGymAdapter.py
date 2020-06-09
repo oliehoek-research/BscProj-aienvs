@@ -288,6 +288,8 @@ class SumoGymAdapter(Env):
                 self.ldm.start(sumoCmd, self._port)
             except Exception as e:
                 if str(e) == "connection closed by SUMO" and maxRetries > 0:
+                    print(f"Connecting failed with port: {self._port}")
+
                     maxRetries = maxRetries - 1
                     continue
                 else:
