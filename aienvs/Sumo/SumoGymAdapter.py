@@ -300,7 +300,7 @@ class SumoGymAdapter(Env):
                     maxRetries = maxRetries - 1
                     continue
                 else:
-                    raise
+                    raise Exception("Reached retry limit") from e
             else:
                 break
 
