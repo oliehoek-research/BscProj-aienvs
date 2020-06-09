@@ -277,8 +277,11 @@ class SumoGymAdapter(Env):
         # Try repeatedly to connect
         while True:
             try:
+
+                time.sleep(random.SystemRandom().randrange(0.5, 2))
+
                 # this cannot be seeded
-                self._port = random.SystemRandom().choice(list(range(10000, 65000)))
+                self._port = random.SystemRandom().choice(list(range(20000, 65000)))
                 self._sumo_helper = SumoHelper(self._parameters, self._port, self._seed)
                 conf_file = self._sumo_helper.sumocfg_file
                 logging.debug("Configuration: " + str(conf_file))
@@ -287,6 +290,10 @@ class SumoGymAdapter(Env):
                     sumoCmd += ["--seed", str(self._seed)]
                 self.ldm.start(sumoCmd, self._port)
             except Exception as e:
+
+                time.sleep(random.SystemRandom().randrange(2, 5))
+                print(f"Sleeping because of {e}")
+
                 if str(e) == "connection closed by SUMO" and maxRetries > 0:
                     print(f"Connecting failed with port: {self._port}")
 
