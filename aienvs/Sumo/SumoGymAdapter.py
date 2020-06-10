@@ -257,8 +257,12 @@ class SumoGymAdapter(Env):
     ########## Private functions ##########################
     def __del__(self):
         logging.debug("LDM closed by destructor")
-        if 'ldm' in locals():
+        try:
             self.ldm.close()
+        except AttributeError as ae:
+            print(ae)
+        except Exception as e:
+            print(f"On destructing SumoGymAdapter, encountered: {e}")
 
     def _startSUMO(self, gui=None):
         """
