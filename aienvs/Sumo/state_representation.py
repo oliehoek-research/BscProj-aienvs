@@ -82,7 +82,7 @@ class LinearFeatureState(State):
             n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
             self._current_state = np.zeros((5 * n_lanes + len(self._actions), 1))
 
-        if extra == "queue_size_phase":
+        if extra == "queue_size_phase" or extra == "queue_size_phase_normalized":
             n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
             self._current_state = np.zeros((1 * n_lanes + len(self._actions), 1))
 
@@ -93,8 +93,8 @@ class LinearFeatureState(State):
             n_lanes = len(self._ldm.getControlledLanes(self.traffic_light))
             self._current_state = np.zeros((7 * n_lanes + len(self._actions), 1))
 
-            print(f"queue_size_phase: n_lanes: {n_lanes}")
-            print(f"queue_size_phase: len(self._actions): {len(self._actions)}")
+            print(f"thesis for dqn: n_lanes: {n_lanes}")
+            print(f"thesis for dqn: len(self._actions): {len(self._actions)}")
 
     def update_state(self):
         try:
@@ -269,6 +269,8 @@ class LinearFeatureState(State):
                 state += [wait, vehicle_delay, number_vehicles, halted_vehicles, speed, avg_acceleration, em_sts]
             elif extra == "queue_size_phase":
                 state += [number_vehicles]
+            elif extra == "queue_size_phase_normalized":
+                state += [number_vehicles / 10.0]
             else:
                 state += [wait, number_vehicles, halted_vehicles, speed, avg_acceleration]
 
