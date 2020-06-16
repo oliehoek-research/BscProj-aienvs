@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net version="1.3" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="-595192.81,-4523472.41" convBoundary="2187.67,131.91,2657.21,695.47" origBoundary="-73.870462,40.856437,-73.830184,40.875003" projParameter="+proj=utm +zone=18 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"/>
+
+    <type id="highway.bridleway" priority="1" numLanes="1" speed="2.78" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.bus_guideway" priority="1" numLanes="1" speed="27.78" allow="bus" oneway="1"/>
+    <type id="highway.cycleway" priority="1" numLanes="1" speed="8.33" allow="bicycle" oneway="0" width="1.00"/>
+    <type id="highway.footway" priority="1" numLanes="1" speed="2.78" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.ford" priority="1" numLanes="1" speed="2.78" allow="army" oneway="0"/>
+    <type id="highway.living_street" priority="2" numLanes="1" speed="2.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.motorway" priority="14" numLanes="2" speed="39.44" allow="private emergency authority army vip passenger hov taxi bus coach delivery truck trailer motorcycle evehicle custom1 custom2" oneway="1"/>
+    <type id="highway.motorway_link" priority="9" numLanes="1" speed="22.22" allow="private emergency authority army vip passenger hov taxi bus coach delivery truck trailer motorcycle evehicle custom1 custom2" oneway="1"/>
+    <type id="highway.path" priority="1" numLanes="1" speed="2.78" allow="pedestrian bicycle" oneway="1" width="2.00"/>
+    <type id="highway.pedestrian" priority="1" numLanes="1" speed="2.78" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.primary" priority="12" numLanes="2" speed="27.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.primary_link" priority="7" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.raceway" priority="15" numLanes="2" speed="83.33" allow="vip" oneway="0"/>
+    <type id="highway.residential" priority="3" numLanes="1" speed="13.89" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.secondary" priority="11" numLanes="1" speed="27.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.secondary_link" priority="6" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.service" priority="1" numLanes="1" speed="5.56" allow="pedestrian delivery bicycle" oneway="0"/>
+    <type id="highway.stairs" priority="1" numLanes="1" speed="1.39" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.step" priority="1" numLanes="1" speed="1.39" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.steps" priority="1" numLanes="1" speed="1.39" allow="pedestrian" oneway="1" width="2.00"/>
+    <type id="highway.tertiary" priority="10" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.tertiary_link" priority="5" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.track" priority="1" numLanes="1" speed="5.56" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.trunk" priority="13" numLanes="2" speed="27.78" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.trunk_link" priority="8" numLanes="1" speed="22.22" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.unclassified" priority="4" numLanes="1" speed="13.89" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.unsurfaced" priority="1" numLanes="1" speed="8.33" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="railway.highspeed" priority="21" numLanes="1" speed="69.44" allow="rail_fast" oneway="1"/>
+    <type id="railway.light_rail" priority="19" numLanes="1" speed="27.78" allow="rail_urban" oneway="1"/>
+    <type id="railway.preserved" priority="16" numLanes="1" speed="27.78" allow="rail" oneway="1"/>
+    <type id="railway.rail" priority="20" numLanes="1" speed="44.44" allow="rail" oneway="1"/>
+    <type id="railway.subway" priority="18" numLanes="1" speed="27.78" allow="rail_urban" oneway="1"/>
+    <type id="railway.tram" priority="17" numLanes="1" speed="13.89" allow="tram" oneway="1"/>
+
+    <edge id=":Astor_Eastchester_0" function="internal">
+        <lane id=":Astor_Eastchester_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.76" length="11.11" shape="2327.46,333.25 2324.65,333.93 2322.52,335.36 2321.09,337.55 2320.35,340.50"/>
+    </edge>
+    <edge id=":Astor_Eastchester_1" function="internal">
+        <lane id=":Astor_Eastchester_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="15.61" shape="2327.46,333.25 2311.92,334.75"/>
+    </edge>
+    <edge id=":Astor_Eastchester_2" function="internal">
+        <lane id=":Astor_Eastchester_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.79" length="5.96" shape="2327.46,333.25 2323.36,333.05 2321.71,332.20"/>
+    </edge>
+    <edge id=":Astor_Eastchester_12" function="internal">
+        <lane id=":Astor_Eastchester_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.79" length="8.74" shape="2321.71,332.20 2320.48,331.56 2318.81,328.78 2318.35,324.70"/>
+    </edge>
+    <edge id=":Astor_Eastchester_3" function="internal">
+        <lane id=":Astor_Eastchester_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.25" length="9.04" shape="2321.55,324.80 2321.83,327.31 2322.86,329.02 2324.63,329.94 2327.15,330.06"/>
+    </edge>
+    <edge id=":Astor_Eastchester_4" function="internal">
+        <lane id=":Astor_Eastchester_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="15.75" shape="2321.55,324.80 2321.38,328.66 2321.11,332.66 2320.77,336.66 2320.35,340.50"/>
+    </edge>
+    <edge id=":Astor_Eastchester_5" function="internal">
+        <lane id=":Astor_Eastchester_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.72" length="6.37" shape="2321.55,324.80 2320.84,328.81 2319.64,330.77"/>
+    </edge>
+    <edge id=":Astor_Eastchester_13" function="internal">
+        <lane id=":Astor_Eastchester_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.72" length="9.01" shape="2319.64,330.77 2319.00,331.81 2316.03,333.79 2311.92,334.75"/>
+    </edge>
+    <edge id=":Astor_Eastchester_6" function="internal">
+        <lane id=":Astor_Eastchester_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.36" length="10.69" shape="2311.61,331.57 2314.48,330.90 2316.57,329.53 2317.85,327.46 2318.35,324.70"/>
+    </edge>
+    <edge id=":Astor_Eastchester_7" function="internal">
+        <lane id=":Astor_Eastchester_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="15.62" shape="2311.61,331.57 2327.15,330.06"/>
+    </edge>
+    <edge id=":Astor_Eastchester_8" function="internal">
+        <lane id=":Astor_Eastchester_8_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.67" length="6.06" shape="2311.61,331.57 2315.88,331.76 2317.45,332.61"/>
+    </edge>
+    <edge id=":Astor_Eastchester_14" function="internal">
+        <lane id=":Astor_Eastchester_14_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.67" length="9.03" shape="2317.45,332.61 2318.76,333.31 2320.25,336.23 2320.35,340.50"/>
+    </edge>
+    <edge id=":Astor_Eastchester_9" function="internal">
+        <lane id=":Astor_Eastchester_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.09" length="9.07" shape="2317.17,340.12 2317.11,337.55 2316.22,335.80 2314.49,334.87 2311.92,334.75"/>
+    </edge>
+    <edge id=":Astor_Eastchester_10" function="internal">
+        <lane id=":Astor_Eastchester_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="15.47" shape="2317.17,340.12 2317.58,336.32 2317.92,332.42 2318.18,328.52 2318.35,324.70"/>
+    </edge>
+    <edge id=":Astor_Eastchester_11" function="internal">
+        <lane id=":Astor_Eastchester_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="9.07" length="6.31" shape="2317.17,340.12 2318.21,336.04 2319.36,334.29"/>
+    </edge>
+    <edge id=":Astor_Eastchester_15" function="internal">
+        <lane id=":Astor_Eastchester_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="9.07" length="9.20" shape="2319.36,334.29 2320.22,333.00 2323.20,331.01 2327.15,330.06"/>
+    </edge>
+    <edge id=":Astor_Fenton_0" function="internal">
+        <lane id=":Astor_Fenton_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.37" shape="2188.59,352.03 2188.40,337.67"/>
+    </edge>
+    <edge id=":Astor_Fenton_1" function="internal">
+        <lane id=":Astor_Fenton_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.31" length="5.72" shape="2188.59,352.03 2189.12,348.31 2190.12,346.62"/>
+    </edge>
+    <edge id=":Astor_Fenton_6" function="internal">
+        <lane id=":Astor_Fenton_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.31" length="8.58" shape="2190.12,346.62 2190.76,345.53 2193.53,343.68 2197.41,342.78"/>
+    </edge>
+    <edge id=":Astor_Fenton_2" function="internal">
+        <lane id=":Astor_Fenton_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.87" length="9.48" shape="2197.72,345.96 2195.11,346.56 2193.25,347.77 2192.14,349.58 2191.79,352.01"/>
+    </edge>
+    <edge id=":Astor_Fenton_3" function="internal">
+        <lane id=":Astor_Fenton_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.87" length="14.50" shape="2197.72,345.96 2193.71,345.78 2190.82,344.34 2189.05,341.63 2188.40,337.67"/>
+    </edge>
+    <edge id=":Astor_Fenton_4" function="internal">
+        <lane id=":Astor_Fenton_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.34" length="9.04" shape="2191.60,337.61 2192.00,340.08 2193.11,341.77 2194.91,342.67 2197.41,342.78"/>
+    </edge>
+    <edge id=":Astor_Fenton_5" function="internal">
+        <lane id=":Astor_Fenton_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2191.60,337.61 2191.79,352.01"/>
+    </edge>
+    <edge id=":Astor_Kingsland_0" function="internal">
+        <lane id=":Astor_Kingsland_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.36" length="9.04" shape="2651.12,309.52 2650.73,307.05 2649.63,305.36 2647.84,304.44 2645.34,304.29"/>
+    </edge>
+    <edge id=":Astor_Kingsland_1" function="internal">
+        <lane id=":Astor_Kingsland_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2651.12,309.52 2650.92,295.11"/>
+    </edge>
+    <edge id=":Astor_Kingsland_2" function="internal">
+        <lane id=":Astor_Kingsland_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2654.12,295.07 2654.32,309.47"/>
+    </edge>
+    <edge id=":Astor_Kingsland_3" function="internal">
+        <lane id=":Astor_Kingsland_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.24" length="5.79" shape="2654.12,295.07 2653.61,298.82 2652.60,300.56"/>
+    </edge>
+    <edge id=":Astor_Kingsland_6" function="internal">
+        <lane id=":Astor_Kingsland_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.24" length="8.50" shape="2652.60,300.56 2651.98,301.61 2649.22,303.43 2645.34,304.29"/>
+    </edge>
+    <edge id=":Astor_Kingsland_4" function="internal">
+        <lane id=":Astor_Kingsland_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.80" length="9.40" shape="2645.07,301.10 2647.66,300.54 2649.49,299.35 2650.58,297.55 2650.92,295.11"/>
+    </edge>
+    <edge id=":Astor_Kingsland_5" function="internal">
+        <lane id=":Astor_Kingsland_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.88" length="14.46" shape="2645.07,301.10 2649.07,301.34 2651.94,302.81 2653.69,305.52 2654.32,309.47"/>
+    </edge>
+    <edge id=":Astor_Westervelt_0" function="internal">
+        <lane id=":Astor_Westervelt_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.42" shape="2571.99,315.76 2571.80,301.34"/>
+    </edge>
+    <edge id=":Astor_Westervelt_1" function="internal">
+        <lane id=":Astor_Westervelt_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.24" length="5.80" shape="2571.99,315.76 2572.50,312.01 2573.52,310.27"/>
+    </edge>
+    <edge id=":Astor_Westervelt_6" function="internal">
+        <lane id=":Astor_Westervelt_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.24" length="8.50" shape="2573.52,310.27 2574.13,309.22 2576.89,307.40 2580.78,306.54"/>
+    </edge>
+    <edge id=":Astor_Westervelt_2" function="internal">
+        <lane id=":Astor_Westervelt_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.80" length="9.41" shape="2581.05,309.73 2578.46,310.29 2576.62,311.48 2575.53,313.28 2575.19,315.72"/>
+    </edge>
+    <edge id=":Astor_Westervelt_3" function="internal">
+        <lane id=":Astor_Westervelt_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.88" length="14.47" shape="2581.05,309.73 2577.05,309.49 2574.17,308.02 2572.43,305.30 2571.80,301.34"/>
+    </edge>
+    <edge id=":Astor_Westervelt_4" function="internal">
+        <lane id=":Astor_Westervelt_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.36" length="9.04" shape="2575.00,301.30 2575.39,303.77 2576.48,305.47 2578.28,306.39 2580.78,306.54"/>
+    </edge>
+    <edge id=":Astor_Westervelt_5" function="internal">
+        <lane id=":Astor_Westervelt_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.42" shape="2575.00,301.30 2575.19,315.72"/>
+    </edge>
+    <edge id=":Astor_Woodhull_0" function="internal">
+        <lane id=":Astor_Woodhull_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.33" length="9.04" shape="2414.14,330.71 2413.76,328.23 2412.67,326.54 2410.87,325.64 2408.37,325.52"/>
+    </edge>
+    <edge id=":Astor_Woodhull_1" function="internal">
+        <lane id=":Astor_Woodhull_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.43" shape="2414.14,330.71 2413.98,316.28"/>
+    </edge>
+    <edge id=":Astor_Woodhull_2" function="internal">
+        <lane id=":Astor_Woodhull_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.44" shape="2417.18,316.24 2417.34,330.68"/>
+    </edge>
+    <edge id=":Astor_Woodhull_3" function="internal">
+        <lane id=":Astor_Woodhull_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.29" length="5.80" shape="2417.18,316.24 2416.67,319.98 2415.64,321.73"/>
+    </edge>
+    <edge id=":Astor_Woodhull_6" function="internal">
+        <lane id=":Astor_Woodhull_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.29" length="8.53" shape="2415.64,321.73 2415.03,322.77 2412.26,324.62 2408.37,325.52"/>
+    </edge>
+    <edge id=":Astor_Woodhull_4" function="internal">
+        <lane id=":Astor_Woodhull_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.85" length="9.48" shape="2408.06,322.33 2410.68,321.74 2412.54,320.53 2413.64,318.71 2413.98,316.28"/>
+    </edge>
+    <edge id=":Astor_Woodhull_5" function="internal">
+        <lane id=":Astor_Woodhull_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.85" length="14.53" shape="2408.06,322.33 2412.09,322.52 2414.98,323.98 2416.73,326.70 2417.34,330.68"/>
+    </edge>
+    <edge id=":Eastchester_Mace_0" function="internal">
+        <lane id=":Eastchester_Mace_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.44" shape="2286.22,696.01 2271.77,696.18"/>
+    </edge>
+    <edge id=":Eastchester_Mace_1" function="internal">
+        <lane id=":Eastchester_Mace_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.80" length="5.97" shape="2286.22,696.01 2282.16,695.48 2280.57,694.48"/>
+    </edge>
+    <edge id=":Eastchester_Mace_6" function="internal">
+        <lane id=":Eastchester_Mace_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.80" length="8.70" shape="2280.57,694.48 2279.41,693.75 2277.97,690.85 2277.82,686.76"/>
+    </edge>
+    <edge id=":Eastchester_Mace_2" function="internal">
+        <lane id=":Eastchester_Mace_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.26" length="9.04" shape="2281.01,687.11 2281.09,689.63 2281.98,691.42 2283.68,692.48 2286.18,692.81"/>
+    </edge>
+    <edge id=":Eastchester_Mace_3" function="internal">
+        <lane id=":Eastchester_Mace_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.43" length="14.39" shape="2281.01,687.11 2280.06,691.04 2278.21,693.86 2275.45,695.58 2271.77,696.18"/>
+    </edge>
+    <edge id=":Eastchester_Mace_4" function="internal">
+        <lane id=":Eastchester_Mace_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.01" length="9.67" shape="2271.74,692.98 2274.15,692.57 2275.97,691.39 2277.19,689.46 2277.82,686.76"/>
+    </edge>
+    <edge id=":Eastchester_Mace_5" function="internal">
+        <lane id=":Eastchester_Mace_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.45" shape="2271.74,692.98 2286.18,692.81"/>
+    </edge>
+    <edge id=":Eastchester_Pelham_0" function="internal">
+        <lane id=":Eastchester_Pelham_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.20" length="9.85" shape="2297.20,203.77 2296.02,201.18 2294.42,199.44 2292.40,198.55 2289.97,198.51"/>
+    </edge>
+    <edge id=":Eastchester_Pelham_1" function="internal">
+        <lane id=":Eastchester_Pelham_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.23" length="9.05" shape="2304.21,196.23 2301.81,197.02 2300.34,198.37 2299.82,200.30 2300.24,202.79"/>
+    </edge>
+    <edge id=":Eastchester_Pelham_2" function="internal">
+        <lane id=":Eastchester_Pelham_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="12.54" length="14.43" shape="2304.21,196.23 2289.97,198.51"/>
+    </edge>
+    <edge id=":Eastchester_Waring_0" function="internal">
+        <lane id=":Eastchester_Waring_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.23" length="10.34" shape="2308.89,488.51 2306.13,488.93 2304.06,490.10 2302.68,492.04 2302.00,494.74"/>
+    </edge>
+    <edge id=":Eastchester_Waring_1" function="internal">
+        <lane id=":Eastchester_Waring_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="15.25" shape="2308.89,488.51 2293.64,488.68"/>
+    </edge>
+    <edge id=":Eastchester_Waring_2" function="internal">
+        <lane id=":Eastchester_Waring_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.79" length="5.98" shape="2308.89,488.51 2304.82,487.97 2303.24,486.98"/>
+    </edge>
+    <edge id=":Eastchester_Waring_12" function="internal">
+        <lane id=":Eastchester_Waring_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.79" length="8.73" shape="2303.24,486.98 2302.07,486.24 2300.65,483.33 2300.55,479.22"/>
+    </edge>
+    <edge id=":Eastchester_Waring_3" function="internal">
+        <lane id=":Eastchester_Waring_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.24" length="9.05" shape="2303.72,479.60 2303.79,482.12 2304.66,483.92 2306.35,484.98 2308.86,485.31"/>
+    </edge>
+    <edge id=":Eastchester_Waring_4" function="internal">
+        <lane id=":Eastchester_Waring_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="15.24" shape="2303.72,479.60 2302.00,494.74"/>
+    </edge>
+    <edge id=":Eastchester_Waring_5" function="internal">
+        <lane id=":Eastchester_Waring_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.64" length="6.17" shape="2303.72,479.60 2302.69,483.54 2301.47,485.24"/>
+    </edge>
+    <edge id=":Eastchester_Waring_13" function="internal">
+        <lane id=":Eastchester_Waring_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.64" length="8.90" shape="2301.47,485.24 2300.67,486.36 2297.65,488.08 2293.64,488.68"/>
+    </edge>
+    <edge id=":Eastchester_Waring_6" function="internal">
+        <lane id=":Eastchester_Waring_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.27" length="10.38" shape="2293.61,485.48 2296.36,485.07 2298.44,483.88 2299.83,481.93 2300.55,479.22"/>
+    </edge>
+    <edge id=":Eastchester_Waring_7" function="internal">
+        <lane id=":Eastchester_Waring_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="15.25" shape="2293.61,485.48 2308.86,485.31"/>
+    </edge>
+    <edge id=":Eastchester_Waring_8" function="internal">
+        <lane id=":Eastchester_Waring_8_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.80" length="5.97" shape="2293.61,485.48 2297.66,486.02 2299.25,487.02"/>
+    </edge>
+    <edge id=":Eastchester_Waring_14" function="internal">
+        <lane id=":Eastchester_Waring_14_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.80" length="8.70" shape="2299.25,487.02 2300.41,487.74 2301.85,490.65 2302.00,494.74"/>
+    </edge>
+    <edge id=":Eastchester_Waring_9" function="internal">
+        <lane id=":Eastchester_Waring_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.26" length="9.04" shape="2298.81,494.39 2298.73,491.87 2297.84,490.08 2296.14,489.02 2293.64,488.68"/>
+    </edge>
+    <edge id=":Eastchester_Waring_10" function="internal">
+        <lane id=":Eastchester_Waring_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="15.27" shape="2298.81,494.39 2300.55,479.22"/>
+    </edge>
+    <edge id=":Eastchester_Waring_11" function="internal">
+        <lane id=":Eastchester_Waring_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.61" length="6.25" shape="2298.81,494.39 2299.81,490.46 2301.08,488.67"/>
+    </edge>
+    <edge id=":Eastchester_Waring_15" function="internal">
+        <lane id=":Eastchester_Waring_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.61" length="8.81" shape="2301.08,488.67 2301.81,487.63 2304.83,485.92 2308.86,485.31"/>
+    </edge>
+    <edge id=":Fenton_Mace_0" function="internal">
+        <lane id=":Fenton_Mace_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.08" length="7.74" shape="2196.66,697.03 2194.55,696.76 2193.04,695.87 2192.13,694.38 2191.80,692.29"/>
+    </edge>
+    <edge id=":Fenton_Mace_1" function="internal">
+        <lane id=":Fenton_Mace_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="3.90" length="2.58" shape="2195.00,692.25 2195.11,692.95 2195.42,693.45 2195.92,693.74 2196.62,693.83"/>
+    </edge>
+    <edge id=":Fenton_Pelham_0" function="internal">
+        <lane id=":Fenton_Pelham_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="3.65" length="4.67" shape="2186.16,218.15 2186.94,216.94 2187.73,216.52 2188.54,216.91 2189.36,218.09"/>
+    </edge>
+    <edge id=":Fenton_Pelham_1" function="internal">
+        <lane id=":Fenton_Pelham_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.53" length="8.23" shape="2194.15,212.45 2192.02,213.07 2190.51,214.21 2189.62,215.89 2189.36,218.09"/>
+    </edge>
+    <edge id=":Fenton_Waring_0" function="internal">
+        <lane id=":Fenton_Waring_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.42" shape="2189.60,495.47 2189.47,481.05"/>
+    </edge>
+    <edge id=":Fenton_Waring_1" function="internal">
+        <lane id=":Fenton_Waring_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="5.95" shape="2189.60,495.47 2190.11,491.61 2191.15,489.83"/>
+    </edge>
+    <edge id=":Fenton_Waring_6" function="internal">
+        <lane id=":Fenton_Waring_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="8.25" shape="2191.15,489.83 2191.73,488.84 2194.47,487.16 2198.32,486.57"/>
+    </edge>
+    <edge id=":Fenton_Waring_2" function="internal">
+        <lane id=":Fenton_Waring_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.04" shape="2198.35,489.77 2195.90,490.15 2194.16,491.22 2193.12,492.98 2192.80,495.43"/>
+    </edge>
+    <edge id=":Fenton_Waring_3" function="internal">
+        <lane id=":Fenton_Waring_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.99" length="14.21" shape="2198.35,489.77 2194.49,489.26 2191.72,487.64 2190.05,484.90 2189.47,481.05"/>
+    </edge>
+    <edge id=":Fenton_Waring_4" function="internal">
+        <lane id=":Fenton_Waring_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.50" length="9.03" shape="2192.67,481.02 2193.04,483.47 2194.10,485.21 2195.86,486.25 2198.32,486.57"/>
+    </edge>
+    <edge id=":Fenton_Waring_5" function="internal">
+        <lane id=":Fenton_Waring_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2192.67,481.02 2192.80,495.43"/>
+    </edge>
+    <edge id=":Kingsland_Mace_0" function="internal">
+        <lane id=":Kingsland_Mace_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.08" length="7.71" shape="2658.78,687.03 2658.50,689.13 2657.62,690.63 2656.14,691.55 2654.05,691.87"/>
+    </edge>
+    <edge id=":Kingsland_Mace_1" function="internal">
+        <lane id=":Kingsland_Mace_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="3.90" length="2.57" shape="2654.00,688.67 2654.70,688.57 2655.19,688.26 2655.49,687.76 2655.58,687.06"/>
+    </edge>
+    <edge id=":Kingsland_Pelham_0" function="internal">
+        <lane id=":Kingsland_Pelham_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.15" length="9.06" shape="2648.93,138.15 2648.53,135.63 2647.42,133.99 2645.59,133.24 2643.04,133.37"/>
+    </edge>
+    <edge id=":Kingsland_Pelham_1" function="internal">
+        <lane id=":Kingsland_Pelham_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="3.65" length="4.67" shape="2648.93,138.15 2649.71,136.94 2650.51,136.53 2651.31,136.92 2652.13,138.11"/>
+    </edge>
+    <edge id=":Mace_Mickle_0" function="internal">
+        <lane id=":Mace_Mickle_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.39" shape="2505.92,693.56 2491.53,693.70"/>
+    </edge>
+    <edge id=":Mace_Mickle_1" function="internal">
+        <lane id=":Mace_Mickle_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="5.91" shape="2505.92,693.56 2502.06,693.04 2500.32,692.01"/>
+    </edge>
+    <edge id=":Mace_Mickle_6" function="internal">
+        <lane id=":Mace_Mickle_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="8.28" shape="2500.32,692.01 2499.30,691.42 2497.62,688.68 2497.03,684.84"/>
+    </edge>
+    <edge id=":Mace_Mickle_2" function="internal">
+        <lane id=":Mace_Mickle_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.52" length="9.04" shape="2500.23,684.80 2500.60,687.25 2501.67,688.99 2503.43,690.03 2505.89,690.36"/>
+    </edge>
+    <edge id=":Mace_Mickle_3" function="internal">
+        <lane id=":Mace_Mickle_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="14.19" shape="2500.23,684.80 2499.72,688.66 2498.10,691.43 2495.37,693.11 2491.53,693.70"/>
+    </edge>
+    <edge id=":Mace_Mickle_4" function="internal">
+        <lane id=":Mace_Mickle_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.03" shape="2491.49,690.50 2493.94,690.12 2495.68,689.05 2496.71,687.29 2497.03,684.84"/>
+    </edge>
+    <edge id=":Mace_Mickle_5" function="internal">
+        <lane id=":Mace_Mickle_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2491.49,690.50 2505.89,690.36"/>
+    </edge>
+    <edge id=":Mace_Westervelt_0" function="internal">
+        <lane id=":Mace_Westervelt_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.42" shape="2585.62,692.82 2571.20,692.98"/>
+    </edge>
+    <edge id=":Mace_Westervelt_1" function="internal">
+        <lane id=":Mace_Westervelt_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="5.96" shape="2585.62,692.82 2581.76,692.32 2579.97,691.28"/>
+    </edge>
+    <edge id=":Mace_Westervelt_6" function="internal">
+        <lane id=":Mace_Westervelt_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="8.25" shape="2579.97,691.28 2578.98,690.71 2577.30,687.98 2576.70,684.13"/>
+    </edge>
+    <edge id=":Mace_Westervelt_2" function="internal">
+        <lane id=":Mace_Westervelt_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.04" shape="2579.90,684.09 2580.28,686.54 2581.35,688.28 2583.12,689.30 2585.57,689.62"/>
+    </edge>
+    <edge id=":Mace_Westervelt_3" function="internal">
+        <lane id=":Mace_Westervelt_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.99" length="14.20" shape="2579.90,684.09 2579.40,687.95 2577.78,690.72 2575.04,692.40 2571.20,692.98"/>
+    </edge>
+    <edge id=":Mace_Westervelt_4" function="internal">
+        <lane id=":Mace_Westervelt_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.50" length="9.03" shape="2571.17,689.78 2573.61,689.41 2575.35,688.35 2576.38,686.58 2576.70,684.13"/>
+    </edge>
+    <edge id=":Mace_Westervelt_5" function="internal">
+        <lane id=":Mace_Westervelt_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2571.17,689.78 2585.57,689.62"/>
+    </edge>
+    <edge id=":Mace_Woodhull_0" function="internal">
+        <lane id=":Mace_Woodhull_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2426.52,694.43 2412.12,694.59"/>
+    </edge>
+    <edge id=":Mace_Woodhull_1" function="internal">
+        <lane id=":Mace_Woodhull_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="5.93" shape="2426.52,694.43 2422.66,693.92 2420.90,692.89"/>
+    </edge>
+    <edge id=":Mace_Woodhull_6" function="internal">
+        <lane id=":Mace_Woodhull_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="8.27" shape="2420.90,692.89 2419.89,692.30 2418.22,689.57 2417.62,685.72"/>
+    </edge>
+    <edge id=":Mace_Woodhull_2" function="internal">
+        <lane id=":Mace_Woodhull_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.03" shape="2420.82,685.69 2421.20,688.14 2422.27,689.88 2424.03,690.91 2426.48,691.23"/>
+    </edge>
+    <edge id=":Mace_Woodhull_3" function="internal">
+        <lane id=":Mace_Woodhull_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="14.19" shape="2420.82,685.69 2420.32,689.55 2418.69,692.32 2415.96,694.00 2412.12,694.59"/>
+    </edge>
+    <edge id=":Mace_Woodhull_4" function="internal">
+        <lane id=":Mace_Woodhull_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.04" shape="2412.08,691.39 2414.53,691.01 2416.27,689.94 2417.30,688.18 2417.62,685.72"/>
+    </edge>
+    <edge id=":Mace_Woodhull_5" function="internal">
+        <lane id=":Mace_Woodhull_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2412.08,691.39 2426.48,691.23"/>
+    </edge>
+    <edge id=":Mickle_Waring_0" function="internal">
+        <lane id=":Mickle_Waring_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.03" shape="2494.80,491.99 2494.42,489.54 2493.35,487.80 2491.59,486.77 2489.14,486.45"/>
+    </edge>
+    <edge id=":Mickle_Waring_1" function="internal">
+        <lane id=":Mickle_Waring_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="14.19" shape="2494.80,491.99 2495.31,488.13 2496.93,485.36 2499.66,483.68 2503.50,483.09"/>
+    </edge>
+    <edge id=":Mickle_Waring_2" function="internal">
+        <lane id=":Mickle_Waring_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.03" shape="2503.54,486.29 2501.09,486.67 2499.35,487.74 2498.32,489.50 2498.00,491.95"/>
+    </edge>
+    <edge id=":Mickle_Waring_3" function="internal">
+        <lane id=":Mickle_Waring_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2503.54,486.29 2489.14,486.45"/>
+    </edge>
+    <edge id=":Mickle_Waring_4" function="internal">
+        <lane id=":Mickle_Waring_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2489.10,483.25 2503.50,483.09"/>
+    </edge>
+    <edge id=":Mickle_Waring_5" function="internal">
+        <lane id=":Mickle_Waring_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="5.93" shape="2489.10,483.25 2492.96,483.76 2494.72,484.79"/>
+    </edge>
+    <edge id=":Mickle_Waring_6" function="internal">
+        <lane id=":Mickle_Waring_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="8.26" shape="2494.72,484.79 2495.73,485.38 2497.41,488.11 2498.00,491.95"/>
+    </edge>
+    <edge id=":Pelham_Westervelt_0" function="internal">
+        <lane id=":Pelham_Westervelt_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.16" length="9.05" shape="2569.90,153.71 2569.50,151.20 2568.39,149.56 2566.56,148.79 2564.02,148.90"/>
+    </edge>
+    <edge id=":Pelham_Westervelt_1" function="internal">
+        <lane id=":Pelham_Westervelt_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.29" length="10.00" shape="2578.25,146.16 2575.96,147.02 2574.34,148.56 2573.39,150.77 2573.10,153.67"/>
+    </edge>
+    <edge id=":Pelham_Westervelt_2" function="internal">
+        <lane id=":Pelham_Westervelt_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.49" shape="2578.25,146.16 2564.02,148.90"/>
+    </edge>
+    <edge id=":Pelham_Woodhull_0" function="internal">
+        <lane id=":Pelham_Woodhull_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.19" length="9.05" shape="2412.29,183.23 2411.89,180.72 2410.78,179.07 2408.96,178.29 2406.42,178.36"/>
+    </edge>
+    <edge id=":Pelham_Woodhull_1" function="internal">
+        <lane id=":Pelham_Woodhull_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.24" length="9.93" shape="2420.66,175.79 2418.37,176.62 2416.74,178.13 2415.78,180.32 2415.49,183.19"/>
+    </edge>
+    <edge id=":Pelham_Woodhull_2" function="internal">
+        <lane id=":Pelham_Woodhull_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.47" shape="2420.66,175.79 2406.42,178.36"/>
+    </edge>
+    <edge id=":Waring_Westervelt_0" function="internal">
+        <lane id=":Waring_Westervelt_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.04" shape="2574.21,491.09 2573.83,488.64 2572.76,486.90 2570.99,485.87 2568.53,485.55"/>
+    </edge>
+    <edge id=":Waring_Westervelt_1" function="internal">
+        <lane id=":Waring_Westervelt_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2574.21,491.09 2574.03,476.69"/>
+    </edge>
+    <edge id=":Waring_Westervelt_2" function="internal">
+        <lane id=":Waring_Westervelt_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="2577.23,476.65 2577.41,491.04"/>
+    </edge>
+    <edge id=":Waring_Westervelt_3" function="internal">
+        <lane id=":Waring_Westervelt_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="14.20" shape="2577.23,476.65 2576.73,480.50 2575.11,483.28 2572.38,484.96 2568.53,485.55"/>
+    </edge>
+    <edge id=":Waring_Westervelt_4" function="internal">
+        <lane id=":Waring_Westervelt_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.50" length="9.03" shape="2568.50,482.35 2570.94,481.97 2572.68,480.90 2573.71,479.14 2574.03,476.69"/>
+    </edge>
+    <edge id=":Waring_Westervelt_5" function="internal">
+        <lane id=":Waring_Westervelt_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="4.12" shape="2568.50,482.35 2572.36,482.86 2572.55,482.97"/>
+    </edge>
+    <edge id=":Waring_Westervelt_6" function="internal">
+        <lane id=":Waring_Westervelt_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="10.08" shape="2572.55,482.97 2575.13,484.47 2576.81,487.20 2577.41,491.04"/>
+    </edge>
+    <edge id=":Waring_Woodhull_0" function="internal">
+        <lane id=":Waring_Woodhull_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.03" shape="2415.62,492.90 2415.25,490.45 2414.18,488.71 2412.42,487.68 2409.97,487.36"/>
+    </edge>
+    <edge id=":Waring_Woodhull_1" function="internal">
+        <lane id=":Waring_Woodhull_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2415.62,492.90 2415.48,478.49"/>
+    </edge>
+    <edge id=":Waring_Woodhull_2" function="internal">
+        <lane id=":Waring_Woodhull_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="5.94" shape="2415.62,492.90 2416.13,489.04 2417.17,487.28"/>
+    </edge>
+    <edge id=":Waring_Woodhull_12" function="internal">
+        <lane id=":Waring_Woodhull_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="8.27" shape="2417.17,487.28 2417.76,486.27 2420.49,484.59 2424.34,484.00"/>
+    </edge>
+    <edge id=":Waring_Woodhull_3" function="internal">
+        <lane id=":Waring_Woodhull_3_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.51" length="9.05" shape="2424.38,487.20 2421.93,487.58 2420.18,488.65 2419.15,490.41 2418.82,492.87"/>
+    </edge>
+    <edge id=":Waring_Woodhull_4" function="internal">
+        <lane id=":Waring_Woodhull_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2424.38,487.20 2409.97,487.36"/>
+    </edge>
+    <edge id=":Waring_Woodhull_5" function="internal">
+        <lane id=":Waring_Woodhull_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="5.93" shape="2424.38,487.20 2420.52,486.69 2418.76,485.66"/>
+    </edge>
+    <edge id=":Waring_Woodhull_13" function="internal">
+        <lane id=":Waring_Woodhull_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="8.27" shape="2418.76,485.66 2417.75,485.07 2416.07,482.34 2415.48,478.49"/>
+    </edge>
+    <edge id=":Waring_Woodhull_6" function="internal">
+        <lane id=":Waring_Woodhull_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.50" length="9.03" shape="2418.68,478.46 2419.06,480.91 2420.12,482.64 2421.88,483.68 2424.34,484.00"/>
+    </edge>
+    <edge id=":Waring_Woodhull_7" function="internal">
+        <lane id=":Waring_Woodhull_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2418.68,478.46 2418.82,492.87"/>
+    </edge>
+    <edge id=":Waring_Woodhull_8" function="internal">
+        <lane id=":Waring_Woodhull_8_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="5.93" shape="2418.68,478.46 2418.17,482.32 2417.14,484.07"/>
+    </edge>
+    <edge id=":Waring_Woodhull_14" function="internal">
+        <lane id=":Waring_Woodhull_14_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.01" length="8.28" shape="2417.14,484.07 2416.54,485.09 2413.81,486.77 2409.97,487.36"/>
+    </edge>
+    <edge id=":Waring_Woodhull_9" function="internal">
+        <lane id=":Waring_Woodhull_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.52" length="9.05" shape="2409.93,484.16 2412.38,483.78 2414.12,482.71 2415.16,480.95 2415.48,478.49"/>
+    </edge>
+    <edge id=":Waring_Woodhull_10" function="internal">
+        <lane id=":Waring_Woodhull_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.41" shape="2409.93,484.16 2424.34,484.00"/>
+    </edge>
+    <edge id=":Waring_Woodhull_11" function="internal">
+        <lane id=":Waring_Woodhull_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="5.93" shape="2409.93,484.16 2413.79,484.67 2415.55,485.70"/>
+    </edge>
+    <edge id=":Waring_Woodhull_15" function="internal">
+        <lane id=":Waring_Woodhull_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.00" length="8.27" shape="2415.55,485.70 2416.55,486.29 2418.23,489.02 2418.82,492.87"/>
+    </edge>
+
+    <edge id="Astor_Avenue_1_L" from="Astor_Eastchester" to="Astor_Fenton" name="Astor Avenue" priority="3" type="highway.residential" shape="2319.71,332.38 2307.59,333.57 2190.14,345.10">
+        <lane id="Astor_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="114.75" shape="2311.92,334.75 2307.75,335.16 2197.72,345.96">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Astor_Avenue_1_R" from="Astor_Fenton" to="Astor_Eastchester" name="Astor Avenue" priority="3" type="highway.residential" shape="2190.14,345.10 2307.59,333.57 2319.71,332.38">
+        <lane id="Astor_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="114.74" shape="2197.41,342.78 2307.43,331.98 2311.61,331.57">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Astor_Avenue_2_L" from="Astor_Woodhull" to="Astor_Eastchester" name="Astor Avenue" priority="3" type="highway.residential" shape="2415.67,323.21 2332.07,331.20 2319.71,332.38">
+        <lane id="Astor_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="81.28" shape="2408.37,325.52 2332.22,332.79 2327.46,333.25">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Astor_Avenue_2_R" from="Astor_Eastchester" to="Astor_Woodhull" name="Astor Avenue" priority="3" type="highway.residential" shape="2319.71,332.38 2332.07,331.20 2415.67,323.21">
+        <lane id="Astor_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="81.28" shape="2327.15,330.06 2331.92,329.61 2408.06,322.33">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Astor_Avenue_3_L" from="Astor_Kingsland" to="Astor_Westervelt" name="Astor Avenue" priority="3" type="highway.residential">
+        <lane id="Astor_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="64.53" shape="2645.34,304.29 2581.05,309.73">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Astor_Avenue_3_R" from="Astor_Westervelt" to="Astor_Kingsland" name="Astor Avenue" priority="3" type="highway.residential">
+        <lane id="Astor_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="64.53" shape="2580.78,306.54 2645.07,301.10">
+            <param key="origId" value="5696837"/>
+        </lane>
+    </edge>
+    <edge id="Eastchester_Road_1_L" from="Eastchester_Waring" to="Eastchester_Mace" name="Eastchester Road" priority="11" type="highway.secondary" shape="2301.23,487.00 2300.21,496.35 2293.02,562.30 2286.75,619.62 2284.07,644.25 2279.68,684.51 2278.59,694.50">
+        <lane id="Eastchester_Road_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="193.52" shape="2302.00,494.74 2301.80,496.52 2294.61,562.47 2288.34,619.79 2285.66,644.42 2281.27,684.68 2281.01,687.11">
+            <param key="origId" value="223939821"/>
+        </lane>
+    </edge>
+    <edge id="Eastchester_Road_1_R" from="Eastchester_Mace" to="Eastchester_Waring" name="Eastchester Road" priority="11" type="highway.secondary" shape="2278.59,694.50 2279.68,684.51 2284.07,644.25 2286.75,619.62 2293.02,562.30 2300.21,496.35 2301.23,487.00">
+        <lane id="Eastchester_Road_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="193.52" shape="2277.82,686.76 2278.09,684.34 2282.48,644.08 2285.16,619.45 2291.43,562.13 2298.62,496.18 2298.81,494.39">
+            <param key="origId" value="223939821"/>
+        </lane>
+    </edge>
+    <edge id="Eastchester_Road_2_L" from="Astor_Eastchester" to="Eastchester_Waring" name="Eastchester Road" priority="11" type="highway.secondary" shape="2319.71,332.38 2318.60,341.65 2310.28,411.32 2309.12,420.92 2302.18,479.02 2301.23,487.00">
+        <lane id="Eastchester_Road_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="140.09" shape="2320.35,340.50 2320.19,341.84 2311.87,411.51 2310.71,421.11 2303.77,479.21 2303.72,479.60">
+            <param key="origId" value="223939821"/>
+        </lane>
+        <param key="origTo" value="5487802245"/>
+    </edge>
+    <edge id="Eastchester_Road_2_R" from="Eastchester_Waring" to="Astor_Eastchester" name="Eastchester Road" priority="11" type="highway.secondary" shape="2301.23,487.00 2302.18,479.02 2309.12,420.92 2310.28,411.32 2318.60,341.65 2319.71,332.38">
+        <lane id="Eastchester_Road_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="140.09" shape="2300.55,479.22 2300.59,478.83 2307.53,420.73 2308.69,411.13 2317.01,341.46 2317.17,340.12">
+            <param key="origId" value="223939821"/>
+        </lane>
+        <param key="origTo" value="5487802242"/>
+    </edge>
+    <edge id="Eastchester_Road_3_L" from="Eastchester_Pelham" to="Astor_Eastchester" name="Eastchester Road" priority="11" type="highway.secondary" shape="2296.87,197.51 2299.37,205.31 2321.52,274.73 2319.97,324.02 2319.71,332.38">
+        <lane id="Eastchester_Road_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="125.60" shape="2300.24,202.79 2300.89,204.82 2323.13,274.51 2321.57,324.07 2321.55,324.80">
+            <param key="origId" value="223939821"/>
+        </lane>
+    </edge>
+    <edge id="Eastchester_Road_3_R" from="Astor_Eastchester" to="Eastchester_Pelham" name="Eastchester Road" priority="11" type="highway.secondary" shape="2319.71,332.38 2319.97,324.02 2321.52,274.73 2299.37,205.31 2296.87,197.51">
+        <lane id="Eastchester_Road_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="27.78" length="124.49" shape="2318.35,324.70 2318.37,323.97 2319.91,274.95 2297.85,205.80 2297.20,203.77">
+            <param key="origId" value="223939821"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_1_L" from="Fenton_Mace" to="Fenton_Waring" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="196.83" shape="2191.80,692.29 2189.60,495.47">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_1_R" from="Fenton_Waring" to="Fenton_Mace" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="196.83" shape="2192.80,495.43 2195.00,692.25">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_2_L" from="Fenton_Waring" to="Astor_Fenton" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="129.02" shape="2189.47,481.05 2188.59,352.03">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_2_R" from="Astor_Fenton" to="Fenton_Waring" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="129.02" shape="2191.79,352.01 2192.67,481.02">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_3_L" from="Astor_Fenton" to="Fenton_Pelham" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="119.53" shape="2188.40,337.67 2186.16,218.15">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Fenton_Avenue_3_R" from="Fenton_Pelham" to="Astor_Fenton" name="Fenton Avenue" priority="3" type="highway.residential">
+        <lane id="Fenton_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="119.53" shape="2189.36,218.09 2191.60,337.61">
+            <param key="origId" value="5697305"/>
+        </lane>
+    </edge>
+    <edge id="Kingsland_Avenue_1_L" from="Astor_Kingsland" to="Kingsland_Mace" name="Kingsland Avenue" priority="3" type="highway.residential" shape="2652.61,302.07 2655.38,482.96 2657.21,690.23">
+        <lane id="Kingsland_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="377.59" shape="2654.32,309.47 2656.98,482.94 2658.78,687.03">
+            <param key="origId" value="5698283"/>
+        </lane>
+    </edge>
+    <edge id="Kingsland_Avenue_1_R" from="Kingsland_Mace" to="Astor_Kingsland" name="Kingsland Avenue" priority="3" type="highway.residential" shape="2657.21,690.23 2655.38,482.96 2652.61,302.07">
+        <lane id="Kingsland_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="377.57" shape="2655.58,687.06 2653.78,482.98 2651.12,309.52">
+            <param key="origId" value="730113082"/>
+        </lane>
+    </edge>
+    <edge id="Kingsland_Avenue_2_L" from="Kingsland_Pelham" to="Astor_Kingsland" name="Kingsland Avenue" priority="3" type="highway.residential">
+        <lane id="Kingsland_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="156.98" shape="2652.13,138.11 2654.12,295.07">
+            <param key="origId" value="5698283"/>
+        </lane>
+    </edge>
+    <edge id="Kingsland_Avenue_2_R" from="Astor_Kingsland" to="Kingsland_Pelham" name="Kingsland Avenue" priority="3" type="highway.residential">
+        <lane id="Kingsland_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="156.98" shape="2650.92,295.11 2648.93,138.15">
+            <param key="origId" value="5698283"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_1_L" from="Eastchester_Mace" to="Fenton_Mace" name="Mace Avenue" priority="3" type="highway.residential" shape="2278.59,694.50 2265.30,694.66 2193.44,695.47">
+        <lane id="Mace_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="75.12" shape="2271.77,696.18 2265.32,696.26 2196.66,697.03">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_1_R" from="Fenton_Mace" to="Eastchester_Mace" name="Mace Avenue" priority="3" type="highway.residential" shape="2193.44,695.47 2265.30,694.66 2278.59,694.50">
+        <lane id="Mace_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="75.12" shape="2196.62,693.83 2265.28,693.06 2271.74,692.98">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_2_L" from="Mace_Woodhull" to="Eastchester_Mace" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="125.91" shape="2412.12,694.59 2286.22,696.01">
+            <param key="origId" value="5696588"/>
+        </lane>
+        <param key="origTo" value="5487797981"/>
+    </edge>
+    <edge id="Mace_Avenue_2_R" from="Eastchester_Mace" to="Mace_Woodhull" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="125.91" shape="2286.18,692.81 2412.08,691.39">
+            <param key="origId" value="5696588"/>
+        </lane>
+        <param key="origTo" value="5487797981"/>
+    </edge>
+    <edge id="Mace_Avenue_3_L" from="Mace_Mickle" to="Mace_Woodhull" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.01" shape="2491.53,693.70 2426.52,694.43">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_3_R" from="Mace_Woodhull" to="Mace_Mickle" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.01" shape="2426.48,691.23 2491.49,690.50">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_4_L" from="Mace_Westervelt" to="Mace_Mickle" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_4_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.28" shape="2571.20,692.98 2505.92,693.56">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_4_R" from="Mace_Mickle" to="Mace_Westervelt" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_4_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.28" shape="2505.89,690.36 2571.17,689.78">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_5_L" from="Kingsland_Mace" to="Mace_Westervelt" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_5_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="68.44" shape="2654.05,691.87 2585.62,692.82">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mace_Avenue_5_R" from="Mace_Westervelt" to="Kingsland_Mace" name="Mace Avenue" priority="3" type="highway.residential">
+        <lane id="Mace_Avenue_5_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="68.44" shape="2585.57,689.62 2654.00,688.67">
+            <param key="origId" value="5696588"/>
+        </lane>
+    </edge>
+    <edge id="Mickle_Avenue_1_L" from="Mickle_Waring" to="Mace_Mickle" name="Mickle Avenue" priority="3" type="highway.residential">
+        <lane id="Mickle_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="192.86" shape="2498.00,491.95 2500.23,684.80">
+            <param key="origId" value="5697562"/>
+        </lane>
+    </edge>
+    <edge id="Mickle_Avenue_1_R" from="Mace_Mickle" to="Mickle_Waring" name="Mickle Avenue" priority="3" type="highway.residential">
+        <lane id="Mickle_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="192.86" shape="2497.03,684.84 2494.80,491.99">
+            <param key="origId" value="5697562"/>
+        </lane>
+    </edge>
+    <edge id="Pelham_Parkway_North_1_L" from="Eastchester_Pelham" to="Fenton_Pelham" name="Pelham Parkway North" priority="10" type="highway.tertiary" spreadType="center" shape="2296.87,197.51 2284.63,199.29 2187.67,213.39">
+        <lane id="Pelham_Parkway_North_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.18" length="96.82" shape="2289.97,198.51 2284.63,199.29 2194.15,212.45">
+            <param key="origId" value="68518729"/>
+        </lane>
+    </edge>
+    <edge id="Pelham_Parkway_North_2_L" from="Pelham_Woodhull" to="Eastchester_Pelham" name="Pelham Parkway North" priority="3" type="highway.residential" spreadType="center" shape="2413.81,177.07 2308.36,195.51 2296.87,197.51">
+        <lane id="Pelham_Parkway_North_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="103.76" shape="2406.42,178.36 2308.36,195.51 2304.21,196.23">
+            <param key="origId" value="68518727"/>
+        </lane>
+    </edge>
+    <edge id="Pelham_Parkway_North_3_L_2" from="Pelham_Westervelt" to="Pelham_Woodhull" name="Pelham Parkway North" priority="3" type="highway.residential" spreadType="center" shape="2571.42,147.51 2493.17,162.24 2413.81,177.07">
+        <lane id="Pelham_Parkway_North_3_L_2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="145.86" shape="2564.02,148.90 2493.17,162.24 2420.66,175.79">
+            <param key="origId" value="68518727"/>
+        </lane>
+    </edge>
+    <edge id="Pelham_Parkway_North_4_L" from="Kingsland_Pelham" to="Pelham_Westervelt" name="Pelham Parkway North" priority="3" type="highway.residential" spreadType="center">
+        <lane id="Pelham_Parkway_North_4_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="66.05" shape="2643.04,133.37 2578.25,146.16">
+            <param key="origId" value="68518727"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_1_L" from="Eastchester_Waring" to="Fenton_Waring" name="Waring Avenue" priority="3" type="highway.residential" shape="2301.23,487.00 2290.21,487.12 2191.12,488.25">
+        <lane id="Waring_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="95.29" shape="2293.64,488.68 2290.23,488.72 2198.35,489.77">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_1_R" from="Fenton_Waring" to="Eastchester_Waring" name="Waring Avenue" priority="3" type="highway.residential" shape="2191.12,488.25 2290.21,487.12 2301.23,487.00">
+        <lane id="Waring_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="95.30" shape="2198.32,486.57 2290.19,485.52 2293.61,485.48">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_2_L" from="Waring_Woodhull" to="Eastchester_Waring" name="Waring Avenue" priority="3" type="highway.residential" shape="2417.15,485.68 2312.55,486.87 2301.23,487.00">
+        <lane id="Waring_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="101.08" shape="2409.97,487.36 2312.57,488.47 2308.89,488.51">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_2_R" from="Eastchester_Waring" to="Waring_Woodhull" name="Waring Avenue" priority="3" type="highway.residential" shape="2301.23,487.00 2312.55,486.87 2417.15,485.68">
+        <lane id="Waring_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="101.08" shape="2308.86,485.31 2312.53,485.27 2409.93,484.16">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_3_L" from="Mickle_Waring" to="Waring_Woodhull" name="Waring Avenue" priority="3" type="highway.residential">
+        <lane id="Waring_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="64.77" shape="2489.14,486.45 2424.38,487.20">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_3_R" from="Waring_Woodhull" to="Mickle_Waring" name="Waring Avenue" priority="3" type="highway.residential">
+        <lane id="Waring_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="64.77" shape="2424.34,484.00 2489.10,483.25">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_4_L" from="Waring_Westervelt" to="Mickle_Waring" name="Waring Avenue" priority="3" type="highway.residential">
+        <lane id="Waring_Avenue_4_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.00" shape="2568.53,485.55 2503.54,486.29">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Waring_Avenue_4_R" from="Mickle_Waring" to="Waring_Westervelt" name="Waring Avenue" priority="3" type="highway.residential">
+        <lane id="Waring_Avenue_4_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="65.00" shape="2503.50,483.09 2568.50,482.35">
+            <param key="origId" value="224082344"/>
+        </lane>
+    </edge>
+    <edge id="Westervelt_Avenue_1_L" from="Waring_Westervelt" to="Mace_Westervelt" priority="-1">
+        <lane id="Westervelt_Avenue_1_L_0" index="0" speed="13.89" length="193.06" shape="2577.41,491.04 2579.90,684.09"/>
+    </edge>
+    <edge id="Westervelt_Avenue_1_R" from="Mace_Westervelt" to="Waring_Westervelt" priority="-1">
+        <lane id="Westervelt_Avenue_1_R_0" index="0" speed="13.89" length="193.06" shape="2576.70,684.13 2574.21,491.09"/>
+    </edge>
+    <edge id="Westervelt_Avenue_2_L" from="Astor_Westervelt" to="Waring_Westervelt" name="Westervelt Avenue" priority="3" type="highway.residential">
+        <lane id="Westervelt_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="160.94" shape="2575.19,315.72 2577.23,476.65">
+            <param key="origId" value="5699095"/>
+        </lane>
+    </edge>
+    <edge id="Westervelt_Avenue_2_R" from="Waring_Westervelt" to="Astor_Westervelt" name="Westervelt Avenue" priority="3" type="highway.residential">
+        <lane id="Westervelt_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="160.94" shape="2574.03,476.69 2571.99,315.76">
+            <param key="origId" value="5699095"/>
+        </lane>
+    </edge>
+    <edge id="Westervelt_Avenue_3_L" from="Pelham_Westervelt" to="Astor_Westervelt" name="Westervelt Avenue" priority="3" type="highway.residential">
+        <lane id="Westervelt_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="147.64" shape="2573.10,153.67 2575.00,301.30">
+            <param key="origId" value="5699095"/>
+        </lane>
+    </edge>
+    <edge id="Westervelt_Avenue_3_R" from="Astor_Westervelt" to="Pelham_Westervelt" name="Westervelt Avenue" priority="3" type="highway.residential">
+        <lane id="Westervelt_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="147.64" shape="2571.80,301.34 2569.90,153.71">
+            <param key="origId" value="5699095"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_1_L" from="Waring_Woodhull" to="Mace_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential" shape="2417.15,485.68 2418.44,610.88 2419.30,692.91">
+        <lane id="Woodhull_Avenue_1_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="192.84" shape="2418.82,492.87 2420.04,610.86 2420.82,685.69">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_1_R" from="Mace_Woodhull" to="Waring_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential" shape="2419.30,692.91 2418.44,610.88 2417.15,485.68">
+        <lane id="Woodhull_Avenue_1_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="192.84" shape="2417.62,685.72 2416.84,610.90 2415.62,492.90">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_2_L" from="Astor_Woodhull" to="Waring_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential">
+        <lane id="Woodhull_Avenue_2_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="147.78" shape="2417.34,330.68 2418.68,478.46">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_2_R" from="Waring_Woodhull" to="Astor_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential">
+        <lane id="Woodhull_Avenue_2_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="147.78" shape="2415.48,478.49 2414.14,330.71">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_3_L" from="Pelham_Woodhull" to="Astor_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential">
+        <lane id="Woodhull_Avenue_3_L_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="133.07" shape="2415.49,183.19 2417.18,316.24">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+    <edge id="Woodhull_Avenue_3_R" from="Astor_Woodhull" to="Pelham_Woodhull" name="Woodhull Avenue" priority="3" type="highway.residential">
+        <lane id="Woodhull_Avenue_3_R_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="133.07" shape="2413.98,316.28 2412.29,183.23">
+            <param key="origId" value="5699128"/>
+        </lane>
+    </edge>
+
+    <tlLogic id="42734696" type="actuated" programID="0" offset="0">
+        <phase duration="30" state="GgrrrG" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="yyrrry"/>
+        <phase duration="30" state="rrGGGr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="rryyyr"/>
+    </tlLogic>
+    <tlLogic id="42738504" type="actuated" programID="0" offset="0">
+        <phase duration="30" state="rrrGGgrrrGGg" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="rrryyyrrryyy"/>
+        <phase duration="30" state="GGgrrrGGgrrr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="yyyrrryyyrrr"/>
+    </tlLogic>
+    <tlLogic id="42745566" type="actuated" programID="0" offset="0">
+        <phase duration="30" state="GggrrrrGg" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="yyyrrrryy"/>
+        <phase duration="30" state="rrrGGgGrr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="rrryyyyrr"/>
+    </tlLogic>
+    <tlLogic id="42745695" type="static" programID="1" offset="0">
+        <phase duration="30" state="rrrGGgrrrGGg"/>
+        <phase duration="3"  state="rrryyyrrryyy"/>
+        <phase duration="30" state="GGgrrrGGgrrr"/>
+        <phase duration="3"  state="yyyrrryyyrrr"/>
+    </tlLogic>
+    <tlLogic id="42745697" type="actuated" programID="0" offset="0">
+        <phase duration="30" state="rrrGGgrrrGGg" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="rrryyyrrryyy"/>
+        <phase duration="30" state="GGgrrrGGgrrr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="yyyrrryyyrrr"/>
+    </tlLogic>
+
+    <junction id="Astor_Eastchester" type="traffic_light" x="2319.71" y="332.38" incLanes="Astor_Avenue_2_L_0 Eastchester_Road_3_L_0 Astor_Avenue_1_R_0 Eastchester_Road_2_R_0" intLanes=":Astor_Eastchester_0_0 :Astor_Eastchester_1_0 :Astor_Eastchester_12_0 :Astor_Eastchester_3_0 :Astor_Eastchester_4_0 :Astor_Eastchester_13_0 :Astor_Eastchester_6_0 :Astor_Eastchester_7_0 :Astor_Eastchester_14_0 :Astor_Eastchester_9_0 :Astor_Eastchester_10_0 :Astor_Eastchester_15_0" shape="2327.61,334.84 2327.00,328.47 2324.80,328.24 2324.05,327.75 2323.52,327.03 2323.22,326.06 2323.15,324.85 2316.75,324.65 2316.09,327.38 2315.35,328.39 2314.33,329.16 2313.03,329.69 2311.45,329.98 2312.08,336.34 2314.24,336.57 2314.95,337.04 2315.41,337.76 2315.62,338.72 2315.58,339.93 2321.94,340.69 2322.85,337.65 2323.68,336.54 2324.75,335.70 2326.06,335.14" customShape="1">
+        <request index="0"  response="000000010000" foes="000100010000" cont="0"/>
+        <request index="1"  response="111000110000" foes="111100110000" cont="0"/>
+        <request index="2"  response="110011110000" foes="110011110000" cont="1"/>
+        <request index="3"  response="000000000000" foes="100010000000" cont="0"/>
+        <request index="4"  response="000100000100" foes="100110000111" cont="0"/>
+        <request index="5"  response="011100000100" foes="011110000110" cont="1"/>
+        <request index="6"  response="010000000000" foes="010000000100" cont="0"/>
+        <request index="7"  response="110000111000" foes="110000111100" cont="0"/>
+        <request index="8"  response="110000110011" foes="110000110011" cont="1"/>
+        <request index="9"  response="000000000000" foes="000000100010" cont="0"/>
+        <request index="10" response="000100000100" foes="000111100110" cont="0"/>
+        <request index="11" response="000100011100" foes="000110011110" cont="1"/>
+    </junction>
+    <junction id="Astor_Fenton" type="priority" x="2190.14" y="345.10" incLanes="Fenton_Avenue_2_L_0 Astor_Avenue_1_L_0 Fenton_Avenue_3_R_0" intLanes=":Astor_Fenton_0_0 :Astor_Fenton_6_0 :Astor_Fenton_2_0 :Astor_Fenton_3_0 :Astor_Fenton_4_0 :Astor_Fenton_5_0" shape="2186.99,352.04 2193.39,352.00 2193.87,349.73 2194.50,348.89 2195.37,348.25 2196.50,347.80 2197.88,347.56 2197.26,341.19 2195.04,340.96 2194.25,340.48 2193.68,339.76 2193.33,338.79 2193.20,337.58 2186.80,337.70">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Astor_Kingsland" type="priority" x="2652.61" y="302.07" incLanes="Kingsland_Avenue_1_R_0 Kingsland_Avenue_2_L_0 Astor_Avenue_3_R_0" intLanes=":Astor_Kingsland_0_0 :Astor_Kingsland_1_0 :Astor_Kingsland_2_0 :Astor_Kingsland_6_0 :Astor_Kingsland_4_0 :Astor_Kingsland_5_0" shape="2649.52,309.55 2655.92,309.45 2655.72,295.05 2649.32,295.13 2648.86,297.40 2648.25,298.23 2647.40,298.85 2646.29,299.28 2644.94,299.51 2645.48,305.88 2647.70,306.14 2648.48,306.63 2649.05,307.36 2649.39,308.33">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="000000" foes="111000" cont="0"/>
+        <request index="2" response="000000" foes="100000" cont="0"/>
+        <request index="3" response="000011" foes="100011" cont="1"/>
+        <request index="4" response="000010" foes="000010" cont="0"/>
+        <request index="5" response="001110" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Astor_Westervelt" type="priority" x="2573.50" y="308.76" incLanes="Westervelt_Avenue_2_R_0 Astor_Avenue_3_L_0 Westervelt_Avenue_3_L_0" intLanes=":Astor_Westervelt_0_0 :Astor_Westervelt_6_0 :Astor_Westervelt_2_0 :Astor_Westervelt_3_0 :Astor_Westervelt_4_0 :Astor_Westervelt_5_0" shape="2570.39,315.78 2576.79,315.70 2577.25,313.43 2577.86,312.60 2578.72,311.98 2579.82,311.55 2581.18,311.32 2580.64,304.94 2578.42,304.69 2577.64,304.20 2577.08,303.47 2576.73,302.49 2576.60,301.28 2570.20,301.36">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Astor_Woodhull" type="priority" x="2415.67" y="323.21" incLanes="Woodhull_Avenue_2_R_0 Woodhull_Avenue_3_L_0 Astor_Avenue_2_R_0" intLanes=":Astor_Woodhull_0_0 :Astor_Woodhull_1_0 :Astor_Woodhull_2_0 :Astor_Woodhull_6_0 :Astor_Woodhull_4_0 :Astor_Woodhull_5_0" shape="2412.54,330.73 2418.94,330.67 2418.78,316.22 2412.38,316.31 2411.91,318.58 2411.29,319.41 2410.42,320.05 2409.29,320.49 2407.91,320.74 2408.52,327.11 2410.74,327.34 2411.52,327.82 2412.08,328.55 2412.42,329.52">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="000000" foes="111000" cont="0"/>
+        <request index="2" response="000000" foes="100000" cont="0"/>
+        <request index="3" response="000011" foes="100011" cont="1"/>
+        <request index="4" response="000010" foes="000010" cont="0"/>
+        <request index="5" response="001110" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Eastchester_Mace" type="traffic_light" x="2278.59" y="694.50" incLanes="Mace_Avenue_2_L_0 Eastchester_Road_1_L_0 Mace_Avenue_1_R_0" intLanes=":Eastchester_Mace_0_0 :Eastchester_Mace_6_0 :Eastchester_Mace_2_0 :Eastchester_Mace_3_0 :Eastchester_Mace_4_0 :Eastchester_Mace_5_0" shape="2286.23,697.61 2286.16,691.21 2283.99,690.80 2283.27,690.25 2282.80,689.49 2282.57,688.50 2282.60,687.28 2276.23,686.59 2275.50,689.23 2274.85,690.16 2274.00,690.83 2272.95,691.24 2271.72,691.38 2271.79,697.78">
+        <request index="0" response="001000" foes="001000" cont="0"/>
+        <request index="1" response="111000" foes="111000" cont="1"/>
+        <request index="2" response="000000" foes="100000" cont="0"/>
+        <request index="3" response="000010" foes="100011" cont="0"/>
+        <request index="4" response="000010" foes="000010" cont="0"/>
+        <request index="5" response="001100" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Eastchester_Pelham" type="priority" x="2296.87" y="197.51" incLanes="Eastchester_Road_3_R_0 Pelham_Parkway_North_2_L_0" intLanes=":Eastchester_Pelham_0_0 :Eastchester_Pelham_1_0 :Eastchester_Pelham_2_0" shape="2295.67,204.26 2301.77,202.30 2301.53,200.11 2301.84,199.28 2302.43,198.61 2303.32,198.12 2304.49,197.81 2303.94,194.66 2289.74,196.93 2290.20,200.10 2292.56,200.30 2293.54,200.85 2294.39,201.69 2295.10,202.83">
+        <request index="0" response="000" foes="100" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="001" foes="001" cont="0"/>
+    </junction>
+    <junction id="Eastchester_Waring" type="traffic_light" x="2301.23" y="487.00" incLanes="Waring_Avenue_2_L_0 Eastchester_Road_2_L_0 Waring_Avenue_1_R_0 Eastchester_Road_1_R_0" intLanes=":Eastchester_Waring_0_0 :Eastchester_Waring_1_0 :Eastchester_Waring_12_0 :Eastchester_Waring_3_0 :Eastchester_Waring_4_0 :Eastchester_Waring_13_0 :Eastchester_Waring_6_0 :Eastchester_Waring_7_0 :Eastchester_Waring_14_0 :Eastchester_Waring_9_0 :Eastchester_Waring_10_0 :Eastchester_Waring_15_0" shape="2308.91,490.11 2308.84,483.71 2306.67,483.30 2305.96,482.75 2305.49,481.99 2305.28,481.00 2305.31,479.79 2298.96,479.03 2298.11,481.70 2297.33,482.64 2296.32,483.32 2295.07,483.73 2293.59,483.88 2293.66,490.28 2295.83,490.70 2296.55,491.24 2297.02,492.01 2297.25,493.00 2297.22,494.22 2303.59,494.91 2304.41,492.27 2305.18,491.34 2306.18,490.67 2307.43,490.26">
+        <request index="0"  response="000000010000" foes="000100010000" cont="0"/>
+        <request index="1"  response="111000110000" foes="111100110000" cont="0"/>
+        <request index="2"  response="110011110000" foes="110011110000" cont="1"/>
+        <request index="3"  response="000000000000" foes="100010000000" cont="0"/>
+        <request index="4"  response="000100000100" foes="100110000111" cont="0"/>
+        <request index="5"  response="011100000100" foes="011110000110" cont="1"/>
+        <request index="6"  response="010000000000" foes="010000000100" cont="0"/>
+        <request index="7"  response="110000111000" foes="110000111100" cont="0"/>
+        <request index="8"  response="110000110011" foes="110000110011" cont="1"/>
+        <request index="9"  response="000000000000" foes="000000100010" cont="0"/>
+        <request index="10" response="000100000100" foes="000111100110" cont="0"/>
+        <request index="11" response="000100011100" foes="000110011110" cont="1"/>
+    </junction>
+    <junction id="Fenton_Mace" type="priority" x="2193.44" y="695.47" incLanes="Mace_Avenue_1_L_0 Fenton_Avenue_1_R_0" intLanes=":Fenton_Mace_0_0 :Fenton_Mace_1_0" shape="2196.68,698.63 2196.60,692.23 2190.20,692.31 2190.96,695.85 2191.86,697.09 2193.11,697.96 2194.72,698.48">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="Fenton_Pelham" type="priority" x="2187.67" y="213.39" incLanes="Fenton_Avenue_3_L_0 Pelham_Parkway_North_1_L_0" intLanes=":Fenton_Pelham_0_0 :Fenton_Pelham_1_0" shape="2184.56,218.18 2190.96,218.06 2191.31,216.05 2191.78,215.29 2192.45,214.70 2193.32,214.28 2194.38,214.03 2193.92,210.86 2191.03,211.45 2188.67,212.29 2186.84,213.38 2185.55,214.73 2184.79,216.33">
+        <request index="0" response="10" foes="10" cont="0"/>
+        <request index="1" response="00" foes="01" cont="0"/>
+    </junction>
+    <junction id="Fenton_Waring" type="traffic_light" x="2191.12" y="488.25" incLanes="Fenton_Avenue_1_L_0 Waring_Avenue_1_L_0 Fenton_Avenue_2_R_0" intLanes=":Fenton_Waring_0_0 :Fenton_Waring_6_0 :Fenton_Waring_2_0 :Fenton_Waring_3_0 :Fenton_Waring_4_0 :Fenton_Waring_5_0" shape="2188.00,495.48 2194.40,495.41 2194.82,493.19 2195.37,492.40 2196.15,491.84 2197.15,491.49 2198.37,491.37 2198.30,484.97 2196.07,484.55 2195.29,484.00 2194.73,483.23 2194.39,482.23 2194.27,481.01 2187.87,481.06">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000010" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Kingsland_Mace" type="priority" x="2657.21" y="690.23" incLanes="Kingsland_Avenue_1_L_0 Mace_Avenue_5_R_0" intLanes=":Kingsland_Mace_0_0 :Kingsland_Mace_1_0" shape="2660.38,687.02 2653.98,687.07 2654.07,693.47 2657.60,692.72 2658.83,691.82 2659.71,690.57 2660.22,688.97">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="Kingsland_Pelham" type="priority" x="2650.45" y="131.91" incLanes="Kingsland_Avenue_2_R_0" intLanes=":Kingsland_Pelham_0_0 :Kingsland_Pelham_1_0" shape="2647.33,138.17 2653.73,138.09 2653.39,135.57 2652.46,133.64 2650.93,132.30 2648.79,131.55 2646.06,131.38 2642.73,131.80 2643.35,134.94 2645.54,134.96 2646.31,135.36 2646.86,136.03 2647.20,136.97">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="Mace_Mickle" type="priority" x="2498.71" y="692.02" incLanes="Mace_Avenue_4_L_0 Mickle_Avenue_1_L_0 Mace_Avenue_3_R_0" intLanes=":Mace_Mickle_0_0 :Mace_Mickle_6_0 :Mace_Mickle_2_0 :Mace_Mickle_3_0 :Mace_Mickle_4_0 :Mace_Mickle_5_0" shape="2505.93,695.16 2505.87,688.76 2503.65,688.33 2502.86,687.78 2502.30,687.01 2501.95,686.01 2501.83,684.78 2495.43,684.86 2495.01,687.08 2494.46,687.87 2493.69,688.43 2492.69,688.78 2491.47,688.90 2491.55,695.30">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Mace_Westervelt" type="priority" x="2578.39" y="691.32" incLanes="Mace_Avenue_5_L_0 Westervelt_Avenue_1_L_0 Mace_Avenue_4_R_0" intLanes=":Mace_Westervelt_0_0 :Mace_Westervelt_6_0 :Mace_Westervelt_2_0 :Mace_Westervelt_3_0 :Mace_Westervelt_4_0 :Mace_Westervelt_5_0" shape="2585.64,694.42 2585.55,688.02 2583.32,687.61 2582.54,687.06 2581.97,686.29 2581.62,685.29 2581.50,684.07 2575.10,684.15 2574.68,686.37 2574.14,687.16 2573.37,687.72 2572.37,688.06 2571.15,688.18 2571.21,694.58" customShape="1">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Mace_Woodhull" type="priority" x="2419.30" y="692.91" incLanes="Mace_Avenue_3_L_0 Woodhull_Avenue_1_L_0 Mace_Avenue_2_R_0" intLanes=":Mace_Woodhull_0_0 :Mace_Woodhull_6_0 :Mace_Woodhull_2_0 :Mace_Woodhull_3_0 :Mace_Woodhull_4_0 :Mace_Woodhull_5_0" shape="2426.54,696.03 2426.47,689.63 2424.24,689.21 2423.46,688.66 2422.89,687.89 2422.55,686.90 2422.42,685.67 2416.02,685.74 2415.60,687.97 2415.06,688.76 2414.28,689.32 2413.29,689.67 2412.07,689.79 2412.14,696.19">
+        <request index="0" response="000000" foes="001000" cont="0"/>
+        <request index="1" response="110000" foes="111000" cont="1"/>
+        <request index="2" response="100000" foes="100000" cont="0"/>
+        <request index="3" response="100011" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="000000" foes="001110" cont="0"/>
+    </junction>
+    <junction id="Mickle_Waring" type="priority" x="2496.32" y="484.77" incLanes="Mickle_Avenue_1_R_0 Waring_Avenue_4_L_0 Waring_Avenue_3_R_0" intLanes=":Mickle_Waring_0_0 :Mickle_Waring_1_0 :Mickle_Waring_2_0 :Mickle_Waring_3_0 :Mickle_Waring_4_0 :Mickle_Waring_6_0" shape="2493.20,492.01 2499.60,491.93 2500.02,489.71 2500.57,488.92 2501.34,488.36 2502.34,488.01 2503.56,487.89 2503.48,481.49 2489.08,481.65 2489.16,488.05 2491.38,488.47 2492.17,489.02 2492.73,489.79 2493.08,490.79">
+        <request index="0" response="001000" foes="001000" cont="0"/>
+        <request index="1" response="111000" foes="111000" cont="0"/>
+        <request index="2" response="000000" foes="100000" cont="0"/>
+        <request index="3" response="000000" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="001100" foes="001110" cont="1"/>
+    </junction>
+    <junction id="Pelham_Westervelt" type="priority" x="2571.42" y="147.51" incLanes="Westervelt_Avenue_3_R_0 Pelham_Parkway_North_4_L_0" intLanes=":Pelham_Westervelt_0_0 :Pelham_Westervelt_1_0 :Pelham_Westervelt_2_0" shape="2568.30,153.73 2574.70,153.65 2575.10,150.71 2575.63,149.60 2576.38,148.73 2577.36,148.11 2578.56,147.73 2577.94,144.59 2563.73,147.33 2564.32,150.48 2566.51,150.51 2567.28,150.92 2567.83,151.59 2568.18,152.53">
+        <request index="0" response="000" foes="100" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="001" foes="001" cont="0"/>
+    </junction>
+    <junction id="Pelham_Woodhull" type="priority" x="2413.81" y="177.07" incLanes="Woodhull_Avenue_3_R_0 Pelham_Parkway_North_3_L_2_0" intLanes=":Pelham_Woodhull_0_0 :Pelham_Woodhull_1_0 :Pelham_Woodhull_2_0" shape="2410.69,183.25 2417.09,183.17 2417.49,180.27 2418.02,179.18 2418.78,178.33 2419.76,177.73 2420.96,177.36 2420.37,174.22 2406.15,176.79 2406.70,179.94 2408.89,180.00 2409.67,180.42 2410.22,181.10 2410.56,182.05">
+        <request index="0" response="000" foes="100" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="001" foes="001" cont="0"/>
+    </junction>
+    <junction id="Waring_Westervelt" type="priority" x="2575.72" y="483.87" incLanes="Westervelt_Avenue_1_R_0 Westervelt_Avenue_2_L_0 Waring_Avenue_4_R_0" intLanes=":Waring_Westervelt_0_0 :Waring_Westervelt_1_0 :Waring_Westervelt_2_0 :Waring_Westervelt_3_0 :Waring_Westervelt_4_0 :Waring_Westervelt_6_0" shape="2572.61,491.11 2579.01,491.02 2578.83,476.63 2572.43,476.71 2572.01,478.93 2571.47,479.72 2570.70,480.28 2569.70,480.63 2568.48,480.75 2568.55,487.15 2570.79,487.57 2571.57,488.12 2572.14,488.89 2572.49,489.88">
+        <request index="0" response="001000" foes="001000" cont="0"/>
+        <request index="1" response="111000" foes="111000" cont="0"/>
+        <request index="2" response="000000" foes="100000" cont="0"/>
+        <request index="3" response="000000" foes="100011" cont="0"/>
+        <request index="4" response="000000" foes="000010" cont="0"/>
+        <request index="5" response="001100" foes="001110" cont="1"/>
+    </junction>
+    <junction id="Waring_Woodhull" type="traffic_light" x="2417.15" y="485.68" incLanes="Woodhull_Avenue_1_R_0 Waring_Avenue_3_L_0 Woodhull_Avenue_2_L_0 Waring_Avenue_2_R_0" intLanes=":Waring_Woodhull_0_0 :Waring_Woodhull_1_0 :Waring_Woodhull_12_0 :Waring_Woodhull_3_0 :Waring_Woodhull_4_0 :Waring_Woodhull_13_0 :Waring_Woodhull_6_0 :Waring_Woodhull_7_0 :Waring_Woodhull_14_0 :Waring_Woodhull_9_0 :Waring_Woodhull_10_0 :Waring_Woodhull_15_0" shape="2414.02,492.92 2420.42,492.85 2420.85,490.62 2421.40,489.83 2422.17,489.27 2423.17,488.92 2424.39,488.80 2424.32,482.40 2422.09,481.98 2421.31,481.43 2420.75,480.66 2420.41,479.66 2420.28,478.44 2413.88,478.50 2413.46,480.74 2412.91,481.52 2412.13,482.09 2411.14,482.44 2409.91,482.56 2409.98,488.96 2412.21,489.38 2412.99,489.93 2413.56,490.70 2413.90,491.70">
+        <request index="0"  response="000000010000" foes="000100010000" cont="0"/>
+        <request index="1"  response="111000110000" foes="111100110000" cont="0"/>
+        <request index="2"  response="110011110000" foes="110011110000" cont="1"/>
+        <request index="3"  response="000000000000" foes="100010000000" cont="0"/>
+        <request index="4"  response="000100000100" foes="100110000111" cont="0"/>
+        <request index="5"  response="011100000100" foes="011110000110" cont="1"/>
+        <request index="6"  response="010000000000" foes="010000000100" cont="0"/>
+        <request index="7"  response="110000111000" foes="110000111100" cont="0"/>
+        <request index="8"  response="110000110011" foes="110000110011" cont="1"/>
+        <request index="9"  response="000000000000" foes="000000100010" cont="0"/>
+        <request index="10" response="000100000100" foes="000111100110" cont="0"/>
+        <request index="11" response="000100011100" foes="000110011110" cont="1"/>
+    </junction>
+
+    <junction id=":Astor_Eastchester_12_0" type="internal" x="2321.71" y="332.20" incLanes=":Astor_Eastchester_2_0 Astor_Avenue_1_R_0" intLanes=":Astor_Eastchester_4_0 :Astor_Eastchester_5_0 :Astor_Eastchester_6_0 :Astor_Eastchester_7_0 :Astor_Eastchester_10_0 :Astor_Eastchester_11_0"/>
+    <junction id=":Astor_Eastchester_13_0" type="internal" x="2319.64" y="330.77" incLanes=":Astor_Eastchester_5_0 Eastchester_Road_2_R_0" intLanes=":Astor_Eastchester_1_0 :Astor_Eastchester_2_0 :Astor_Eastchester_7_0 :Astor_Eastchester_8_0 :Astor_Eastchester_9_0 :Astor_Eastchester_10_0"/>
+    <junction id=":Astor_Eastchester_14_0" type="internal" x="2317.45" y="332.61" incLanes=":Astor_Eastchester_8_0 Astor_Avenue_2_L_0" intLanes=":Astor_Eastchester_0_0 :Astor_Eastchester_1_0 :Astor_Eastchester_4_0 :Astor_Eastchester_5_0 :Astor_Eastchester_10_0 :Astor_Eastchester_11_0"/>
+    <junction id=":Astor_Eastchester_15_0" type="internal" x="2319.36" y="334.29" incLanes=":Astor_Eastchester_11_0 Eastchester_Road_3_L_0" intLanes=":Astor_Eastchester_1_0 :Astor_Eastchester_2_0 :Astor_Eastchester_3_0 :Astor_Eastchester_4_0 :Astor_Eastchester_7_0 :Astor_Eastchester_8_0"/>
+    <junction id=":Astor_Fenton_6_0" type="internal" x="2190.12" y="346.62" incLanes=":Astor_Fenton_1_0 Fenton_Avenue_3_R_0" intLanes=":Astor_Fenton_3_0 :Astor_Fenton_4_0 :Astor_Fenton_5_0"/>
+    <junction id=":Astor_Kingsland_6_0" type="internal" x="2652.60" y="300.56" incLanes=":Astor_Kingsland_3_0 Kingsland_Avenue_1_R_0" intLanes=":Astor_Kingsland_0_0 :Astor_Kingsland_1_0 :Astor_Kingsland_5_0"/>
+    <junction id=":Astor_Westervelt_6_0" type="internal" x="2573.52" y="310.27" incLanes=":Astor_Westervelt_1_0 Westervelt_Avenue_3_L_0" intLanes=":Astor_Westervelt_3_0 :Astor_Westervelt_4_0 :Astor_Westervelt_5_0"/>
+    <junction id=":Astor_Woodhull_6_0" type="internal" x="2415.64" y="321.73" incLanes=":Astor_Woodhull_3_0 Woodhull_Avenue_2_R_0" intLanes=":Astor_Woodhull_0_0 :Astor_Woodhull_1_0 :Astor_Woodhull_5_0"/>
+    <junction id=":Eastchester_Mace_6_0" type="internal" x="2280.57" y="694.48" incLanes=":Eastchester_Mace_1_0 Mace_Avenue_1_R_0" intLanes=":Eastchester_Mace_3_0 :Eastchester_Mace_4_0 :Eastchester_Mace_5_0"/>
+    <junction id=":Eastchester_Waring_12_0" type="internal" x="2303.24" y="486.98" incLanes=":Eastchester_Waring_2_0 Waring_Avenue_1_R_0" intLanes=":Eastchester_Waring_4_0 :Eastchester_Waring_5_0 :Eastchester_Waring_6_0 :Eastchester_Waring_7_0 :Eastchester_Waring_10_0 :Eastchester_Waring_11_0"/>
+    <junction id=":Eastchester_Waring_13_0" type="internal" x="2301.47" y="485.24" incLanes=":Eastchester_Waring_5_0 Eastchester_Road_1_R_0" intLanes=":Eastchester_Waring_1_0 :Eastchester_Waring_2_0 :Eastchester_Waring_7_0 :Eastchester_Waring_8_0 :Eastchester_Waring_9_0 :Eastchester_Waring_10_0"/>
+    <junction id=":Eastchester_Waring_14_0" type="internal" x="2299.25" y="487.02" incLanes=":Eastchester_Waring_8_0 Waring_Avenue_2_L_0" intLanes=":Eastchester_Waring_0_0 :Eastchester_Waring_1_0 :Eastchester_Waring_4_0 :Eastchester_Waring_5_0 :Eastchester_Waring_10_0 :Eastchester_Waring_11_0"/>
+    <junction id=":Eastchester_Waring_15_0" type="internal" x="2301.08" y="488.67" incLanes=":Eastchester_Waring_11_0 Eastchester_Road_2_L_0" intLanes=":Eastchester_Waring_1_0 :Eastchester_Waring_2_0 :Eastchester_Waring_3_0 :Eastchester_Waring_4_0 :Eastchester_Waring_7_0 :Eastchester_Waring_8_0"/>
+    <junction id=":Fenton_Waring_6_0" type="internal" x="2191.15" y="489.83" incLanes=":Fenton_Waring_1_0 Fenton_Avenue_2_R_0" intLanes=":Fenton_Waring_3_0 :Fenton_Waring_4_0 :Fenton_Waring_5_0"/>
+    <junction id=":Mace_Mickle_6_0" type="internal" x="2500.32" y="692.01" incLanes=":Mace_Mickle_1_0 Mace_Avenue_3_R_0" intLanes=":Mace_Mickle_3_0 :Mace_Mickle_4_0 :Mace_Mickle_5_0"/>
+    <junction id=":Mace_Westervelt_6_0" type="internal" x="2579.97" y="691.28" incLanes=":Mace_Westervelt_1_0 Mace_Avenue_4_R_0" intLanes=":Mace_Westervelt_3_0 :Mace_Westervelt_4_0 :Mace_Westervelt_5_0"/>
+    <junction id=":Mace_Woodhull_6_0" type="internal" x="2420.90" y="692.89" incLanes=":Mace_Woodhull_1_0 Mace_Avenue_2_R_0" intLanes=":Mace_Woodhull_3_0 :Mace_Woodhull_4_0 :Mace_Woodhull_5_0"/>
+    <junction id=":Mickle_Waring_6_0" type="internal" x="2494.72" y="484.79" incLanes=":Mickle_Waring_5_0 Waring_Avenue_4_L_0" intLanes=":Mickle_Waring_1_0 :Mickle_Waring_2_0 :Mickle_Waring_3_0"/>
+    <junction id=":Waring_Westervelt_6_0" type="internal" x="2572.55" y="482.97" incLanes=":Waring_Westervelt_5_0 Westervelt_Avenue_2_L_0" intLanes=":Waring_Westervelt_1_0 :Waring_Westervelt_2_0 :Waring_Westervelt_3_0"/>
+    <junction id=":Waring_Woodhull_12_0" type="internal" x="2417.17" y="487.28" incLanes=":Waring_Woodhull_2_0 Woodhull_Avenue_2_L_0" intLanes=":Waring_Woodhull_4_0 :Waring_Woodhull_5_0 :Waring_Woodhull_6_0 :Waring_Woodhull_7_0 :Waring_Woodhull_10_0 :Waring_Woodhull_11_0"/>
+    <junction id=":Waring_Woodhull_13_0" type="internal" x="2418.76" y="485.66" incLanes=":Waring_Woodhull_5_0 Waring_Avenue_2_R_0" intLanes=":Waring_Woodhull_1_0 :Waring_Woodhull_2_0 :Waring_Woodhull_7_0 :Waring_Woodhull_8_0 :Waring_Woodhull_9_0 :Waring_Woodhull_10_0"/>
+    <junction id=":Waring_Woodhull_14_0" type="internal" x="2417.14" y="484.07" incLanes=":Waring_Woodhull_8_0 Woodhull_Avenue_1_R_0" intLanes=":Waring_Woodhull_0_0 :Waring_Woodhull_1_0 :Waring_Woodhull_4_0 :Waring_Woodhull_5_0 :Waring_Woodhull_10_0 :Waring_Woodhull_11_0"/>
+    <junction id=":Waring_Woodhull_15_0" type="internal" x="2415.55" y="485.70" incLanes=":Waring_Woodhull_11_0 Waring_Avenue_3_L_0" intLanes=":Waring_Woodhull_1_0 :Waring_Woodhull_2_0 :Waring_Woodhull_3_0 :Waring_Woodhull_4_0 :Waring_Woodhull_7_0 :Waring_Woodhull_8_0"/>
+
+    <connection from="Astor_Avenue_1_L" to="Fenton_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Fenton_2_0" dir="r" state="m"/>
+    <connection from="Astor_Avenue_1_L" to="Fenton_Avenue_3_L" fromLane="0" toLane="0" via=":Astor_Fenton_3_0" dir="l" state="m"/>
+    <connection from="Astor_Avenue_1_R" to="Eastchester_Road_3_R" fromLane="0" toLane="0" via=":Astor_Eastchester_6_0" tl="42738504" linkIndex="6" dir="r" state="o"/>
+    <connection from="Astor_Avenue_1_R" to="Astor_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Eastchester_7_0" tl="42738504" linkIndex="7" dir="s" state="o"/>
+    <connection from="Astor_Avenue_1_R" to="Eastchester_Road_2_L" fromLane="0" toLane="0" via=":Astor_Eastchester_8_0" tl="42738504" linkIndex="8" dir="l" state="o"/>
+    <connection from="Astor_Avenue_2_L" to="Eastchester_Road_2_L" fromLane="0" toLane="0" via=":Astor_Eastchester_0_0" tl="42738504" linkIndex="0" dir="r" state="o"/>
+    <connection from="Astor_Avenue_2_L" to="Astor_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Eastchester_1_0" tl="42738504" linkIndex="1" dir="s" state="o"/>
+    <connection from="Astor_Avenue_2_L" to="Eastchester_Road_3_R" fromLane="0" toLane="0" via=":Astor_Eastchester_2_0" tl="42738504" linkIndex="2" dir="l" state="o"/>
+    <connection from="Astor_Avenue_2_R" to="Woodhull_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Woodhull_4_0" dir="r" state="m"/>
+    <connection from="Astor_Avenue_2_R" to="Woodhull_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Woodhull_5_0" dir="l" state="m"/>
+    <connection from="Astor_Avenue_3_L" to="Westervelt_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Westervelt_2_0" dir="r" state="m"/>
+    <connection from="Astor_Avenue_3_L" to="Westervelt_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Westervelt_3_0" dir="l" state="m"/>
+    <connection from="Astor_Avenue_3_R" to="Kingsland_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Kingsland_4_0" dir="r" state="m"/>
+    <connection from="Astor_Avenue_3_R" to="Kingsland_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Kingsland_5_0" dir="l" state="m"/>
+    <connection from="Eastchester_Road_1_L" to="Mace_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Mace_2_0" tl="42734696" linkIndex="2" dir="r" state="O"/>
+    <connection from="Eastchester_Road_1_L" to="Mace_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Mace_3_0" tl="42734696" linkIndex="3" dir="l" state="O"/>
+    <connection from="Eastchester_Road_1_R" to="Waring_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_9_0" tl="42745695" linkIndex="9" dir="r" state="O"/>
+    <connection from="Eastchester_Road_1_R" to="Eastchester_Road_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_10_0" tl="42745695" linkIndex="10" dir="s" state="O"/>
+    <connection from="Eastchester_Road_1_R" to="Waring_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_11_0" tl="42745695" linkIndex="11" dir="l" state="o"/>
+    <connection from="Eastchester_Road_2_L" to="Waring_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_3_0" tl="42745695" linkIndex="3" dir="r" state="O"/>
+    <connection from="Eastchester_Road_2_L" to="Eastchester_Road_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_4_0" tl="42745695" linkIndex="4" dir="s" state="O"/>
+    <connection from="Eastchester_Road_2_L" to="Waring_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_5_0" tl="42745695" linkIndex="5" dir="l" state="o"/>
+    <connection from="Eastchester_Road_2_R" to="Astor_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Eastchester_9_0" tl="42738504" linkIndex="9" dir="r" state="O"/>
+    <connection from="Eastchester_Road_2_R" to="Eastchester_Road_3_R" fromLane="0" toLane="0" via=":Astor_Eastchester_10_0" tl="42738504" linkIndex="10" dir="s" state="O"/>
+    <connection from="Eastchester_Road_2_R" to="Astor_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Eastchester_11_0" tl="42738504" linkIndex="11" dir="l" state="o"/>
+    <connection from="Eastchester_Road_3_L" to="Astor_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Eastchester_3_0" tl="42738504" linkIndex="3" dir="r" state="O"/>
+    <connection from="Eastchester_Road_3_L" to="Eastchester_Road_2_L" fromLane="0" toLane="0" via=":Astor_Eastchester_4_0" tl="42738504" linkIndex="4" dir="s" state="O"/>
+    <connection from="Eastchester_Road_3_L" to="Astor_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Eastchester_5_0" tl="42738504" linkIndex="5" dir="l" state="o"/>
+    <connection from="Eastchester_Road_3_R" to="Pelham_Parkway_North_1_L" fromLane="0" toLane="0" via=":Eastchester_Pelham_0_0" dir="r" state="M"/>
+    <connection from="Fenton_Avenue_1_L" to="Fenton_Avenue_2_L" fromLane="0" toLane="0" via=":Fenton_Waring_0_0" tl="42745566" linkIndex="0" dir="s" state="O"/>
+    <connection from="Fenton_Avenue_1_L" to="Waring_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Waring_1_0" tl="42745566" linkIndex="1" dir="l" state="o"/>
+    <connection from="Fenton_Avenue_1_R" to="Mace_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Mace_1_0" dir="r" state="M"/>
+    <connection from="Fenton_Avenue_2_L" to="Fenton_Avenue_3_L" fromLane="0" toLane="0" via=":Astor_Fenton_0_0" dir="s" state="M"/>
+    <connection from="Fenton_Avenue_2_L" to="Astor_Avenue_1_R" fromLane="0" toLane="0" via=":Astor_Fenton_1_0" dir="l" state="m"/>
+    <connection from="Fenton_Avenue_2_R" to="Waring_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Waring_4_0" tl="42745566" linkIndex="6" dir="r" state="O"/>
+    <connection from="Fenton_Avenue_2_R" to="Fenton_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Waring_5_0" tl="42745566" linkIndex="7" dir="s" state="O"/>
+    <connection from="Fenton_Avenue_3_L" to="Fenton_Avenue_3_R" fromLane="0" toLane="0" via=":Fenton_Pelham_0_0" dir="t" state="m"/>
+    <connection from="Fenton_Avenue_3_R" to="Astor_Avenue_1_R" fromLane="0" toLane="0" via=":Astor_Fenton_4_0" dir="r" state="M"/>
+    <connection from="Fenton_Avenue_3_R" to="Fenton_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Fenton_5_0" dir="s" state="M"/>
+    <connection from="Kingsland_Avenue_1_L" to="Mace_Avenue_5_L" fromLane="0" toLane="0" via=":Kingsland_Mace_0_0" dir="l" state="M"/>
+    <connection from="Kingsland_Avenue_1_R" to="Astor_Avenue_3_L" fromLane="0" toLane="0" via=":Astor_Kingsland_0_0" dir="r" state="M"/>
+    <connection from="Kingsland_Avenue_1_R" to="Kingsland_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Kingsland_1_0" dir="s" state="M"/>
+    <connection from="Kingsland_Avenue_2_L" to="Kingsland_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Kingsland_2_0" dir="s" state="M"/>
+    <connection from="Kingsland_Avenue_2_L" to="Astor_Avenue_3_L" fromLane="0" toLane="0" via=":Astor_Kingsland_3_0" dir="l" state="m"/>
+    <connection from="Kingsland_Avenue_2_R" to="Pelham_Parkway_North_4_L" fromLane="0" toLane="0" via=":Kingsland_Pelham_0_0" dir="r" state="M"/>
+    <connection from="Kingsland_Avenue_2_R" to="Kingsland_Avenue_2_L" fromLane="0" toLane="0" via=":Kingsland_Pelham_1_0" dir="t" state="M"/>
+    <connection from="Mace_Avenue_1_L" to="Fenton_Avenue_1_L" fromLane="0" toLane="0" via=":Fenton_Mace_0_0" dir="l" state="M"/>
+    <connection from="Mace_Avenue_1_R" to="Eastchester_Road_1_R" fromLane="0" toLane="0" via=":Eastchester_Mace_4_0" tl="42734696" linkIndex="4" dir="r" state="O"/>
+    <connection from="Mace_Avenue_1_R" to="Mace_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Mace_5_0" tl="42734696" linkIndex="5" dir="s" state="o"/>
+    <connection from="Mace_Avenue_2_L" to="Mace_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Mace_0_0" tl="42734696" linkIndex="0" dir="s" state="o"/>
+    <connection from="Mace_Avenue_2_L" to="Eastchester_Road_1_R" fromLane="0" toLane="0" via=":Eastchester_Mace_1_0" tl="42734696" linkIndex="1" dir="l" state="o"/>
+    <connection from="Mace_Avenue_2_R" to="Woodhull_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Woodhull_4_0" dir="r" state="M"/>
+    <connection from="Mace_Avenue_2_R" to="Mace_Avenue_3_R" fromLane="0" toLane="0" via=":Mace_Woodhull_5_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_3_L" to="Mace_Avenue_2_L" fromLane="0" toLane="0" via=":Mace_Woodhull_0_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_3_L" to="Woodhull_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Woodhull_1_0" dir="l" state="m"/>
+    <connection from="Mace_Avenue_3_R" to="Mickle_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Mickle_4_0" dir="r" state="M"/>
+    <connection from="Mace_Avenue_3_R" to="Mace_Avenue_4_R" fromLane="0" toLane="0" via=":Mace_Mickle_5_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_4_L" to="Mace_Avenue_3_L" fromLane="0" toLane="0" via=":Mace_Mickle_0_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_4_L" to="Mickle_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Mickle_1_0" dir="l" state="m"/>
+    <connection from="Mace_Avenue_4_R" to="Westervelt_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Westervelt_4_0" dir="r" state="M"/>
+    <connection from="Mace_Avenue_4_R" to="Mace_Avenue_5_R" fromLane="0" toLane="0" via=":Mace_Westervelt_5_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_5_L" to="Mace_Avenue_4_L" fromLane="0" toLane="0" via=":Mace_Westervelt_0_0" dir="s" state="M"/>
+    <connection from="Mace_Avenue_5_L" to="Westervelt_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Westervelt_1_0" dir="l" state="m"/>
+    <connection from="Mace_Avenue_5_R" to="Kingsland_Avenue_1_R" fromLane="0" toLane="0" via=":Kingsland_Mace_1_0" dir="r" state="M"/>
+    <connection from="Mickle_Avenue_1_L" to="Mace_Avenue_4_R" fromLane="0" toLane="0" via=":Mace_Mickle_2_0" dir="r" state="m"/>
+    <connection from="Mickle_Avenue_1_L" to="Mace_Avenue_3_L" fromLane="0" toLane="0" via=":Mace_Mickle_3_0" dir="l" state="m"/>
+    <connection from="Mickle_Avenue_1_R" to="Waring_Avenue_3_L" fromLane="0" toLane="0" via=":Mickle_Waring_0_0" dir="r" state="m"/>
+    <connection from="Mickle_Avenue_1_R" to="Waring_Avenue_4_R" fromLane="0" toLane="0" via=":Mickle_Waring_1_0" dir="l" state="m"/>
+    <connection from="Pelham_Parkway_North_1_L" to="Fenton_Avenue_3_R" fromLane="0" toLane="0" via=":Fenton_Pelham_1_0" dir="r" state="M"/>
+    <connection from="Pelham_Parkway_North_2_L" to="Eastchester_Road_3_L" fromLane="0" toLane="0" via=":Eastchester_Pelham_1_0" dir="r" state="M"/>
+    <connection from="Pelham_Parkway_North_2_L" to="Pelham_Parkway_North_1_L" fromLane="0" toLane="0" via=":Eastchester_Pelham_2_0" dir="s" state="m"/>
+    <connection from="Pelham_Parkway_North_3_L_2" to="Woodhull_Avenue_3_L" fromLane="0" toLane="0" via=":Pelham_Woodhull_1_0" dir="r" state="M"/>
+    <connection from="Pelham_Parkway_North_3_L_2" to="Pelham_Parkway_North_2_L" fromLane="0" toLane="0" via=":Pelham_Woodhull_2_0" dir="s" state="m"/>
+    <connection from="Pelham_Parkway_North_4_L" to="Westervelt_Avenue_3_L" fromLane="0" toLane="0" via=":Pelham_Westervelt_1_0" dir="r" state="M"/>
+    <connection from="Pelham_Parkway_North_4_L" to="Pelham_Parkway_North_3_L_2" fromLane="0" toLane="0" via=":Pelham_Westervelt_2_0" dir="s" state="m"/>
+    <connection from="Waring_Avenue_1_L" to="Fenton_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Waring_2_0" tl="42745566" linkIndex="3" dir="r" state="o"/>
+    <connection from="Waring_Avenue_1_L" to="Fenton_Avenue_2_L" fromLane="0" toLane="0" via=":Fenton_Waring_3_0" tl="42745566" linkIndex="4" dir="l" state="o"/>
+    <connection from="Waring_Avenue_1_R" to="Eastchester_Road_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_6_0" tl="42745695" linkIndex="6" dir="r" state="o"/>
+    <connection from="Waring_Avenue_1_R" to="Waring_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_7_0" tl="42745695" linkIndex="7" dir="s" state="o"/>
+    <connection from="Waring_Avenue_1_R" to="Eastchester_Road_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_8_0" tl="42745695" linkIndex="8" dir="l" state="o"/>
+    <connection from="Waring_Avenue_2_L" to="Eastchester_Road_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_0_0" tl="42745695" linkIndex="0" dir="r" state="o"/>
+    <connection from="Waring_Avenue_2_L" to="Waring_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_1_0" tl="42745695" linkIndex="1" dir="s" state="o"/>
+    <connection from="Waring_Avenue_2_L" to="Eastchester_Road_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_2_0" tl="42745695" linkIndex="2" dir="l" state="o"/>
+    <connection from="Waring_Avenue_2_R" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Woodhull_9_0" tl="42745697" linkIndex="9" dir="r" state="O"/>
+    <connection from="Waring_Avenue_2_R" to="Waring_Avenue_3_R" fromLane="0" toLane="0" via=":Waring_Woodhull_10_0" tl="42745697" linkIndex="10" dir="s" state="O"/>
+    <connection from="Waring_Avenue_2_R" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Woodhull_11_0" tl="42745697" linkIndex="11" dir="l" state="o"/>
+    <connection from="Waring_Avenue_3_L" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Woodhull_3_0" tl="42745697" linkIndex="3" dir="r" state="O"/>
+    <connection from="Waring_Avenue_3_L" to="Waring_Avenue_2_L" fromLane="0" toLane="0" via=":Waring_Woodhull_4_0" tl="42745697" linkIndex="4" dir="s" state="O"/>
+    <connection from="Waring_Avenue_3_L" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Woodhull_5_0" tl="42745697" linkIndex="5" dir="l" state="o"/>
+    <connection from="Waring_Avenue_3_R" to="Waring_Avenue_4_R" fromLane="0" toLane="0" via=":Mickle_Waring_4_0" dir="s" state="M"/>
+    <connection from="Waring_Avenue_3_R" to="Mickle_Avenue_1_L" fromLane="0" toLane="0" via=":Mickle_Waring_5_0" dir="l" state="m"/>
+    <connection from="Waring_Avenue_4_L" to="Mickle_Avenue_1_L" fromLane="0" toLane="0" via=":Mickle_Waring_2_0" dir="r" state="M"/>
+    <connection from="Waring_Avenue_4_L" to="Waring_Avenue_3_L" fromLane="0" toLane="0" via=":Mickle_Waring_3_0" dir="s" state="M"/>
+    <connection from="Waring_Avenue_4_R" to="Westervelt_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Westervelt_4_0" dir="r" state="M"/>
+    <connection from="Waring_Avenue_4_R" to="Westervelt_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Westervelt_5_0" dir="l" state="m"/>
+    <connection from="Westervelt_Avenue_1_L" to="Mace_Avenue_5_R" fromLane="0" toLane="0" via=":Mace_Westervelt_2_0" dir="r" state="m"/>
+    <connection from="Westervelt_Avenue_1_L" to="Mace_Avenue_4_L" fromLane="0" toLane="0" via=":Mace_Westervelt_3_0" dir="l" state="m"/>
+    <connection from="Westervelt_Avenue_1_R" to="Waring_Avenue_4_L" fromLane="0" toLane="0" via=":Waring_Westervelt_0_0" dir="r" state="m"/>
+    <connection from="Westervelt_Avenue_1_R" to="Westervelt_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Westervelt_1_0" dir="s" state="m"/>
+    <connection from="Westervelt_Avenue_2_L" to="Westervelt_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Westervelt_2_0" dir="s" state="M"/>
+    <connection from="Westervelt_Avenue_2_L" to="Waring_Avenue_4_L" fromLane="0" toLane="0" via=":Waring_Westervelt_3_0" dir="l" state="M"/>
+    <connection from="Westervelt_Avenue_2_R" to="Westervelt_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Westervelt_0_0" dir="s" state="M"/>
+    <connection from="Westervelt_Avenue_2_R" to="Astor_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Westervelt_1_0" dir="l" state="m"/>
+    <connection from="Westervelt_Avenue_3_L" to="Astor_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Westervelt_4_0" dir="r" state="M"/>
+    <connection from="Westervelt_Avenue_3_L" to="Westervelt_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Westervelt_5_0" dir="s" state="M"/>
+    <connection from="Westervelt_Avenue_3_R" to="Pelham_Parkway_North_3_L_2" fromLane="0" toLane="0" via=":Pelham_Westervelt_0_0" dir="r" state="M"/>
+    <connection from="Woodhull_Avenue_1_L" to="Mace_Avenue_3_R" fromLane="0" toLane="0" via=":Mace_Woodhull_2_0" dir="r" state="m"/>
+    <connection from="Woodhull_Avenue_1_L" to="Mace_Avenue_2_L" fromLane="0" toLane="0" via=":Mace_Woodhull_3_0" dir="l" state="m"/>
+    <connection from="Woodhull_Avenue_1_R" to="Waring_Avenue_2_L" fromLane="0" toLane="0" via=":Waring_Woodhull_0_0" tl="42745697" linkIndex="0" dir="r" state="o"/>
+    <connection from="Woodhull_Avenue_1_R" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Woodhull_1_0" tl="42745697" linkIndex="1" dir="s" state="o"/>
+    <connection from="Woodhull_Avenue_1_R" to="Waring_Avenue_3_R" fromLane="0" toLane="0" via=":Waring_Woodhull_2_0" tl="42745697" linkIndex="2" dir="l" state="o"/>
+    <connection from="Woodhull_Avenue_2_L" to="Waring_Avenue_3_R" fromLane="0" toLane="0" via=":Waring_Woodhull_6_0" tl="42745697" linkIndex="6" dir="r" state="o"/>
+    <connection from="Woodhull_Avenue_2_L" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Woodhull_7_0" tl="42745697" linkIndex="7" dir="s" state="o"/>
+    <connection from="Woodhull_Avenue_2_L" to="Waring_Avenue_2_L" fromLane="0" toLane="0" via=":Waring_Woodhull_8_0" tl="42745697" linkIndex="8" dir="l" state="o"/>
+    <connection from="Woodhull_Avenue_2_R" to="Astor_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Woodhull_0_0" dir="r" state="M"/>
+    <connection from="Woodhull_Avenue_2_R" to="Woodhull_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Woodhull_1_0" dir="s" state="M"/>
+    <connection from="Woodhull_Avenue_3_L" to="Woodhull_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Woodhull_2_0" dir="s" state="M"/>
+    <connection from="Woodhull_Avenue_3_L" to="Astor_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Woodhull_3_0" dir="l" state="m"/>
+    <connection from="Woodhull_Avenue_3_R" to="Pelham_Parkway_North_2_L" fromLane="0" toLane="0" via=":Pelham_Woodhull_0_0" dir="r" state="M"/>
+
+    <connection from=":Astor_Eastchester_0" to="Eastchester_Road_2_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Eastchester_1" to="Astor_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Eastchester_2" to="Eastchester_Road_3_R" fromLane="0" toLane="0" via=":Astor_Eastchester_12_0" dir="l" state="m"/>
+    <connection from=":Astor_Eastchester_12" to="Eastchester_Road_3_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Eastchester_3" to="Astor_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Eastchester_4" to="Eastchester_Road_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Eastchester_5" to="Astor_Avenue_1_L" fromLane="0" toLane="0" via=":Astor_Eastchester_13_0" dir="l" state="m"/>
+    <connection from=":Astor_Eastchester_13" to="Astor_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Eastchester_6" to="Eastchester_Road_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Eastchester_7" to="Astor_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Eastchester_8" to="Eastchester_Road_2_L" fromLane="0" toLane="0" via=":Astor_Eastchester_14_0" dir="l" state="m"/>
+    <connection from=":Astor_Eastchester_14" to="Eastchester_Road_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Eastchester_9" to="Astor_Avenue_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Eastchester_10" to="Eastchester_Road_3_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Eastchester_11" to="Astor_Avenue_2_R" fromLane="0" toLane="0" via=":Astor_Eastchester_15_0" dir="l" state="m"/>
+    <connection from=":Astor_Eastchester_15" to="Astor_Avenue_2_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Fenton_0" to="Fenton_Avenue_3_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Fenton_1" to="Astor_Avenue_1_R" fromLane="0" toLane="0" via=":Astor_Fenton_6_0" dir="l" state="m"/>
+    <connection from=":Astor_Fenton_6" to="Astor_Avenue_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Fenton_2" to="Fenton_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Fenton_3" to="Fenton_Avenue_3_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Fenton_4" to="Astor_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Fenton_5" to="Fenton_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Kingsland_0" to="Astor_Avenue_3_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Kingsland_1" to="Kingsland_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Kingsland_2" to="Kingsland_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Kingsland_3" to="Astor_Avenue_3_L" fromLane="0" toLane="0" via=":Astor_Kingsland_6_0" dir="l" state="m"/>
+    <connection from=":Astor_Kingsland_6" to="Astor_Avenue_3_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Kingsland_4" to="Kingsland_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Kingsland_5" to="Kingsland_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Westervelt_0" to="Westervelt_Avenue_3_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Westervelt_1" to="Astor_Avenue_3_R" fromLane="0" toLane="0" via=":Astor_Westervelt_6_0" dir="l" state="m"/>
+    <connection from=":Astor_Westervelt_6" to="Astor_Avenue_3_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Westervelt_2" to="Westervelt_Avenue_2_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Westervelt_3" to="Westervelt_Avenue_3_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Westervelt_4" to="Astor_Avenue_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Westervelt_5" to="Westervelt_Avenue_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Woodhull_0" to="Astor_Avenue_2_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Woodhull_1" to="Woodhull_Avenue_3_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Woodhull_2" to="Woodhull_Avenue_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Astor_Woodhull_3" to="Astor_Avenue_2_L" fromLane="0" toLane="0" via=":Astor_Woodhull_6_0" dir="l" state="m"/>
+    <connection from=":Astor_Woodhull_6" to="Astor_Avenue_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Astor_Woodhull_4" to="Woodhull_Avenue_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Astor_Woodhull_5" to="Woodhull_Avenue_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Mace_0" to="Mace_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Mace_1" to="Eastchester_Road_1_R" fromLane="0" toLane="0" via=":Eastchester_Mace_6_0" dir="l" state="m"/>
+    <connection from=":Eastchester_Mace_6" to="Eastchester_Road_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Mace_2" to="Mace_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Mace_3" to="Mace_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Mace_4" to="Eastchester_Road_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Mace_5" to="Mace_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Pelham_0" to="Pelham_Parkway_North_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Pelham_1" to="Eastchester_Road_3_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Pelham_2" to="Pelham_Parkway_North_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Waring_0" to="Eastchester_Road_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Waring_1" to="Waring_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Waring_2" to="Eastchester_Road_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_12_0" dir="l" state="m"/>
+    <connection from=":Eastchester_Waring_12" to="Eastchester_Road_2_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Waring_3" to="Waring_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Waring_4" to="Eastchester_Road_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Waring_5" to="Waring_Avenue_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_13_0" dir="l" state="m"/>
+    <connection from=":Eastchester_Waring_13" to="Waring_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Waring_6" to="Eastchester_Road_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Waring_7" to="Waring_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Waring_8" to="Eastchester_Road_1_L" fromLane="0" toLane="0" via=":Eastchester_Waring_14_0" dir="l" state="m"/>
+    <connection from=":Eastchester_Waring_14" to="Eastchester_Road_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Eastchester_Waring_9" to="Waring_Avenue_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Eastchester_Waring_10" to="Eastchester_Road_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Eastchester_Waring_11" to="Waring_Avenue_2_R" fromLane="0" toLane="0" via=":Eastchester_Waring_15_0" dir="l" state="m"/>
+    <connection from=":Eastchester_Waring_15" to="Waring_Avenue_2_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Fenton_Mace_0" to="Fenton_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Fenton_Mace_1" to="Mace_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Fenton_Pelham_0" to="Fenton_Avenue_3_R" fromLane="0" toLane="0" dir="t" state="M"/>
+    <connection from=":Fenton_Pelham_1" to="Fenton_Avenue_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Fenton_Waring_0" to="Fenton_Avenue_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Fenton_Waring_1" to="Waring_Avenue_1_R" fromLane="0" toLane="0" via=":Fenton_Waring_6_0" dir="l" state="m"/>
+    <connection from=":Fenton_Waring_6" to="Waring_Avenue_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Fenton_Waring_2" to="Fenton_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Fenton_Waring_3" to="Fenton_Avenue_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Fenton_Waring_4" to="Waring_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Fenton_Waring_5" to="Fenton_Avenue_1_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Kingsland_Mace_0" to="Mace_Avenue_5_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Kingsland_Mace_1" to="Kingsland_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Kingsland_Pelham_0" to="Pelham_Parkway_North_4_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Kingsland_Pelham_1" to="Kingsland_Avenue_2_L" fromLane="0" toLane="0" dir="t" state="M"/>
+    <connection from=":Mace_Mickle_0" to="Mace_Avenue_3_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mace_Mickle_1" to="Mickle_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Mickle_6_0" dir="l" state="m"/>
+    <connection from=":Mace_Mickle_6" to="Mickle_Avenue_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Mickle_2" to="Mace_Avenue_4_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Mickle_3" to="Mace_Avenue_3_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Mickle_4" to="Mickle_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Mickle_5" to="Mace_Avenue_4_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mace_Westervelt_0" to="Mace_Avenue_4_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mace_Westervelt_1" to="Westervelt_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Westervelt_6_0" dir="l" state="m"/>
+    <connection from=":Mace_Westervelt_6" to="Westervelt_Avenue_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Westervelt_2" to="Mace_Avenue_5_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Westervelt_3" to="Mace_Avenue_4_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Westervelt_4" to="Westervelt_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Westervelt_5" to="Mace_Avenue_5_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mace_Woodhull_0" to="Mace_Avenue_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mace_Woodhull_1" to="Woodhull_Avenue_1_R" fromLane="0" toLane="0" via=":Mace_Woodhull_6_0" dir="l" state="m"/>
+    <connection from=":Mace_Woodhull_6" to="Woodhull_Avenue_1_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Woodhull_2" to="Mace_Avenue_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Woodhull_3" to="Mace_Avenue_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mace_Woodhull_4" to="Woodhull_Avenue_1_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mace_Woodhull_5" to="Mace_Avenue_3_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mickle_Waring_0" to="Waring_Avenue_3_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mickle_Waring_1" to="Waring_Avenue_4_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Mickle_Waring_2" to="Mickle_Avenue_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Mickle_Waring_3" to="Waring_Avenue_3_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mickle_Waring_4" to="Waring_Avenue_4_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Mickle_Waring_5" to="Mickle_Avenue_1_L" fromLane="0" toLane="0" via=":Mickle_Waring_6_0" dir="l" state="m"/>
+    <connection from=":Mickle_Waring_6" to="Mickle_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Pelham_Westervelt_0" to="Pelham_Parkway_North_3_L_2" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Pelham_Westervelt_1" to="Westervelt_Avenue_3_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Pelham_Westervelt_2" to="Pelham_Parkway_North_3_L_2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Pelham_Woodhull_0" to="Pelham_Parkway_North_2_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Pelham_Woodhull_1" to="Woodhull_Avenue_3_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Pelham_Woodhull_2" to="Pelham_Parkway_North_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Westervelt_0" to="Waring_Avenue_4_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Westervelt_1" to="Westervelt_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Westervelt_2" to="Westervelt_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Westervelt_3" to="Waring_Avenue_4_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Waring_Westervelt_4" to="Westervelt_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Westervelt_5" to="Westervelt_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Westervelt_6_0" dir="l" state="m"/>
+    <connection from=":Waring_Westervelt_6" to="Westervelt_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Waring_Woodhull_0" to="Waring_Avenue_2_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Woodhull_1" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Woodhull_2" to="Waring_Avenue_3_R" fromLane="0" toLane="0" via=":Waring_Woodhull_12_0" dir="l" state="m"/>
+    <connection from=":Waring_Woodhull_12" to="Waring_Avenue_3_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Waring_Woodhull_3" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Woodhull_4" to="Waring_Avenue_2_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Woodhull_5" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" via=":Waring_Woodhull_13_0" dir="l" state="m"/>
+    <connection from=":Waring_Woodhull_13" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Waring_Woodhull_6" to="Waring_Avenue_3_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Woodhull_7" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Woodhull_8" to="Waring_Avenue_2_L" fromLane="0" toLane="0" via=":Waring_Woodhull_14_0" dir="l" state="m"/>
+    <connection from=":Waring_Woodhull_14" to="Waring_Avenue_2_L" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":Waring_Woodhull_9" to="Woodhull_Avenue_2_R" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":Waring_Woodhull_10" to="Waring_Avenue_3_R" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":Waring_Woodhull_11" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" via=":Waring_Woodhull_15_0" dir="l" state="m"/>
+    <connection from=":Waring_Woodhull_15" to="Woodhull_Avenue_1_L" fromLane="0" toLane="0" dir="l" state="M"/>
+
+</net>

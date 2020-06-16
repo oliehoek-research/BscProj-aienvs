@@ -1,0 +1,6 @@
+<additional>
+
+	<!-- Lane-based Traffic Measures: https://sumo.dlr.de/docs/Simulation/Output/Lane-_or_Edge-based_Traffic_Measures.html -->
+	<laneData id="0" file="../output/lane_data.xml" />
+
+</additional>

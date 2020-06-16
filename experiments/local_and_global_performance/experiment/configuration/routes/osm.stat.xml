@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<city>
+	<general 
+		inhabitants="8766" 
+		households="3110" 
+		childrenAgeLimit="19" 
+		retirementAgeLimit="62" 
+		carRate="0.45" 
+		unemploymentRate="0.057" 
+		footDistanceLimit="1320" 
+		incomingTraffic="466" 
+		outgoingTraffic="2275"
+	/>
+	
+	<parameters 
+		carPreference="0.668" 
+		meanTimePerKmInCity="360" 
+		freeTimeActivityRate="0.15" 
+		uniformRandomTraffic="0.25" 
+		departureVariation="300" 
+	/>
+	
+	<population>
+		<bracket beginAge="0" endAge="34" peopleNbr="51" />
+		<bracket beginAge="34" endAge="64" peopleNbr="37" />
+		<bracket beginAge="64" endAge="90" peopleNbr="12" />
+	</population>
+
+	<workHours>
+		<opening hour="28800" proportion="0.15" />
+		<opening hour="30600" proportion="0.25" />
+		<opening hour="32400" proportion="0.60" />
+		<closing hour="43200" proportion="0.10" />
+		<closing hour="63000" proportion="0.30" />
+		<closing hour="64800" proportion="0.60" />
+	</workHours>
+
+	<streets>
+		<street edge="Astor_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Astor_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Astor_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Astor_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Astor_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Astor_Avenue_3_R" population="170" workPosition="0" />
+		<street edge="Eastchester_Road_1_L" population="150" workPosition="10" />
+		<street edge="Eastchester_Road_1_R" population="150" workPosition="10" />
+		<street edge="Eastchester_Road_2_L" population="150" workPosition="10" />
+		<street edge="Eastchester_Road_2_R" population="150" workPosition="10" />
+		<street edge="Eastchester_Road_3_L" population="150" workPosition="10" />
+		<street edge="Eastchester_Road_3_R" population="150" workPosition="10" />
+		<street edge="Fenton_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Fenton_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Fenton_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Fenton_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Fenton_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Fenton_Avenue_3_R" population="170" workPosition="0" />
+		<street edge="Kingsland_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Kingsland_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Kingsland_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Kingsland_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_3_R" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_4_L" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_4_R" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_5_L" population="170" workPosition="0" />
+		<street edge="Mace_Avenue_5_R" population="170" workPosition="0" />
+		<street edge="Mickle_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Mickle_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Pelham_Parkway_North_1_L" population="170" workPosition="0" />
+		<street edge="Pelham_Parkway_North_2_L" population="170" workPosition="0" />
+		<street edge="Pelham_Parkway_North_3_L_2" population="170" workPosition="0" />
+		<street edge="Pelham_Parkway_North_4_L" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_3_R" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_4_L" population="170" workPosition="0" />
+		<street edge="Waring_Avenue_4_R" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Westervelt_Avenue_3_R" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_1_L" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_1_R" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_2_L" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_2_R" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_3_L" population="170" workPosition="0" />
+		<street edge="Woodhull_Avenue_3_R" population="170" workPosition="0" />
+	</streets>
+
+	<cityGates>
+            <entrance edge="Pelham_Parkway_North_4_L" pos="1" incoming="0.25" outgoing="0" />
+	    <entrance edge="Kingsland_Avenue_2_R" pos="150" incoming="0" outgoing="0.15" />
+	    <entrance edge="Mace_Avenue_1_L" pos="70" incoming="0" outgoing="0.25" />
+            <entrance edge="Mace_Avenue_1_R" pos="1" incoming="0.55" outgoing="0" />
+	    <entrance edge="Mace_Avenue_5_R" pos="60" incoming="0" outgoing="0.2" />
+	    <entrance edge="Fenton_Avenue_3_L" pos="115" incoming="0" outgoing="0.4" />
+	    <entrance edge="Fenton_Avenue_3_R" pos="1" incoming="0.2" outgoing="0" />
+        </cityGates>
+
+        <schools>
+            <school edge="Mickle_Avenue_1_L" pos="130" beginAge="0" endAge="12" capacity="450" opening="30600" closing="52200" />
+            <school edge="Eastchester_Road_2_L" pos="85" beginAge="12" endAge="18" capacity="850" opening="32400" closing="54000" />
+	</schools>
+</city>
