@@ -132,3 +132,6 @@ venv.bak/
 scenarios/Sumo
 
 examples/GridSumo.ipynb
+
+# Experiment 'local_and_global_performance' has its own gitignore file
+!experiments/local_and_global_performance/**
